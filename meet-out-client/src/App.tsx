@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.css';
-import Tester from './components/Test'
+
+
+import ToDo from './components/ToDo'
 
 const App: React.FC = () => {
-  const testList = [{id: 't1', text: 'testing'}]
+  const ToDoList = [{id: 't1', text: 'create react app'}]
+
   return (
     <div className="App">
-      <Tester items={testList} />
+      <ToDo items={ToDoList}/>
     </div>
   );
 }
