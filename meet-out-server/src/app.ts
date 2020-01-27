@@ -9,6 +9,11 @@ const app = express()
 app.use(json())
 app.use('/home', require('./controllers/home'))
 
+
+app.get('/', (req: Request, res: Response) => {
+    res.send('Home Stub')
+})
+
 app.use((err: Error, req: Request, res: Response) => {
     res.status(500).json({message: err.message})
 })
