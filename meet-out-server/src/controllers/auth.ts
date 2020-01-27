@@ -10,7 +10,7 @@ router.post('/login', (req: Request, res: Response) => {
     const email = (req.body as {email: string}).email
     const password = (req.body as {password: string}).password
     db.User.findOne({ email: email })
-    .then((user: Document) => {
+    .then((user: any) => {
         if(!user || !user.password){
             return res.status(404).send({message: 'User not found'})
         }
@@ -34,12 +34,12 @@ router.post('/signup', (req: Request, res: Response) => {
     const email = (req.body as {email: string}).email
     const password = (req.body as {password: string}).password
     db.User.findOne({ email: email})
-    .then((user: Document) => {
+    .then((user: any) => {
         if(user) {
             return res.status(409).send({ message: 'Email already in use.' })
         }
         db.User.create(req.body)
-        .then((newUser: Document) => {
+        .then((newUser: any) => {
             let token: string = jwt.sign(newUser.toJSON(), process.env.JWT_SECRET, {
                 expiresIn: 60 * 60 * 1 //Expires in one hour
             })
