@@ -2,7 +2,6 @@ require('dotenv').config()
 let db = require('../models')
 let jwt = require('jsonwebtoken')
 import { Request, Response, Router } from 'express'
-import *  as mongoose from 'mongoose'
 import User from '../models/user'
 
 const router = Router()
