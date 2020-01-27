@@ -7,8 +7,53 @@ const router = Router()
 
 router.post('/login', (req: Request, res: Response) => {
     console.log(req.body)
-    const email = (req.body as {text: string}).email
-    db.User.findOne({email: req.body.email})
+    const email = (req.body as {email: string}).email
+    const password = (req.body as {password: string}).password
+    db.User.findOne({ email: email })
+    .then((user: Document) => {
+        if(!user || !user.password){
+            return res.status(404).send({message: 'User not found'})
+        }
+        if(!user.isValidPassword(password)){
+            return res.status(401).send({message: 'Invalid Credentials'})
+        }
+        
+        let token: string = jwt.sign(user.toJSON(), process.env.JWT_SECRET, {
+            expiresIn: 60 * 60 * 1 //Expires in 1 hour
+        })
+        res.send({ token })
+    })
+    .catch((err: any) => {
+        console.log('Error attempting to login : ', err)
+        res.status(503).send({ message : 'Database not responding' })
+    })
+})
+
+router.post('/signup', (req: Request, res: Response) => {
+    console.log(req.body)
+    const email = (req.body as {email: string}).email
+    const password = (req.body as {password: string}).password
+    db.User.findOne({ email: email})
+    .then((user: Document) => {
+        if(user) {
+            return res.status(409).send({ message: 'Email already in use.' })
+        }
+        db.User.create(req.body)
+        .then((newUser: Document) => {
+            let token: string = jwt.sign(newUser.toJSON(), process.env.JWT_SECRET, {
+                expiresIn: 60 * 60 * 1 //Expires in one hour
+            })
+            res.send({ token })
+        })
+        .catch((err: any) => {
+            console.log('Error when creating user.', err)
+            res.status(500).send({ message: 'Error when creating user.'})
+        })
+    })
+    .catch((err: any) => {
+        console.log('Error occured on signup: ', err)
+        res.status(503).send({ message: 'Database Error.' })
+    })
 })
 
 
