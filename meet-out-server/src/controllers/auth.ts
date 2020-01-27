@@ -2,6 +2,8 @@ require('dotenv').config()
 let db = require('../models')
 let jwt = require('jsonwebtoken')
 import { Request, Response, Router } from 'express'
+import *  as mongoose from 'mongoose'
+import User from '../models/user'
 
 const router = Router()
 
@@ -10,11 +12,11 @@ router.post('/login', (req: Request, res: Response) => {
     const email = (req.body as {email: string}).email
     const password = (req.body as {password: string}).password
     db.User.findOne({ email: email })
-    .then((user: any) => {
+    .then((user: User) => {
         if(!user || !user.password){
             return res.status(404).send({message: 'User not found'})
         }
-        if(!user.isValidPassword(password)){
+        if(!user.isValidPassword(user, password)){
             return res.status(401).send({message: 'Invalid Credentials'})
         }
         
@@ -34,12 +36,12 @@ router.post('/signup', (req: Request, res: Response) => {
     const email = (req.body as {email: string}).email
     const password = (req.body as {password: string}).password
     db.User.findOne({ email: email})
-    .then((user: any) => {
+    .then((user: User) => {
         if(user) {
             return res.status(409).send({ message: 'Email already in use.' })
         }
         db.User.create(req.body)
-        .then((newUser: any) => {
+        .then((newUser: User) => {
             let token: string = jwt.sign(newUser.toJSON(), process.env.JWT_SECRET, {
                 expiresIn: 60 * 60 * 1 //Expires in one hour
             })

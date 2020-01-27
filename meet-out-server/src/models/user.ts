@@ -21,14 +21,15 @@ let userSchema: mongoose.Schema = new mongoose.Schema({
 })
 
 //create interface for User extending mongoose.Document (mongoose.Document includes ._id)
-interface User extends mongoose.Document {
+export default interface User extends mongoose.Document {
   firstname: string;
   lastname: string;
   email: string;
   password: string;
   photo: string;
   // events: {}[];
-  _v: number
+  _v: number;
+  isValidPassword(user: User, password: String): boolean;
 }
 
 // Use bcrypt to hash password before it goes into the database
@@ -52,6 +53,6 @@ userSchema.methods.isValidPassword = function(this: User, typedPassword: string)
 }
 
 // Create model with type User
-let User = mongoose.model<User>('User', userSchema)
+let User: mongoose.Model<User> = mongoose.model<User>('User', userSchema)
 
 module.exports = User
