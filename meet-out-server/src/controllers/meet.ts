@@ -7,13 +7,6 @@ import Meet from '../models/meet'
 const axios = require('axios'); 
 const GEO_URL = 'https://geocoding.geo.census.gov/geocoder/locations/address?street='
 
-// type GeocodeResponse = {
-//     result: {data:}
-// }
-// Format of Gecode URL
-// https://geocoding.geo.census.gov/geocoder/locations/address?
-// street=4600+Silver+Hill+Rd&city=Suitland&state=MD&zip=20746&benchmark=Public_AR_Census2010&format=json
-
 const router = Router()
 
 router.get('/', (req: Request, res: Response) => {
@@ -22,15 +15,6 @@ router.get('/', (req: Request, res: Response) => {
         res.send(`Found: ${meet}`)
     })
 })
-
-// app.get('/', function(req, res) {
-//     var pokemonUrl = 'http://pokeapi.co/api/v2/pokemon?limit=151';
-//     // Use request to call the API
-//     axios.get(pokemonUrl).then( function(apiResponse) {
-//       var pokemon = apiResponse.data.results;
-//       res.render('index', { pokemon: pokemon.slice(0, 151) });
-//     })
-//   });
 
 router.post('/', (req: Request, res: Response) => {
     let address = req.body.activityAddress
