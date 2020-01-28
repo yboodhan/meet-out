@@ -21,8 +21,35 @@ const Login: React.FC<LoginProps> = props => {
         setMessage('')
     }, [email, password])
 
-    //TODO: HANDLE SUBMIT
-    
+    // Submit the form
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault()
+        fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
+          method: 'POST',
+          body: JSON.stringify({
+            email,
+            password
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then( (response: Response) => {
+          response.json()
+          .then( result => {
+            if (response.ok) {
+              // Update the user's token
+              props.updateUser( result.token )
+            } else {
+              setMessage(`${response.status} ${response.statusText}: ${result.message}`)
+            }
+          })
+        })
+        .catch( (err: Error) => {
+          console.log(err)
+          setMessage(`${err.toString()}`)
+        })
+        }
 
     // If user, redirect
     if (props.user) {
@@ -32,7 +59,7 @@ const Login: React.FC<LoginProps> = props => {
     return (
         <div>
         <Container>
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Row form className="text-left">
                 <Col md={5}>
                     <Label for="email">Email</Label>
