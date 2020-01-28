@@ -1,8 +1,24 @@
 import React from 'react'
+import { Decoded } from '../App'
 import { Button, Col, Container, Form, FormGroup, FormText, Input, Row } from 'reactstrap';
 import image from '../DogJumpDoodle.png'
 
-const Signup: React.FC = () => {
+// Props
+interface SignupProps {
+    user: Decoded | null,
+    updateUser: (newToken: string | null) => void
+}
+
+const Signup: React.FC<SignupProps> = props => {
+
+    // State variables
+    // let [email, setEmail] = useState('')
+    // let [firstname, setFirstname] = useState('')
+    // let [lastname, setLastname] = useState('')
+    // let [message, setMessage] = useState('')
+    // let [password, setPassword] = useState('')
+    // let [profileUrl, setProfileUrl] = useState('')
+
     return (
         <div>
         <Container className="text-left">

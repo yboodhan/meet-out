@@ -1,6 +1,12 @@
 import React from 'react'
+import { Decoded } from '../App'
 
-const Profile: React.FC = () => {
+// Props
+interface ProfileProps {
+    user: Decoded | null
+}
+
+const Profile: React.FC<ProfileProps> = props => {
     return (
         <div>PROFILE STUB</div>
     )

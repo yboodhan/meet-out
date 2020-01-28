@@ -66,7 +66,7 @@ const App: React.FC = () => {
       <div className="App">
         <Nav user={user} updateUser={updateUser}/>
         <main>
-          <Content />
+          <Content user={user} updateUser={updateUser}/>
         </main>
         <Footer />
       </div>

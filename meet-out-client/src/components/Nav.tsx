@@ -7,6 +7,7 @@ import { Button, Col, Form, Input, Navbar, NavbarBrand, Nav as Navi, NavItem, Na
 
 import Login from './Login'
 
+// Props
 interface NavProps {
     user: Decoded | null,
     updateUser: (newToken: string | null) => void
@@ -59,9 +60,7 @@ const Nav: React.FC<NavProps> = props => {
     return (
         <div>
         <Navbar color="light" light expand="md">
-
             {links}
-            
         </Navbar>
       </div>
     )
