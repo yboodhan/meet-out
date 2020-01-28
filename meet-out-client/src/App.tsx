@@ -17,8 +17,7 @@ import Nav from './components/Nav'
 const App: React.FC = () => {
 
   // Creater user state and function to set state
-  let [user, setUser] = React.useState<object | null>(null)
-    // TODO: user is of type USER ------------- object **********************
+  let [user, setUser] = React.useState<Decoded | null>(null)
 
   // Function to update the user
   const updateUser = (newToken: string) => {
@@ -26,14 +25,14 @@ const App: React.FC = () => {
       // Store this token
       localStorage.setItem('userToken', newToken)
       // Decode this token
-      // TO DO: DECODE FUNCTION *************
+      decodeToken(newToken)
     } else {
       // If no token, user is null
       setUser(null)
     }
   }
 
-  // Interface for decoded
+  // Interface for decoded type
   interface Decoded extends User {
     exp: number
   }
