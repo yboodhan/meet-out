@@ -29,7 +29,7 @@ export default interface User extends mongoose.Document {
   photo: string;
   // events: {}[];
   _v: number;
-  isValidPassword(user: User, password: String): boolean;
+  isValidPassword(user: User, password: string): boolean;
 }
 
 // Use bcrypt to hash password before it goes into the database
@@ -48,8 +48,10 @@ userSchema.set('toJSON', {
 })
 
 // helper function to compare the password hashes
-userSchema.methods.isValidPassword = function(this: User, typedPassword: string) {
-  return bcrypt.compareSync(typedPassword, this.password)
+userSchema.methods.isValidPassword = function(user: User, typedPassword: string): boolean {
+  console.log('This is typedPassword: ', typedPassword)
+  console.log('Heres this: ', user)
+  return bcrypt.compareSync(typedPassword, user.password)
 }
 
 // Create model with type User

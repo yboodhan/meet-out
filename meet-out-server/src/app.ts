@@ -2,7 +2,6 @@
 import express, {Request, Response, NextFunction} from 'express'
 import mongoose from 'mongoose'
 //importing json module from body-parser npm module
-import {json} from 'body-parser'
 const bodyParser = require('body-parser')
 //import routes from routes file
 
@@ -37,4 +36,4 @@ app.use((err: Error, req: Request, res: Response) => {
 
 app.listen(process.env.PORT || 3000, () => {
     rowdyResults.print()
-  })
+})
