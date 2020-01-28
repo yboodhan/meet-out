@@ -2,7 +2,6 @@
 import express, {Request, Response} from 'express'
 import mongoose from 'mongoose'
 //importing json module from body-parser npm module
-import {json} from 'body-parser'
 const bodyParser = require('body-parser')
 //import routes from routes file
 
