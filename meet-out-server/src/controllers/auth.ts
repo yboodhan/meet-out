@@ -16,6 +16,7 @@ router.post('/login', (req: Request, res: Response) => {
         if(!user || !user.password){
             return res.status(404).send({message: 'User not found'})
         }
+        console.log('This is the password: ', password)
         if(!user.isValidPassword(user, password)){
             return res.status(401).send({message: 'Invalid Credentials'})
         }

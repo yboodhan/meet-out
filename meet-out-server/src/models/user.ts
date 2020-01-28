@@ -48,8 +48,10 @@ userSchema.set('toJSON', {
 })
 
 // helper function to compare the password hashes
-userSchema.methods.isValidPassword = function(typedPassword: string) {
-  return bcrypt.compareSync(typedPassword, this.password)
+userSchema.methods.isValidPassword = function(user: User, typedPassword: string): boolean {
+  console.log('This is typedPassword: ', typedPassword)
+  console.log('Heres this: ', user)
+  return bcrypt.compareSync(typedPassword, user.password)
 }
 
 // Create model with type User
