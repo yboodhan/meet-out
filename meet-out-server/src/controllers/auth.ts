@@ -12,7 +12,6 @@ router.post('/login', (req: Request, res: Response) => {
     const password = (req.body as {password: string}).password
     db.User.findOne({ email: email })
     .then((user: User) => {
-        console.log('🚣🏻‍♀️🚣🏻‍♀️🚣🏻‍♀️🚣🏻‍♀️' + password)
         if(!user || !user.password){
             return res.status(404).send({message: 'User not found'})
         }
