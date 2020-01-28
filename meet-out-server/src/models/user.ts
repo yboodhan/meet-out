@@ -48,9 +48,9 @@ userSchema.set('toJSON', {
 })
 
 // helper function to compare the password hashes
+// What did I fix here? Re-ordered compareSync to be appropriate on this end and the other, added :boolean to
+// end of this statement (thanks, Gav), re-ordered things slightly
 userSchema.methods.isValidPassword = function(user: User, typedPassword: string): boolean {
-  console.log('This is typedPassword: ', typedPassword)
-  console.log('Heres this: ', user)
   return bcrypt.compareSync(typedPassword, user.password)
 }
 
