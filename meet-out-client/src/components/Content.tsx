@@ -19,7 +19,7 @@ const Content: React.FC<ContentProps> = props => {
             <Route exact path="/" render={
                 () => <Signup user={props.user} updateUser={props.updateUser} />
             } />
-            <Route path="/profile" component={Profile} render={
+            <Route path="/profile" render={
                 () => <Profile user={props.user} />
             } />
             <Route path="/home" component={Home}/> {/* TODO: update to render methods with props */}

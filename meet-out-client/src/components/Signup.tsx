@@ -60,8 +60,9 @@ const Signup: React.FC<SignupProps> = props => {
             console.log('Error', err)
             setMessage(`Error: ${err.toString()}`)
         })
+    
     }
-
+    
     // If user, redirect
     if (props.user) {
         return <Redirect to="/profile" />
