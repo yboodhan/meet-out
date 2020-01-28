@@ -1,6 +1,8 @@
 import * as mongoose from 'mongoose'
 import * as bcrypt from 'bcryptjs'
 
+import IMeet from '../models/meet'
+
 //create interface for User extending mongoose.Document (mongoose.Document includes ._id)
 export default interface User extends mongoose.Document {
   firstname: string;
@@ -8,7 +10,7 @@ export default interface User extends mongoose.Document {
   email: string;
   password: string;
   photo: string;
-  // events: {}[];
+  meets: IMeet[];
   _v: number;
   isValidPassword(user: User, password: string): boolean;
 }
@@ -29,15 +31,16 @@ let userSchema: mongoose.Schema = new mongoose.Schema({
         minlength: 8,
         maxlength: 32
       },
-      photo: String
-      // events: [{type: mongoose.Schema.Types.ObjectId, ref: 'Event'}],
+      photo: String,
+      meets: [{type: mongoose.Schema.Types.ObjectId, ref: 'Meet'}]
 })
 
 
 // Use bcrypt to hash password before it goes into the database
 userSchema.pre('save', function(this: User, next) {
-  //might need to think about making sure this doesn't re-hash if we update the user when updating data within user (password is too long error)
-  this.password = bcrypt.hashSync(this.password, 12)
+  // if(!this.isModified()){
+    this.password = bcrypt.hashSync(this.password, 12)
+  // }
   next()
 })
 
