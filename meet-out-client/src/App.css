@@ -7,3 +7,10 @@
   height: 75vh;
   
 }
+
+.page-footer {
+  background-color: #282c3460;
+  color: white;
+  font-size: 16px;
+  padding: 15px;
+}
