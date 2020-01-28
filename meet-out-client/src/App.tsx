@@ -2,22 +2,27 @@
 import React from 'react'
 // Import Router to navigate
 import { BrowserRouter as Router } from 'react-router-dom'
+// Import CSS stylsheet
 import './App.css'
-
+// Import components
+import Content from './components/Content'
+import Footer from './components/Footer'
+import Header from './components/Header'
 import Nav from './components/Nav'
-import Login from './components/Login'
-import Signup from './components/Signup'
 
 const App: React.FC = () => {
 
   return (
-    <div className="App">
-      <Router>
+    <Router>
+      <div className="App">
         <Nav />
-        <Login />
-        <Signup />
-      </Router>
-    </div>
+        <Header />
+        <main>
+          <Content />
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
