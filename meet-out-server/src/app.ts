@@ -30,8 +30,8 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Home Stub')
 })
 
-app.use((err: Error, req: Request, res: Response) => {
-    res.status(500).json({message: err.message})
+app.get('*',(req: Request, res: Response) => {
+    res.send('404')
 })
 
 app.listen(process.env.PORT || 3000, () => {
