@@ -4,13 +4,14 @@ import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import './App.css'
 
+import Login from './components/Login'
 
 const App: React.FC = () => {
 
   return (
     <div className="App">
       <Router>
-        
+        <Login />
       </Router>
     </div>
   );
