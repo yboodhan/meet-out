@@ -1,9 +1,29 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { Decoded } from '../App'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Button, Col, Form, Input, Navbar, NavbarBrand, Nav as Navi, NavItem, NavLink, NavbarText} from 'reactstrap';
 
-const Nav: React.FC = props => {
+interface NavProps {
+    user: Decoded | null,
+    updateUser: (newToken: string) => void
+}
+
+const Nav: React.FC<NavProps> = props => {
+
+    // Define links
+    let links = (
+        <h1>HI</h1>
+    )
+
+    // Check user exists (select links)
+    if (props.user) {
+        links = (
+            <h1>LINK</h1>
+        )
+    }
+
     return (
         <div>
         <Navbar color="light" light expand="md">

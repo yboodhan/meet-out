@@ -14,6 +14,11 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import Nav from './components/Nav'
 
+// Interface for decoded type
+export interface Decoded extends User {
+  exp: number
+}
+
 const App: React.FC = () => {
 
   // Creater user state and function to set state
@@ -35,11 +40,6 @@ const App: React.FC = () => {
       // If no token, user is null
       setUser(null)
     }
-  }
-
-  // Interface for decoded type
-  interface Decoded extends User {
-    exp: number
   }
 
   // Function to decode the token
@@ -65,7 +65,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
-        <Nav />
+        <Nav user={user} updateUser={updateUser}/>
         <Header />
         <main>
           <Content />
