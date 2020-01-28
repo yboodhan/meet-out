@@ -3,11 +3,15 @@ import express, {Request, Response} from 'express'
 import mongoose from 'mongoose'
 //importing json module from body-parser npm module
 import {json} from 'body-parser'
+var bodyParser = require('body-parser')
 //import routes from routes file
 
 const app = express()
 
-app.use(json())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use('/home', require('./controllers/home'))
 app.use('/auth', require('./controllers/auth'))
 
@@ -16,8 +20,8 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Home Stub')
 })
 
-// app.use((err: Error, req: Request, res: Response) => {
-//     res.status(500).json({message: err.message})
-// })
+app.use((err: Error, req: Request, res: Response) => {
+    res.status(500).json({message: err.message})
+})
 
 app.listen(3000)
