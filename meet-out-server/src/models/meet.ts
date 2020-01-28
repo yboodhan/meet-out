@@ -13,7 +13,7 @@ export default interface Meet extends mongoose.Document {
       address: String;
       lat: Number;
       long: Number;
-    }[];
+    };
   }
 }
 
