@@ -11,7 +11,6 @@ import User from '../../meet-out-server/src/models/user'
 // Import components
 import Content from './components/Content'
 import Footer from './components/Footer'
-import Header from './components/Header'
 import Nav from './components/Nav'
 
 // Interface for decoded type
@@ -63,13 +62,9 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="App">
-      <Router>
-        <Nav />
     <Router>
       <div className="App">
         <Nav user={user} updateUser={updateUser}/>
-        <Header />
         <main>
           <Content />
         </main>
