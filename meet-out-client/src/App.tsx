@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import './App.css'
 
 import Login from './components/Login'
+import Signup from './components/Signup'
 
 const App: React.FC = () => {
 
@@ -12,6 +13,7 @@ const App: React.FC = () => {
     <div className="App">
       <Router>
         <Login />
+        <Signup />
       </Router>
     </div>
   );
