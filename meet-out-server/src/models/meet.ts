@@ -5,15 +5,15 @@ import User from '../models/user'
 export default interface Meet extends mongoose.Document {
   date: Date;
   time: Date;
-  description: string;
+  description: String;
   users: User[];
-  activity: { name: string;
+  activity: { name: String;
     locations: {
-      name: string;
-      address: string;
-      lat: number;
-      long: number;
-    }[];
+      name: String;
+      address: String;
+      lat: Number;
+      long: Number;
+    };
   }
 }
 
@@ -42,4 +42,4 @@ let meetSchema: mongoose.Schema = new mongoose.Schema({
 // Create model with type meet
 let Meet: mongoose.Model<Meet> = mongoose.model<Meet>('Meet', meetSchema)
 
-module.exports = Meet
+module.exports = Meet;

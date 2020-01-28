@@ -27,6 +27,7 @@ app.use(cors())
 app.use('/home', require('./controllers/home'))
 app.use('/auth', require('./controllers/auth'))
 app.use('/profile', require('./controllers/profile'))
+app.use('/meet', require('./controllers/meet'))
 
 
 app.get('/', (req: Request, res: Response) => {
