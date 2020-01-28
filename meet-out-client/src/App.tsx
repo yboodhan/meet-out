@@ -17,7 +17,7 @@ import Nav from './components/Nav'
 const App: React.FC = () => {
 
   // Creater user state and function to set state
-  let [user, setUser] = React.useState<User | null>(null)
+  let [user, setUser] = React.useState<object | null>(null)
     // TODO: user is of type USER ------------- object **********************
 
   // Function to update the user
@@ -33,6 +33,11 @@ const App: React.FC = () => {
     }
   }
 
+  // Interface for decoded
+  interface Decoded extends User {
+    exp: Date
+  }
+
   // Function to decode the token
   const decodeToken = (existingToken: string) => {
     let token: string | null = existingToken || localStorage.getItem('userToken')
@@ -40,7 +45,7 @@ const App: React.FC = () => {
     // Token exists
     if (token) {
       // Decode token
-      let decoded: User = jwtDecode(token)
+      let decoded: Decoded = jwtDecode(token)
 
       // Expired or invalid token
       if (!decoded || Date.now() > decoded.exp * 1000) {
