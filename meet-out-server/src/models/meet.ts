@@ -11,6 +11,9 @@ export default interface Meet extends mongoose.Document {
     locations: {
       name: String;
       address: String;
+      city: String;
+      state: String;
+      zip: Number;
       lat: Number;
       long: Number;
     };
@@ -20,12 +23,18 @@ export default interface Meet extends mongoose.Document {
 //create activity schema
 let activitySchema: mongoose.Schema = new mongoose.Schema({
   name: String,
-  locations: [{
+  locations: {
     name: String,
     address: String,
+    city: String,
+    state: {
+      type: String,
+      maxlength: 2
+    },
+    zip: Number,
     lat: Number,
     long: Number
-  }]
+  }
 })
 
 //create meet schema
