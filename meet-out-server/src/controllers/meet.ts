@@ -22,7 +22,6 @@ router.post('/', (req: Request, res: Response) => {
         `&city=${req.body.city}&state=${req.body.state}&zip=${req.body.zip}` + 
         `&benchmark=Public_AR_Census2010&format=json`)
         .then(function(apiResponse: any){
-            console.log(apiResponse.data.result.addressMatches[0].coordinates)
             let x = apiResponse.data.result.addressMatches[0].coordinates.x
             let y = apiResponse.data.result.addressMatches[0].coordinates.y
 
