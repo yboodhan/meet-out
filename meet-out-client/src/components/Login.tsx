@@ -6,7 +6,7 @@ const Login: React.FC = () => {
         <div>
         <Container>
         <Form>
-            <Row form>
+            <Row form className="text-left">
                 <Col md={5}>
                     <Label for="email">Email</Label>
                 </Col>
@@ -17,20 +17,18 @@ const Login: React.FC = () => {
             <Row form>
                 <Col md={5}>
                 <FormGroup>
-                    <Input type="email" name="email" id="email" autofocus="autofocus" />
+                    <Input type="email" name="email" id="email" autofocus="autofocus" required/>
                 </FormGroup>
                 </Col>
                 <Col md={5}>
                 <FormGroup>
-                    <Input type="password" name="password" id="password"/>
+                    <Input type="password" name="password" id="password" required/>
                 </FormGroup>
                 </Col>
                 <Col md={2}>
-                    <Button color="secondary">Log In</Button>
+                    <Button type="submit" color="secondary">Log In</Button>
                 </Col>
             </Row>
-            
-
         </Form>
         </Container>
         </div>
