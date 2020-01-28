@@ -2,9 +2,9 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 
 //Components
-import Signup from './pages/Signup'
-import Home from './pages/home/Home'
-import Profile from './pages/Profile'
+import Signup from './Signup'
+import Home from './Home'
+import Profile from './Profile'
 
 
 

@@ -4,9 +4,9 @@ import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import './App.css'
 
-import Nav from './components/partials/Nav'
+import Nav from './components/Nav'
 import Content from './components/Content'
-import Footer from './components/partials/Footer'
+import Footer from './components/Footer'
 
 const App: React.FC = () => {
 
