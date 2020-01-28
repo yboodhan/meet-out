@@ -5,6 +5,8 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import './App.css'
 
 import Nav from './components/Nav'
+import Login from './components/Login'
+import Signup from './components/Signup'
 
 const App: React.FC = () => {
 
@@ -12,6 +14,8 @@ const App: React.FC = () => {
     <div className="App">
       <Router>
         <Nav />
+        <Login />
+        <Signup />
       </Router>
     </div>
   );

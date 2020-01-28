@@ -11,7 +11,7 @@ const Nav: React.FC = props => {
           
             <Form inline>
                 <Col m={12}>
-                    <Input type="text" placeholder="Search" autofocus="autofocus"/>
+                    <Input type="text" name="search" placeholder="Search" autofocus="autofocus"/>
                 </Col>
                 <Button size="sm" type="submit" color="secondary"><FontAwesomeIcon icon={faSearch}/></Button>
             </Form>
