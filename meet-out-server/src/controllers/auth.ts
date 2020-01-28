@@ -5,7 +5,7 @@ import { Request, Response, Router } from 'express'
 import User from '../models/user'
 
 const router = Router()
-//test
+
 router.post('/login', (req: Request, res: Response) => {
     console.log(req.body)
     const email = (req.body as {email: string}).email
