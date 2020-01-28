@@ -1,9 +1,11 @@
 import React from 'react'
-import { Form, FormGroup, Label, Input, FormFeedback, FormText } from 'reactstrap';
+import { Container, Form, FormGroup, Label, Input, FormFeedback, FormText } from 'reactstrap';
 
 const Login: React.FC = () => {
     return (
-        <div className="container">
+        <div>
+        <Container>
+
         <Form>
             <FormGroup>
                 <Label for="email">Email:</Label>
@@ -42,6 +44,7 @@ const Login: React.FC = () => {
                 <FormText>Example help text that remains unchanged.</FormText>
             </FormGroup>
         </Form>
+        </Container>
         </div>
     )
 }
