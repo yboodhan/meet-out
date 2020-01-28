@@ -14,7 +14,7 @@ router.get('/:id', (req: Request, res: Response) => {
     })
 })
 
-router.post('/:id', (req: Request, res: Response) => {
+router.put('/:id', (req: Request, res: Response) => {
     //this needs coverage to handle blank fields. User should be able to update just one field, if they so desire.
     db.User.updateOne({ _id: (req.params as{id: string}).id },
     req.body)
