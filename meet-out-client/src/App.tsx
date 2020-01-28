@@ -63,6 +63,9 @@ const App: React.FC = () => {
   }
 
   return (
+    <div className="App">
+      <Router>
+        <Nav />
     <Router>
       <div className="App">
         <Nav user={user} updateUser={updateUser}/>

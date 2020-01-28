@@ -1,8 +1,14 @@
 import React from 'react'
 
+import List from './List'
+import Calendar from './Calendar'
+
 const Home: React.FC = () => {
     return (
-        <div>HOME STUB</div>
+        <div>
+            <List />
+            <Calendar />
+        </div>
     )
 }
 

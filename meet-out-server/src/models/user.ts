@@ -38,7 +38,7 @@ let userSchema: mongoose.Schema = new mongoose.Schema({
 
 // Use bcrypt to hash password before it goes into the database
 userSchema.pre('save', function(this: User, next) {
-  // if(!this.isModified()){
+  // if(!this.isModified()){ --- *TESTED and doesn't seem like we need this... at least for now
     this.password = bcrypt.hashSync(this.password, 12)
   // }
   next()
