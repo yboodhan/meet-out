@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose'
+import mongoose from 'mongoose'
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/meet-out', {
     useNewUrlParser: true,
