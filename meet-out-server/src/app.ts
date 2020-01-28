@@ -5,11 +5,18 @@ import mongoose from 'mongoose'
 import {json} from 'body-parser'
 //import routes from routes file
 
+require('dotenv').config()
+let cors = require('cors')
+// let expressJwt = require('express-jwt')
+let morgan = require('morgan')
 let rowdyLogger = require('rowdy-logger')
 
 const app = express()
 let rowdyResults = rowdyLogger.begin(app)
 
+app.use(morgan('dev'))
+app.use(cors())
+app.use(express.urlencoded({ extended: false }))
 app.use(json())
 
 app.use('/home', require('./controllers/home'))
@@ -20,9 +27,9 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Home Stub')
 })
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    res.status(500).json({message: err.message})
-})
+// app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+//     res.status(500).json({message: err.message})
+// })
 
 app.listen(process.env.PORT || 3000, () => {
     rowdyResults.print()
