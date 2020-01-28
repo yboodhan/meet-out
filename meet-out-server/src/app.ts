@@ -10,6 +10,7 @@ const app = express()
 app.use(json())
 app.use('/home', require('./controllers/home'))
 app.use('/auth', require('./controllers/auth'))
+app.use(express.urlencoded({extended: false}))
 
 
 app.get('/', (req: Request, res: Response) => {
