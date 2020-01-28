@@ -9,6 +9,7 @@ const GEO_URL = 'https://geocoding.geo.census.gov/geocoder/locations/address?str
 
 const router = Router()
 
+// Get route sends all Meets to the front-end
 router.get('/', (req: Request, res: Response) => {
     db.Meet.find()
     .then((meets: Meet) => {
@@ -17,6 +18,7 @@ router.get('/', (req: Request, res: Response) => {
     })
 })
 
+// This route gets just one meeting by it's ID
 router.get('/:id', (req: Request, res: Response) => {
     db.Meet.findOne({_id: req.params.id})
     .then((meet: Meet) => {
@@ -25,7 +27,13 @@ router.get('/:id', (req: Request, res: Response) => {
     })
 })
 
+// router.get('/', (req: Request, res: Response) => {
+//     db.Meet.find({})
+// })
+
+// This route posts a new meet
 router.post('/', (req: Request, res: Response) => {
+    // Defining the activity address to a more bite-sized variable for the geocoder
     let address = req.body.activityAddress
     axios.get(GEO_URL + `${address.split(' ').join('+')}` + 
         `&city=${req.body.city}&state=${req.body.state}&zip=${req.body.zip}` + 
