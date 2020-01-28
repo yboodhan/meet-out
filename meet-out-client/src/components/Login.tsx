@@ -1,48 +1,36 @@
 import React from 'react'
-import { Container, Form, FormGroup, Label, Input, FormFeedback, FormText } from 'reactstrap';
+import { Button, Col, Container, Form, FormGroup, Label, Input, Row } from 'reactstrap';
 
 const Login: React.FC = () => {
     return (
         <div>
         <Container>
-
         <Form>
-            <FormGroup>
-                <Label for="email">Email:</Label>
-                <Input />
-                <FormFeedback>You will not be able to see this</FormFeedback>
-                <FormText>Example help text that remains unchanged.</FormText>
-            </FormGroup>
-            <FormGroup>
-                <Label for="password">Password:</Label>
-                <Input valid />
-                <FormFeedback valid>Sweet! that name is available</FormFeedback>
-                <FormText>Example help text that remains unchanged.</FormText>
-            </FormGroup>
-            <FormGroup>
-                <Label for="examplePassword">Invalid input</Label>
-                <Input invalid />
-                <FormFeedback>Oh noes! that name is already taken</FormFeedback>
-                <FormText>Example help text that remains unchanged.</FormText>
-            </FormGroup>
-            <FormGroup>
-                <Label for="exampleEmail">Input without validation</Label>
-                <Input />
-                <FormFeedback tooltip>You will not be able to see this</FormFeedback>
-                <FormText>Example help text that remains unchanged.</FormText>
-            </FormGroup>
-            <FormGroup>
-                <Label for="exampleEmail">Valid input</Label>
-                <Input valid />
-                <FormFeedback valid tooltip>Sweet! that name is available</FormFeedback>
-                <FormText>Example help text that remains unchanged.</FormText>
-            </FormGroup>
-            <FormGroup>
-                <Label for="examplePassword">Invalid input</Label>
-                <Input invalid />
-                <FormFeedback tooltip>Oh noes! that name is already taken</FormFeedback>
-                <FormText>Example help text that remains unchanged.</FormText>
-            </FormGroup>
+            <Row form>
+                <Col md={5}>
+                    <Label for="email">Email</Label>
+                </Col>
+                <Col md={5}>
+                    <Label for="password">Password</Label>
+                </Col>
+            </Row>
+            <Row form>
+                <Col md={5}>
+                <FormGroup>
+                    <Input type="email" name="email" id="email" autofocus="autofocus" />
+                </FormGroup>
+                </Col>
+                <Col md={5}>
+                <FormGroup>
+                    <Input type="password" name="password" id="password"/>
+                </FormGroup>
+                </Col>
+                <Col md={2}>
+                    <Button color="secondary">Log In</Button>
+                </Col>
+            </Row>
+            
+
         </Form>
         </Container>
         </div>
