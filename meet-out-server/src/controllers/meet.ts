@@ -11,8 +11,17 @@ const router = Router()
 
 router.get('/', (req: Request, res: Response) => {
     db.Meet.find()
+    .then((meets: Meet) => {
+        console.log(`All meets should be sent: ${meets}`)
+        res.send({meets})
+    })
+})
+
+router.get('/:id', (req: Request, res: Response) => {
+    db.Meet.findOne({_id: req.params.id})
     .then((meet: Meet) => {
-        res.send(`Found: ${meet}`)
+        console.log(`Should be displaying one meet: ${meet}`)
+        res.send({meet})
     })
 })
 
@@ -44,11 +53,24 @@ router.post('/', (req: Request, res: Response) => {
                 }
             })
             .then((newMeet: Meet) => {
-                res.send(`Created: ${newMeet}`)
+                console.log(`New meet created: ${newMeet}`)
+                res.send({newMeet})
             })
         })
     .catch((err: Error) => {
         console.log(err)
+        res.send('Error creating event!')
+    })
+})
+
+router.delete('/:id', (req: Request, res: Response) => {
+    db.Meet.deleteOne({_id: req.params.id})
+    .then(() => {
+        res.render('/')
+    })
+    .catch((err: Error) => {
+        console.log(err)
+        res.send('Error deleting event.')
     })
 })
 
