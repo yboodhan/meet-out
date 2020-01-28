@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose'
 import User from '../models/user'
 
 //create interface for meet type extending mongoose.Document (mongoose.Document includes ._id)
-export default interface IMeet extends mongoose.Document {
+export default interface Meet extends mongoose.Document {
   date: Date;
   time: Date;
   description: string;
@@ -40,6 +40,6 @@ let meetSchema: mongoose.Schema = new mongoose.Schema({
 })
 
 // Create model with type meet
-let Meet: mongoose.Model<IMeet> = mongoose.model<IMeet>('Meet', meetSchema)
+let Meet: mongoose.Model<Meet> = mongoose.model<Meet>('Meet', meetSchema)
 
 module.exports = Meet
