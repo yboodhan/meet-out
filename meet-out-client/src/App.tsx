@@ -1,5 +1,5 @@
 // Import React
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // Import Router to navigate
 import { BrowserRouter as Router } from 'react-router-dom'
 // Import jwt decode
@@ -18,6 +18,11 @@ const App: React.FC = () => {
 
   // Creater user state and function to set state
   let [user, setUser] = React.useState<Decoded | null>(null)
+
+  // Check for token on load
+  useEffect(() => {
+    decodeToken(null)
+  }, [])
 
   // Function to update the user
   const updateUser = (newToken: string) => {
@@ -38,7 +43,7 @@ const App: React.FC = () => {
   }
 
   // Function to decode the token
-  const decodeToken = (existingToken: string) => {
+  const decodeToken = (existingToken: string | null) => {
     let token: string | null = existingToken || localStorage.getItem('userToken')
 
     // Token exists
