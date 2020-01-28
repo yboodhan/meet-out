@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 import { Decoded } from '../App'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { Button, Col, Form, Input, Navbar, NavbarBrand, Nav as Navi, NavItem, NavLink, NavbarText} from 'reactstrap';
+import { Button, Col, Form, Input, Navbar, NavbarBrand, Nav as Navi, NavItem, NavLink } from 'reactstrap';
+
+import Login from './Login'
 
 interface NavProps {
     user: Decoded | null,
@@ -14,21 +16,15 @@ const Nav: React.FC<NavProps> = props => {
 
     // Define links
     let links = (
-        <h1>HI</h1>
+        <Navi navbar>
+            <Login />
+        </Navi>
     )
 
     // Check user exists (select links)
     if (props.user) {
         links = (
-            <h1>LINK</h1>
-        )
-    }
-
-    return (
-        <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">MO ☀︎</NavbarBrand>
-          
+        <Navi navbar>
             <Form inline>
                 <Col m={12}>
                     <Input type="text" name="search" placeholder="Search" autofocus="autofocus"/>
@@ -36,8 +32,7 @@ const Nav: React.FC<NavProps> = props => {
                 <Button size="sm" type="submit" color="secondary"><FontAwesomeIcon icon={faSearch}/></Button>
             </Form>
 
-            <Navi navbar>
-              <NavItem>
+            <NavItem>
                 <NavLink href="#">User Name</NavLink>
               </NavItem>
               <NavItem>
@@ -49,8 +44,16 @@ const Nav: React.FC<NavProps> = props => {
               <NavItem>
                 <NavLink href="#">Logout</NavLink>
               </NavItem>
-            </Navi>
+        </Navi>
+    )}
 
+    return (
+        <div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">MO ☀︎</NavbarBrand>
+
+            {links}
+            
         </Navbar>
       </div>
     )
