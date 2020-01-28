@@ -35,7 +35,7 @@ const App: React.FC = () => {
 
   // Interface for decoded
   interface Decoded extends User {
-    exp: Date
+    exp: number
   }
 
   // Function to decode the token
@@ -48,7 +48,7 @@ const App: React.FC = () => {
       let decoded: Decoded = jwtDecode(token)
 
       // Expired or invalid token
-      if (!decoded || Date.now() > decoded.exp * 1000) {
+      if (!decoded || (Date.now() > decoded.exp * 1000)) {
         setUser(null)
       } else {
         setUser(decoded)
