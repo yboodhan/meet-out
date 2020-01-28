@@ -24,6 +24,7 @@ const Nav: React.FC<NavProps> = props => {
     // Define links
     let links = (
         <Navi navbar>
+            <NavbarBrand className="home-logo" href="/">MEET OUT</NavbarBrand>
             <Login />
         </Navi>
     )
@@ -32,6 +33,7 @@ const Nav: React.FC<NavProps> = props => {
     if (props.user) {
         links = (
         <Navi navbar>
+            <NavbarBrand className="logo" href="/">MO</NavbarBrand>
             <Form inline>
                 <Col m={12}>
                     <Input type="text" name="search" placeholder="Search" autofocus="autofocus"/>
@@ -57,7 +59,6 @@ const Nav: React.FC<NavProps> = props => {
     return (
         <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">MO ☀︎</NavbarBrand>
 
             {links}
             

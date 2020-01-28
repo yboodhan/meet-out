@@ -26,7 +26,7 @@ const Login: React.FC = () => {
                 </FormGroup>
                 </Col>
                 <Col md={2}>
-                    <Button type="submit" color="secondary">Log In</Button>
+                    <Button type="submit" color="info">Log In</Button>
                 </Col>
             </Row>
         </Form>

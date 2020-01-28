@@ -3,14 +3,30 @@
 }
 
 .content-container {
-  width: 90vw;
-  height: 75vh;
+  width: 100vw;
+  height: 100vh;
   
 }
 
 .page-footer {
-  background-color: #282c3460;
+  background-color: #0d969b;
   color: white;
   font-size: 16px;
   padding: 15px;
+}
+
+.home-logo {
+  color: #0d969b !important;
+  font-weight: bold;
+  font-size: 4em;
+  margin-left: 1.5em;
+  margin-right: 4.5em;
+}
+
+.home-image {
+  margin-top: 5em;
+}
+
+.app-description {
+  margin-top: 5em;
 }
