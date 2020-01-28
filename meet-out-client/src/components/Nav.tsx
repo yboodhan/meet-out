@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { Decoded } from '../App'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,10 +9,17 @@ import Login from './Login'
 
 interface NavProps {
     user: Decoded | null,
-    updateUser: (newToken: string) => void
+    updateUser: (newToken: string | null) => void
 }
 
 const Nav: React.FC<NavProps> = props => {
+
+    // Logout
+    const handleLogout = (e: FormEvent) => {
+        e.preventDefault()
+        localStorage.removeItem('userToken')
+        props.updateUser(null)
+    }
 
     // Define links
     let links = (
@@ -33,16 +40,16 @@ const Nav: React.FC<NavProps> = props => {
             </Form>
 
             <NavItem>
-                <NavLink href="#">User Name</NavLink>
+                <Link to="/profile">{props.user.firstname}</Link>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Home</NavLink>
+                <Link to="/">Calendar</Link>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Create</NavLink>
+                <Link to="/">Create</Link>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Logout</NavLink>
+                <Link to="/" onClick={handleLogout}>Logout</Link>
               </NavItem>
         </Navi>
     )}

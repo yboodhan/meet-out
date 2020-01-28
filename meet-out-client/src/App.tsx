@@ -30,7 +30,7 @@ const App: React.FC = () => {
   }, [])
 
   // Function to update the user
-  const updateUser = (newToken: string) => {
+  const updateUser = (newToken: string | null) => {
     if (newToken) {
       // Store this token
       localStorage.setItem('userToken', newToken)
