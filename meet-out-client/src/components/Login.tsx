@@ -1,7 +1,14 @@
 import React from 'react'
+import { Decoded } from '../App'
 import { Button, Col, Container, Form, FormGroup, Label, Input, Row } from 'reactstrap';
 
-const Login: React.FC = () => {
+// Props
+interface LoginProps {
+    user: Decoded | null,
+    updateUser: (newToken: string | null) => void
+}
+
+const Login: React.FC<LoginProps> = props => {
     return (
         <div>
         <Container>

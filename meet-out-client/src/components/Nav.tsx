@@ -26,7 +26,7 @@ const Nav: React.FC<NavProps> = props => {
     let links = (
         <Navi navbar>
             <NavbarBrand className="home-logo" href="/">MEET OUT</NavbarBrand>
-            <Login />
+            <Login user={props.user} updateUser={props.updateUser} />
         </Navi>
     )
 
@@ -43,16 +43,16 @@ const Nav: React.FC<NavProps> = props => {
             </Form>
 
             <NavItem>
-                <Link to="/profile">{props.user.firstname}</Link>
+                <NavLink href="/profile">{props.user.firstname}</NavLink>
               </NavItem>
               <NavItem>
-                <Link to="/">Calendar</Link>
+                <NavLink href="/">Calendar</NavLink>
               </NavItem>
               <NavItem>
-                <Link to="/">Create</Link>
+                <NavLink href="/">Create</NavLink>
               </NavItem>
               <NavItem>
-                <Link to="/" onClick={handleLogout}>Logout</Link>
+                <NavLink href="/" onClick={handleLogout}>Logout</NavLink>
               </NavItem>
         </Navi>
     )}
