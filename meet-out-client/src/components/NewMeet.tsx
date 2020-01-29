@@ -1,5 +1,8 @@
 import React, { useEffect, useState, FormEvent } from 'react'
 import { Redirect } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLock } from '@fortawesome/free-solid-svg-icons'
+import { faLockOpen } from '@fortawesome/free-solid-svg-icons'
 import { Button, Col, Container, Form, FormGroup, FormText, Input, Label, Row } from 'reactstrap';
 import { Decoded } from '../App';
 
@@ -140,14 +143,14 @@ const NewMeet: React.FC<NewMeetProps> = props => {
                             <FormGroup check>
                                 <Label check>
                                     <Input type="radio" name="private" value="true"/>{' '}
-                                    Private
+                                    Private <FontAwesomeIcon icon={faLock}/>
                                 </Label>
                                 <FormText>This event will only be accessible by invite.</FormText>
                             </FormGroup>
                             <FormGroup check>
                                 <Label check>
                                     <Input type="radio" name="private" value="false"/>{' '}
-                                    Public
+                                    Public <FontAwesomeIcon icon={faLockOpen}/>
                                 </Label>
                                 <FormText>This event will be accessible by everyone.</FormText>
                             </FormGroup>
