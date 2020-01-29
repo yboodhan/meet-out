@@ -12,10 +12,15 @@ const router = Router()
 
 // Get route sends all Meets to the front-end
 router.get('/', (req: Request, res: Response) => {
+    console.log('Reached MEET ROUTE')
     db.Meet.find()
     .then((meets: Meet) => {
         console.log(`All meets should be sent: ${meets}`)
         res.send({meets})
+    })
+    .catch((err: Error) => {
+        console.log('ERROR', err)
+        res.status(500).send({ message: 'Error happened' })
     })
 })
 

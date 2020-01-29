@@ -51,7 +51,7 @@ const allMeets = [
     }
 
     interface getResults {
-        data: TMeets[]
+        meets: TMeets[]
     }
 
 
@@ -68,11 +68,12 @@ const Content: React.FC<ContentProps> = props => {
         // Fetch meets from get route
             fetch(`${process.env.REACT_APP_SERVER_URL}/meet`)
             .then(response => {
+                console.log('In then code', response)
                 response.json()
                 .then((results: getResults) => {
                     console.log('🌈🌈', results, '👻👻', response)
-                    let allMeets = results.data.map(data => {
-                        return data
+                    let allMeets = results.meets.map(meet => {
+                        return meet
                     })
                     setAllMeets(allMeets)
                 })
@@ -95,7 +96,7 @@ const Content: React.FC<ContentProps> = props => {
             <Route path="/profile/edit" render={
                 () => <EditProfile user={props.user}/>
             }/>
-            <Route path="/profile" render={
+            <Route exact path="/profile" render={
                 () => <Profile user={props.user} />
             } />
             <Route path="/home" render={
