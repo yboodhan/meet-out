@@ -18,13 +18,8 @@ router.get('/', (req: Request, res: Response) => {
         res.send({meets})
     })
     .catch((err: Error) => {
-<<<<<<< HEAD
         console.log(`Error: ${err}`)
         res.send({err})
-=======
-        console.log('ERROR', err)
-        res.status(500).send({ message: 'Error happened' })
->>>>>>> 90cf4ec9b64f04e6f167863ea0b94c38aba48f57
     })
 })
 
