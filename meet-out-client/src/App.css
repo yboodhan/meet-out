@@ -7,3 +7,9 @@
   height: 75vh;
   
 }
+
+.calendar {
+  width: 50vw;
+  height: 60vh;
+  margin: 30px;
+}
