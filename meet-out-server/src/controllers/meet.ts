@@ -2,7 +2,6 @@ require('dotenv').config()
 // Declare variables, import dependencies
 let db = require('../models')
 import { Request, Response, Router } from 'express'
-import User from '../models/user'
 import Meet from '../models/meet'
 const axios = require('axios'); 
 const GEO_URL = 'https://geocoding.geo.census.gov/geocoder/locations/address?street='
@@ -55,8 +54,8 @@ router.post('/', (req: Request, res: Response) => {
 
             // This is where we take all the data harvested off the front end, and actually store it.
             db.Meet.create({
-                creator: req.body.user,
-                private: req.body.private,
+                creator: req.body.creator,
+                private: req.body.privateMeet,
                 date: req.body.date,
                 starttime: req.body.starttime,
                 endtime: req.body.endtime,
