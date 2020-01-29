@@ -1,4 +1,5 @@
 import React, { useState, FormEvent } from 'react'
+import cloudinary from 'cloudinary-core'
 import { Redirect } from 'react-router-dom'
 import { Decoded } from '../App'
 import { Button, Col, Container, Form, FormGroup, FormText, Input, Row } from 'reactstrap';
@@ -8,7 +9,16 @@ interface EditProfileProps {
     user: Decoded | null
 }
 
+// Type
+interface Cloudinary {
+    name: string,
+    src: string,
+    createUploadWidget: null
+}
+
 const EditProfile: React.FC<EditProfileProps> = props => {
+
+    console.log(cloudinary)
 
     let [email, setEmail] = useState('')
     let [firstname, setFirstname] = useState('')
@@ -23,7 +33,25 @@ const EditProfile: React.FC<EditProfileProps> = props => {
         console.log('edited profile')
     }
 
+    let script: Cloudinary = {
+        name: 'upLoader',
+        src: 'https://widget.cloudinary.com/v2.0/global/all.js',
+        createUploadWidget: null
+    }
+
+    let myWidget = () => script.createUploadWidget({
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME, 
+        uploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET_NAME},
+        
+        (error: Error, result) => { 
+          if (!error && result && result.event === "success") { 
+            console.log('Done! Here is the image info: ', result.info); 
+          }
+        }
+    )
+
     return (
+
         <Container className="web-body">
             <h2>Edit your profile:</h2>
             <br />
