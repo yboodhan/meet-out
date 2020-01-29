@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { Decoded } from '../App'
 import { Button, Container } from 'reactstrap';
 
+// Props
 interface EditProfileProps {
     user: Decoded | null
 }

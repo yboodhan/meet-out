@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { Decoded } from '../App'
 import image from '../SelfieDoodle.png'
 import { Button, Container } from 'reactstrap';
@@ -15,11 +15,13 @@ const Profile: React.FC<ProfileProps> = props => {
         return <Redirect to="/" />
     }
 
+    console.log(props.user)
+
     return (
         <Container className="web-body">
             <img src={image} alt="profile" className="img-fluid" width="400"/>
             <br />
-            <a href="/profile/edit"><Button color="info">EDIT</Button></a>
+            <Link to="/profile/edit"><Button color="info">EDIT</Button></Link>
             <hr />
             <h3>Name: {props.user.firstname} {props.user.lastname}</h3>
             <h3>Email: {props.user.email}</h3>
