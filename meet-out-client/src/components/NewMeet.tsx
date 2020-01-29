@@ -43,7 +43,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
             endtime
         }
 
-        fetch(`${process.env.REACT_APP_SERVER_URL}/meet/`, {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/meet`, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -75,9 +75,6 @@ const NewMeet: React.FC<NewMeetProps> = props => {
             <Redirect to = "/" />
         )
     }
-    
- 
-
 
     return (
         <div>

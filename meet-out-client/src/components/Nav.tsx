@@ -1,4 +1,5 @@
 import React, { FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { Decoded } from '../App'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -45,10 +46,10 @@ const Nav: React.FC<NavProps> = props => {
                 <NavLink href="/profile">{props.user.firstname}</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/home">Calendar</NavLink>
+                <NavLink><Link to="/home">Calendar</Link></NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/create">Create</NavLink>
+                <NavLink><Link to="/create">Create</Link></NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/" onClick={handleLogout}>Logout</NavLink>
