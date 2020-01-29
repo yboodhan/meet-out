@@ -4,11 +4,12 @@ import User from '../models/user'
 //create interface for meet type extending mongoose.Document (mongoose.Document includes ._id)
 export default interface Meet extends mongoose.Document {
   date: Date;
-  time: Date;
+  starttime: Date;
+  endtime: Date;
   description: String;
   users: User[];
   activity: { name: String;
-    locations: {
+    locations: [{
       name: String;
       address: String;
       city: String;
@@ -16,7 +17,7 @@ export default interface Meet extends mongoose.Document {
       zip: Number;
       lat: Number;
       long: Number;
-    };
+    }];
   }
 }
 
