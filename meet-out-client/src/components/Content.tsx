@@ -44,10 +44,35 @@ interface getResults {
     meets: Meet[]
 }
 
+
+// const testMeets: MeetForCalendar[] = [{
+//     _id: 29,
+//     title: 'running',
+//     date: new Date('January 17, 2020 07:00:00'),
+//     start: new Date('January 17, 2020 7:00:00'),
+//     end: new Date('January 17, 2020 9:00:00'),
+//     description: 'describing my meet',
+//     users: ['5e31ca382619e7073833bc32'],
+//     activity: {
+//         name: 'running',
+//         locations: [{
+//           name: 'Burke Gilman Trail',
+//           address: '3901 Fremont Ave N',
+//           city: 'Seattle',
+//           state: 'WA',
+//           zip: 98103,
+//           lat: 47.6062,
+//           long: 122.3321
+//         }]
+//       }
+// }]
+
+
 const Content: React.FC<ContentProps> = props => {
 
     // State variables
     let [allMeets , setAllMeets] = useState<MeetForCalendar[]>([])
+    // let [allMeets , setAllMeets] = useState<MeetForCalendar[]>(testMeets)
 
     useEffect(() => {
         // Fetch meets from get route
@@ -61,15 +86,15 @@ const Content: React.FC<ContentProps> = props => {
                         return { 
                         _id: meet._id,
                         title: meet.activity.name, 
-                        date: meet.date,
-                        start: meet.starttime,
-                        end: meet.endtime,
+                        date: new Date(meet.date.toString()),
+                        start: new Date(meet.starttime.toString()),
+                        end: new Date(meet.endtime.toString()),
                         description: meet.description,
                         users: meet.users,
                         activity: meet.activity
                         }
                     })
-                    console.log('🌈🌈🌈🌈🌈', allMeets)
+                    console.log('🌈🌈🌈🌈🌈', typeof allMeets[0].start)
                     setAllMeets(allMeets)
                 })
                 .catch( (err: Error) => {

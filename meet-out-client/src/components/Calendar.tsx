@@ -45,11 +45,11 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
                 localizer={localizer}
                 events={props.allMeets}
                 views={['month', 'week', 'day', 'agenda']}
-                startAccessor="start"
-                endAccessor="end"
+                // startAccessor="start"
+                // endAccessor="end"
                 onSelectEvent={meet => alert(meet.activity.name)} //show more details - function to be created
                 onSelectSlot={({ start, end }) => window.prompt('New Event Name')} //add event when selecting a certain day/time - function to be created
-                drilldownView="agenda"
+                // drilldownView="agenda"
                 // components={components} -can create custom components to replace existing components
             />
         </div>
