@@ -4,6 +4,7 @@ let db = require('../models')
 import { Request, Response, Router } from 'express'
 import User from '../models/user'
 import Meet from '../models/meet'
+import { userInfo } from 'os'
 const axios = require('axios'); 
 const GEO_URL = 'https://geocoding.geo.census.gov/geocoder/locations/address?street='
 
@@ -27,21 +28,28 @@ router.get('/:id', (req: Request, res: Response) => {
     })
 })
 
-// router.get('/', (req: Request, res: Response) => {
-//     db.Meet.find({})
+// router.get('/:id', (req: Request, res: Response) => {
+//     db.Meet.findById(req.params.id)
+//     .then(meets => {
+
+//     })
 // })
 
 // This route posts a new meet
 router.post('/', (req: Request, res: Response) => {
     // Defining the activity address to a more bite-sized variable for the geocoder
     let address = req.body.activityAddress
+    // Axios call on the US census geocoder turns user input into an address usable by the geocoder
     axios.get(GEO_URL + `${address.split(' ').join('+')}` + 
         `&city=${req.body.city}&state=${req.body.state}&zip=${req.body.zip}` + 
         `&benchmark=Public_AR_Census2010&format=json`)
+        // Receives a response from the API call
         .then(function(apiResponse: any){
+            // Assigns x & y to the lat & long kicked back off the API
             let x = apiResponse.data.result.addressMatches[0].coordinates.x
             let y = apiResponse.data.result.addressMatches[0].coordinates.y
 
+            // This is where we take all the data harvested off the front end, and actually store it.
             db.Meet.create({
                 date: req.body.date,
                 time: req.body.time,
