@@ -17,54 +17,37 @@ interface ContentProps {
     updateUser: (newToken: string | null) => void
 }
 
-const allMeets = [
-    {
-      id: 0,
-      title: 'TEST EVENT',
-      start: new Date(2020, 0, 28, 10),
-      end: new Date(2020, 0, 28, 11),
-      activity: {name: 'running'}
-    },
-    {
-      id: 1,
-      title: 'Long Event',
-      start: new Date(2020, 0, 9),
-      end: new Date(2020, 0, 12),
-      activity: {name: 'biking'}
-    }]
 
-    // export interface TMeets {
-    //     date: Date;
-    //     starttime: Date;
-    //     endtime: Date;
-    //     description: string;
-    //     users: User[];
-    //     activity: { name: string;
-    //         locations: {
-    //         name: string;
-    //         address: string;
-    //         city: string;
-    //         state: string;
-    //         zip: number;
-    //         lat: number;
-    //         long: number;
-    //         }[]
-    //     }
-    // }
-
-    interface getResults {
-        meets: Meet[]
+export interface MeetForCalendar {
+    _id: number,
+    title: string,
+    date: Date,
+    start: Date,
+    end: Date,
+    description: string,
+    users: User[],
+    activity: {
+        name: string,
+        locations: {
+            name: string;
+            address: string;
+            city: string;
+            state: string;
+            zip: number;
+            lat: number;
+            long: number;
+          }[]
     }
+}
 
+interface getResults {
+    meets: Meet[]
+}
 
-        
 const Content: React.FC<ContentProps> = props => {
-    
 
     // State variables
-    let [allMeets , setAllMeets] = useState<Meet[]>([])
-
-    
+    let [allMeets , setAllMeets] = useState<MeetForCalendar[]>([])
 
     useEffect(() => {
         // Fetch meets from get route
@@ -74,10 +57,19 @@ const Content: React.FC<ContentProps> = props => {
                 response.json()
                 .then((results: getResults) => {
                     console.log('🌈🌈', results, '👻👻', response)
-                    let allMeets = results.meets.map(meet => {
-                        return meet
+                    let allMeets: MeetForCalendar[] = results.meets.map(meet => {
+                        return { 
+                        _id: meet._id,
+                        title: meet.activity.name, 
+                        date: meet.date,
+                        start: meet.starttime,
+                        end: meet.endtime,
+                        description: meet.description,
+                        users: meet.users,
+                        activity: meet.activity
+                        }
                     })
-                    // console.log('🌈🌈🌈🌈🌈', allMeets)
+                    console.log('🌈🌈🌈🌈🌈', allMeets)
                     setAllMeets(allMeets)
                 })
                 .catch( (err: Error) => {
