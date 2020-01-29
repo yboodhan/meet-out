@@ -16,15 +16,18 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     let [message, setMessage] = useState('')
 
     // Form data
-    let [activity, setActivity] = useState(' ')
-    let [description, setDescription] = useState(' ')
-    let [activityAddress, setAddress] = useState(' ')
-    let [city, setCity] = useState(' ')
-    let [state, setUSState] = useState(' ')
-    let [zip, setZip] = useState(' ')
-    let [date , setDate] = useState(' ')
-    let [starttime, setStartTime] = useState(' ')
-    let [endtime, setEndTime] = useState(' ')
+    let [activity, setActivity] = useState('')
+    let [description, setDescription] = useState('')
+    let [activityAddress, setAddress] = useState('')
+    let [city, setCity] = useState('')
+    let [state, setUSState] = useState('')
+    let [zip, setZip] = useState('')
+    let [date , setDate] = useState('')
+    let [starttime, setStartTime] = useState('')
+    let [endtime, setEndTime] = useState('')
+    // let [users, setUsers] = useState([])
+    let [creator, setCreator] = useState('')
+    // let [private, setPrivate] = useState(true)
 
     useEffect(() => {
         setMessage('')
@@ -43,8 +46,11 @@ const NewMeet: React.FC<NewMeetProps> = props => {
             zip,
             date,
             starttime,
-            endtime
+            endtime,
+            creator
         }
+
+        console.log(data)
 
         fetch(`${process.env.REACT_APP_SERVER_URL}/meet`, {
             method: 'POST',
@@ -77,6 +83,8 @@ const NewMeet: React.FC<NewMeetProps> = props => {
         return(
             <Redirect to = "/" />
         )
+    } else {
+        setCreator(props.user._id)
     }
 
     return (
@@ -85,7 +93,6 @@ const NewMeet: React.FC<NewMeetProps> = props => {
             <h2>Create a new event:</h2>
             <br />
             <Form onSubmit={createNewMeet}>
-
                 <Row>
                     <Col md={6}>
                         <FormGroup>
@@ -94,7 +101,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
                         </FormGroup>
                         <FormGroup>
                             <Label for="description"><h5>Event Description:</h5></Label>
-                            <Input id="description" type="textarea" name="description" placeholder="Details" onChange={(e: FormEvent<HTMLInputElement>) => setDescription(e.currentTarget.value)} />
+                            <Input id="description" type="textarea" name="description" placeholder="Details" onChange={(e: FormEvent<HTMLInputElement>) => setDescription(e.currentTarget.value)} required />
                         </FormGroup>
 
                         <FormGroup>
@@ -128,13 +135,13 @@ const NewMeet: React.FC<NewMeetProps> = props => {
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="starttime">Start:</Label>
-                                    < Input id="starttime" name="starttime" type="time" placeholder="Start Time" onChange={(e: FormEvent<HTMLInputElement>) => setStartTime(e.currentTarget.value)} />
+                                    < Input id="starttime" name="starttime" type="time" placeholder="Start Time" onChange={(e: FormEvent<HTMLInputElement>) => setStartTime(e.currentTarget.value)} required />
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="address">End:</Label>
-                                    < Input id="endtime" name="endtime" type="time" placeholder="End Time" onChange={(e: FormEvent<HTMLInputElement>) => setEndTime(e.currentTarget.value)} />
+                                    < Input id="endtime" name="endtime" type="time" placeholder="End Time" onChange={(e: FormEvent<HTMLInputElement>) => setEndTime(e.currentTarget.value)} required />
                                 </FormGroup> 
                             </Col>
                         </Row>
@@ -158,8 +165,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
                     </Col>
                 </Row>
 
-                <Input type="hidden" value={props.user._id} name="users"/>
-                <Input type="hidden" value={props.user._id} name="creator"/>
+                {/* <Input type="hidden" value={props.user._id} name="users" /> */}
                 <hr />
                 <FormText color="danger">{message}</FormText>
                 <Button type="submit" color="info" size="lg">Submit!</Button>{' '}
