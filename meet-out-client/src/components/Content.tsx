@@ -27,18 +27,6 @@ const myEventList = [
       end: new Date(2020, 0, 12)
     }]
 
-
-
-const Content: React.FC = () => {
-
-
-    return (
-        <div className="content-container">
-            <Route exact path="/" component={Signup} /> {/* update to render methods with props */}
-            <Route path="/profile" component={Profile} /> {/* update to render methods with props */}
-            <Route path="/home" render={
-                () => <Userhome myEventList={myEventList} />
-            }/>
         
 const Content: React.FC<ContentProps> = props => {
     return (
@@ -49,7 +37,9 @@ const Content: React.FC<ContentProps> = props => {
             <Route path="/profile" render={
                 () => <Profile user={props.user} />
             } />
-            <Route path="/home" component={Home}/> {/* TODO: update to render methods with props */}
+            <Route path="/home" render={
+                () => <Userhome myEventList={myEventList} />
+            }/>
         </div>
     )
 }
