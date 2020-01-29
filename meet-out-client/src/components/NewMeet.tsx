@@ -137,7 +137,20 @@ const NewMeet: React.FC<NewMeetProps> = props => {
                         </Row>
                         <FormGroup>
                             <Label for="address"><h5>Privacy Details:</h5></Label>
-                            < Input id="date" name="date" type="date" placeholder="Date" onChange={(e: FormEvent<HTMLInputElement>) => setDate(e.currentTarget.value)} required />
+                            <FormGroup check>
+                                <Label check>
+                                    <Input type="radio" name="private" value="true"/>{' '}
+                                    Private
+                                </Label>
+                                <FormText>This event will only be accessible by invite.</FormText>
+                            </FormGroup>
+                            <FormGroup check>
+                                <Label check>
+                                    <Input type="radio" name="private" value="false"/>{' '}
+                                    Public
+                                </Label>
+                                <FormText>This event will be accessible by everyone.</FormText>
+                            </FormGroup>
                         </FormGroup>
                     </Col>
                 </Row>
