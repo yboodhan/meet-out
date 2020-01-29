@@ -21,7 +21,7 @@ const Profile: React.FC<ProfileProps> = props => {
         <Container className="web-body">
             <img src={image} alt="profile" className="img-fluid" width="400"/>
             <br />
-            <Link to="/profile/edit" color="info">EDIT</Link>
+            <Link to="/profile/edit"><Button color="info">EDIT</Button></Link>
             <hr />
             <h3>Name: {props.user.firstname} {props.user.lastname}</h3>
             <h3>Email: {props.user.email}</h3>
