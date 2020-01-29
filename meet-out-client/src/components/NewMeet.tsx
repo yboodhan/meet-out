@@ -15,7 +15,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     // Form data
     let [activity, setActivity] = useState(' ')
     let [description, setDescription] = useState(' ')
-    let [address, setAddress] = useState(' ')
+    let [activityAddress, setAddress] = useState(' ')
     let [city, setCity] = useState(' ')
     let [state, setUSState] = useState(' ')
     let [zip, setZip] = useState(' ')
@@ -25,7 +25,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
 
     useEffect(() => {
         setMessage('')
-    }, [activity, description, address, city, state, zip, date, starttime, endtime])
+    }, [activity, description, activityAddress, city, state, zip, date, starttime, endtime])
 
     const createNewMeet = (e: FormEvent) => {
         e.preventDefault()
@@ -34,7 +34,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
         let data: object = {
             activity,
             description,
-            address,
+            activityAddress,
             city,
             state,
             zip,
@@ -80,12 +80,11 @@ const NewMeet: React.FC<NewMeetProps> = props => {
         <div>
         <Container className="text-left web-body">
         <Row>
-        <Col md={6}>
+        <Col md={12}>
             <h2>Create a new Meet!</h2>
             <Form onSubmit={createNewMeet}>
             {/* This is the WHAT section of a new Meet */}
                 <Row form>
-                    <p> What </p>
                 <Col md={6}>
                     <FormGroup>
                         < Input id="activityName" type="text" name="activityName" placeholder="What are we doing?" onChange={(e: FormEvent<HTMLInputElement>) => setActivity(e.currentTarget.value)} required />
@@ -101,10 +100,9 @@ const NewMeet: React.FC<NewMeetProps> = props => {
 
             {/* This is the WHERE section of a new Meet */}
                 <Row form>
-                    <p> Where </p>
                 <Col md={7}>
                     <FormGroup>
-                        < Input id="address" type="text" name="activityAddress" placeholder="Address" onChange={(e: FormEvent<HTMLInputElement>) => setAddress(e.currentTarget.value)} required />
+                        < Input id="activityAddress" type="text" name="activityAddress" placeholder="Address" onChange={(e: FormEvent<HTMLInputElement>) => setAddress(e.currentTarget.value)} required />
                     </FormGroup>
                 </Col>
                 <Col md={3}>
@@ -128,20 +126,19 @@ const NewMeet: React.FC<NewMeetProps> = props => {
 
             {/* This is the WHEN section of a new Meet */}
                 <Row form>
-                    <p> When </p>
-                <Col md={2}>
+                <Col md={4}>
                     <FormGroup>
                         < Input id="date" name="date" type="date" placeholder="Date" onChange={(e: FormEvent<HTMLInputElement>) => setDate(e.currentTarget.value)} required />
                     </FormGroup>
                 </Col>
-                <Col md={2}>
+                <Col md={4}>
                     <FormGroup>
-                        < Input id="starttime" name="starttime" type="date" placeholder="Start Time" onChange={(e: FormEvent<HTMLInputElement>) => setStartTime(e.currentTarget.value)} />
+                        < Input id="starttime" name="starttime" type="time" placeholder="Start Time" onChange={(e: FormEvent<HTMLInputElement>) => setStartTime(e.currentTarget.value)} />
                     </FormGroup>
                 </Col>
-                <Col md={2}>
+                <Col md={4}>
                     <FormGroup>
-                        < Input id="endtime" name="endtime" type="date" placeholder="End Time" onChange={(e: FormEvent<HTMLInputElement>) => setEndTime(e.currentTarget.value)} />
+                        < Input id="endtime" name="endtime" type="time" placeholder="End Time" onChange={(e: FormEvent<HTMLInputElement>) => setEndTime(e.currentTarget.value)} />
                     </FormGroup>
                 </Col>
                 </Row>
