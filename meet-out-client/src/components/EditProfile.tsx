@@ -7,9 +7,18 @@ interface EditProfileProps {
     user: Decoded | null
 }
 
-const EditProfile = () => {
+const EditProfile: React.FC<EditProfileProps> = props => {
+    
+    if (!props.user) {
+        return <Redirect to="/" />
+    }
+
     return (
-        <div>Edit Profile Stub</div>
+        <Container className="web-body">
+            <h2>Edit your profile:</h2>
+            <br />
+            <Button type="submit" color="info">UPDATE MY PROFILE</Button>
+        </Container>
     )
 }
 

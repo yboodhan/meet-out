@@ -19,7 +19,7 @@ const Profile: React.FC<ProfileProps> = props => {
         <Container className="web-body">
             <img src={image} className="img-fluid" width="400"/>
             <br />
-            <Button color="info">EDIT</Button>
+            <a href="/profile/edit"><Button color="info"></Button></a>
             <hr />
             <h3>Name: {props.user.firstname} {props.user.lastname}</h3>
             <h3>Email: {props.user.email}</h3>

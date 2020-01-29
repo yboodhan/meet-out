@@ -100,7 +100,7 @@ const Content: React.FC<ContentProps> = props => {
                 () => <Userhome allMeets={allMeets} />
             }/>
             <Route path="/profile/edit" render={
-                () => <EditProfile  user={props.user}/>
+                () => <EditProfile user={props.user}/>
             }/>
         </div>
     )
