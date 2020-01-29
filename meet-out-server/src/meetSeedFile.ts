@@ -9,7 +9,7 @@ db.Meet.create([{
     users: ['5e31ca382619e7073833bc32'],
     activity: {
         name: 'running',
-        locations: [{
+        locations: {
           name: 'Burke Gilman Trail',
           address: '3901 Fremont Ave N',
           city: 'Seattle',
@@ -17,7 +17,7 @@ db.Meet.create([{
           zip: 98103,
           lat: 47.6062,
           long: 122.3321
-        }]
+        }
       }
 }, {
     date: new Date('January 27, 2020 12:00:00'),
@@ -27,7 +27,7 @@ db.Meet.create([{
     users: ['5e31ca382619e7073833bc32', '5e31c98e2619e7073833bc2f'],
     activity: {
         name: 'biking',
-        locations: [{
+        locations: {
         name: 'Burke Gilman Trail',
         address: '3901 Fremont Ave N',
         city: 'Seattle',
@@ -35,7 +35,7 @@ db.Meet.create([{
         zip: 98103,
         lat: 47.6062,
         long: 122.3321
-    }]
+    }
   }
 },
 {
@@ -46,7 +46,7 @@ db.Meet.create([{
     users: ['5e31ca382619e7073833bc32', '5e31c98e2619e7073833bc2f'],
     activity: {
         name: 'biking',
-        locations: [{
+        locations: {
         name: 'General Assembly',
         address: '1218 3rd Ave',
         city: 'Seattle',
@@ -54,7 +54,7 @@ db.Meet.create([{
         zip: 98101,
         lat: 50.6062,
         long: 140.3321
-    }]
+    }
   }
 }
 ]
