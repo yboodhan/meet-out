@@ -48,7 +48,7 @@ const Nav: React.FC<NavProps> = props => {
                 <NavLink href="/home">Calendar</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">Create</NavLink>
+                <NavLink href="/create">Create</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/" onClick={handleLogout}>Logout</NavLink>
