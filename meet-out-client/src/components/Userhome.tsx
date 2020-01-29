@@ -3,16 +3,15 @@ import React from 'react'
 import List from './List'
 import Calendar from './Calendar'
 
-import { TMeets } from './Content'
+import {MeetForCalendar} from './Content'
 
 interface UserhomeProps {
-    allMeets: TMeets[]
+    allMeets: MeetForCalendar[]
 }
 
 
 const Userhome: React.FC<UserhomeProps> = (props) => {
-    
-    
+
     return (
         <div>
             <List />
