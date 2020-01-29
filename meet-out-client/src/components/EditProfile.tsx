@@ -9,16 +9,10 @@ interface EditProfileProps {
     user: Decoded | null
 }
 
-// Type
-interface Cloudinary {
-    name: string,
-    src: string,
-    createUploadWidget: null
-}
-
 const EditProfile: React.FC<EditProfileProps> = props => {
 
     console.log(cloudinary)
+    let cloudCore = new cloudinary.Cloudinary({ cloud_name: process.env.CLOUDINARY_CLOUD_NAME })
 
     let [email, setEmail] = useState('')
     let [firstname, setFirstname] = useState('')
@@ -33,17 +27,12 @@ const EditProfile: React.FC<EditProfileProps> = props => {
         console.log('edited profile')
     }
 
-    let script: Cloudinary = {
-        name: 'upLoader',
-        src: 'https://widget.cloudinary.com/v2.0/global/all.js',
-        createUploadWidget: null
-    }
-
-    let myWidget = () => script.createUploadWidget({
+    let myWidget = () => window.cloudinary.createUploadWidget({
         cloudName: process.env.CLOUDINARY_CLOUD_NAME, 
         uploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET_NAME},
-        
-        (error: Error, result) => { 
+
+        // Specify later
+        (error: Error, result: any) => { 
           if (!error && result && result.event === "success") { 
             console.log('Done! Here is the image info: ', result.info); 
           }
