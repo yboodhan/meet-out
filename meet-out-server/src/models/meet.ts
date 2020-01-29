@@ -41,7 +41,8 @@ let activitySchema: mongoose.Schema = new mongoose.Schema({
 //create meet schema
 let meetSchema: mongoose.Schema = new mongoose.Schema({
   date: Date,
-  time: Date,
+  starttime: Date,
+  endtime: Date,
   description: String,
   //reference user as array
   users: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],

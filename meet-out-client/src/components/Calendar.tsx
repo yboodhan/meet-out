@@ -12,12 +12,10 @@ import {
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
+import { TMeets } from './Content'
+
 interface CalendarProps {
-    myEventList: { 
-        id: number,
-        title: string,
-        start: Date,
-        end: Date }[]
+    allMeets: TMeets[]
 }
 
 
@@ -31,11 +29,11 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
             <Calendar
                 selectable
                 localizer={localizer}
-                events={props.myEventList}
+                events={props.allMeets}
                 views={['month', 'week', 'day', 'agenda']}
-                startAccessor="start"
-                endAccessor="end"
-                onSelectEvent={event => alert(event.title)} //show more details - function to be created
+                startAccessor="starttime"
+                endAccessor="endtime"
+                onSelectEvent={meet => alert(meet.activity.name)} //show more details - function to be created
                 onSelectSlot={({ start, end }) => window.prompt('New Event Name')} //add event when selecting a certain day/time - function to be created
                 drilldownView="agenda"
                 // components={components} -can create custom components to replace existing components
