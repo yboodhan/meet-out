@@ -18,7 +18,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     // Form data
     let [activity, setActivity] = useState(' ')
     let [description, setDescription] = useState(' ')
-    let [address, setAddress] = useState(' ')
+    let [activityAddress, setAddress] = useState(' ')
     let [city, setCity] = useState(' ')
     let [state, setUSState] = useState(' ')
     let [zip, setZip] = useState(' ')
@@ -28,7 +28,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
 
     useEffect(() => {
         setMessage('')
-    }, [activity, description, address, city, state, zip, date, starttime, endtime])
+    }, [activity, description, activityAddress, city, state, zip, date, starttime, endtime])
 
     const createNewMeet = (e: FormEvent) => {
         e.preventDefault()
@@ -37,7 +37,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
         let data: object = {
             activity,
             description,
-            address,
+            activityAddress,
             city,
             state,
             zip,
