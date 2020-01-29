@@ -46,7 +46,7 @@ const Nav: React.FC<NavProps> = props => {
                 <NavLink href="/profile">{props.user.firstname}</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">Calendar</NavLink>
+                <NavLink href="/home">Calendar</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/">Create</NavLink>

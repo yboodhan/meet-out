@@ -93,14 +93,14 @@ const Content: React.FC<ContentProps> = props => {
             <Route exact path="/" render={
                 () => <Signup user={props.user} updateUser={props.updateUser} />
             } />
+            <Route path="/profile/edit" render={
+                () => <EditProfile user={props.user}/>
+            }/>
             <Route path="/profile" render={
                 () => <Profile user={props.user} />
             } />
             <Route path="/home" render={
                 () => <Userhome allMeets={allMeets} />
-            }/>
-            <Route path="/profile/edit" render={
-                () => <EditProfile user={props.user}/>
             }/>
         </div>
     )
