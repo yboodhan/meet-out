@@ -13,6 +13,7 @@ import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 import {MeetForCalendar} from './Content'
+import MeetDetailsModal from './MeetDetailsModal'
 
 interface CalendarProps {
     allMeets: MeetForCalendar[]
@@ -25,13 +26,17 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
     const localizer = momentLocalizer(moment);
 
     //function to show more details on a meet
-    // const showMeetDetails = (meet: TMeets) => {
+    const showMeetDetails = (meet: MeetForCalendar) => {
+
+        return <MeetDetailsModal />
+        // return alert('Meet Details')
+
     //     //create bootstrap modal with meet details included
             // include:
                 //delete button/functionality
                 //if not already a user on the event, button to "add myself" to event that updates the meet with current user id
                 //edit button/functionality? -- confirm waht this looks like if clicked
-    // }
+    }
 
     //function to add event
     // const addMeetOnSelect = ({start, end}: { start: string | Date, end: string | Date }) => {
@@ -47,7 +52,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
                 views={['month', 'week', 'day', 'agenda']}
                 // startAccessor="start"
                 // endAccessor="end"
-                onSelectEvent={meet => alert(meet.activity.name)} //show more details - function to be created
+                onSelectEvent={showMeetDetails} //show more details - function to be created
                 onSelectSlot={({ start, end }) => window.prompt('New Event Name')} //add event when selecting a certain day/time - function to be created
                 // drilldownView="agenda"
                 // components={components} -can create custom components to replace existing components
