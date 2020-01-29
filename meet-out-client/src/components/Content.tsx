@@ -8,7 +8,6 @@ import Signup from './Signup'
 import Userhome from './Userhome'
 import Profile from './Profile'
 import EditProfile from './EditProfile'
-import { PromiseProvider } from 'mongoose'
 
 // Props
 interface ContentProps {

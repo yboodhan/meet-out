@@ -71,7 +71,7 @@ const Login: React.FC<LoginProps> = props => {
             <Row form>
                 <Col md={5}>
                 <FormGroup>
-                    <Input type="email" name="email" id="email" autofocus="autofocus" onChange={(e: FormEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)} required/>
+                    <Input type="email" name="email" id="email" autoFocus onChange={(e: FormEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)} required/>
                     <FormText color="danger">{message}</FormText>
                 </FormGroup>
                 </Col>

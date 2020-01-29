@@ -9,9 +9,10 @@ interface EditProfileProps {
 
 const EditProfile: React.FC<EditProfileProps> = props => {
     
-    // if (!props.user) {
-    //     return <Redirect to="/" />
-    // }
+    if (!props.user) {
+        console.log('no user is here')
+        return <Redirect to="/" />
+    }
 
     return (
         <Container className="web-body">

@@ -17,7 +17,7 @@ const Profile: React.FC<ProfileProps> = props => {
 
     return (
         <Container className="web-body">
-            <img src={image} className="img-fluid" width="400"/>
+            <img src={image} alt="profile" className="img-fluid" width="400"/>
             <br />
             <a href="/profile/edit"><Button color="info">EDIT</Button></a>
             <hr />
