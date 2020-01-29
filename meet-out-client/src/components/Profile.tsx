@@ -15,8 +15,6 @@ const Profile: React.FC<ProfileProps> = props => {
         return <Redirect to="/" />
     }
 
-    console.log(props.user)
-
     return (
         <Container className="web-body">
             <img src={image} alt="profile" className="img-fluid" width="400"/>
