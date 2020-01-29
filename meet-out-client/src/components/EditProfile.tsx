@@ -28,27 +28,34 @@ const EditProfile: React.FC<EditProfileProps> = props => {
             <h2>Edit your profile:</h2>
             <br />
             <Form onSubmit={handleSubmit}>
-                <Row form>
-                    <Col md={6}>
+            <Row>
+                <Col m={6}>
                     <FormGroup>
-                        <Input type="text" name="firstname" id="firstname" placeholder="First name" value={props.user.firstname} onChange={(e: FormEvent<HTMLInputElement>) => setFirstname(e.currentTarget.value)} required/>
+                            PUT PHOTO HERE
                     </FormGroup>
-                    </Col>
-                    <Col md={6}>
+                </Col>
+
+                <Col m={6}>
+                    <Row form>
+                        <Col md={6}>
+                        <FormGroup>
+                            <Input type="text" name="firstname" id="firstname" placeholder="First name" value={props.user.firstname} onChange={(e: FormEvent<HTMLInputElement>) => setFirstname(e.currentTarget.value)} required/>
+                        </FormGroup>
+                        </Col>
+                        <Col md={6}>
+                        <FormGroup>
+                            <Input type="text" name="lastname" id="lastname" placeholder="Last name" value={props.user.lastname} onChange={(e: FormEvent<HTMLInputElement>) => setLastname(e.currentTarget.value)} required/>
+                        </FormGroup>
+                        </Col>
+                    </Row>
                     <FormGroup>
-                        <Input type="text" name="lastname" id="lastname" placeholder="Last name" value={props.user.lastname} onChange={(e: FormEvent<HTMLInputElement>) => setLastname(e.currentTarget.value)} required/>
+                            <Input type="email" name="email" id="email" placeholder="Email" value={props.user.email} onChange={(e: FormEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)} required/>
                     </FormGroup>
-                    </Col>
-                </Row>
-                <FormGroup>
-                        <Input type="email" name="email" id="email" placeholder="Email" value={props.user.email} onChange={(e: FormEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)} required/>
-                </FormGroup>
-                <FormGroup>
-                        PUT PHOTO HERE
-                </FormGroup>
-                <FormText color="danger">{message}</FormText>
-                <hr />
-                <Button type="submit" color="info" size="lg">Sign up!</Button>{' '}
+                    <FormText color="danger">{message}</FormText>
+                    <hr />
+                    <Button type="submit" color="info" size="lg">Sign up!</Button>{' '}
+                </Col>
+            </Row>
             </Form>
         </Container>
     )
