@@ -7,6 +7,7 @@ import User from '../../../meet-out-server/src/models/user'
 import Signup from './Signup'
 import Userhome from './Userhome'
 import Profile from './Profile'
+import EditProfile from './EditProfile'
 import { PromiseProvider } from 'mongoose'
 
 // Props
@@ -59,13 +60,13 @@ const allMeets = [
 const Content: React.FC<ContentProps> = props => {
     
 
-    //state variables
+    // State variables
     let [allMeets , setAllMeets] = useState<TMeets[]>([])
 
     
 
     useEffect(() => {
-        //fetch meets from get route
+        // Fetch meets from get route
             fetch(`${process.env.REACT_APP_SERVER_URL}/meet`)
             .then(response => {
                 response.json()
@@ -76,11 +77,11 @@ const Content: React.FC<ContentProps> = props => {
                     })
                     setAllMeets(allMeets)
                 })
-                .catch(err => {
+                .catch( (err: Error) => {
                     console.log('Error', err)
                 })
             })
-            .catch(err => {
+            .catch( (err: Error) => {
                 console.log('Error', err)
             })
         
@@ -97,6 +98,9 @@ const Content: React.FC<ContentProps> = props => {
             } />
             <Route path="/home" render={
                 () => <Userhome allMeets={allMeets} />
+            }/>
+            <Route path="/profile/edit" render={
+                () => <EditProfile  user={props.user}/>
             }/>
         </div>
     )
