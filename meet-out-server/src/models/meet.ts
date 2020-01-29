@@ -6,25 +6,25 @@ export default interface Meet extends mongoose.Document {
   date: Date;
   starttime: Date;
   endtime: Date;
-  description: String;
+  description: string;
   users: User[];
-  activity: { name: String;
-    locations: [{
-      name: String;
-      address: String;
-      city: String;
-      state: String;
-      zip: Number;
-      lat: Number;
-      long: Number;
-    }];
+  activity: { name: string;
+    locations: {
+      name: string;
+      address: string;
+      city: string;
+      state: string;
+      zip: number;
+      lat: number;
+      long: number;
+    }[];
   }
 }
 
 //create activity schema
 let activitySchema: mongoose.Schema = new mongoose.Schema({
   name: String,
-  locations: {
+  locations: [{
     name: String,
     address: String,
     city: String,
@@ -35,7 +35,7 @@ let activitySchema: mongoose.Schema = new mongoose.Schema({
     zip: Number,
     lat: Number,
     long: Number
-  }
+  }]
 })
 
 //create meet schema
