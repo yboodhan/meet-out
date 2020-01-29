@@ -28,7 +28,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     let [endtime, setEndTime] = useState('')
     // let [users, setUsers] = useState([])
     let [creator, setCreator] = useState('')
-    // let [private, setPrivate] = useState(true)
+    let [privateMeet, setPrivateMeet] = useState(false)
 
     useEffect(() => {
         if (props.user) {
@@ -53,7 +53,8 @@ const NewMeet: React.FC<NewMeetProps> = props => {
             date,
             starttime,
             endtime,
-            creator
+            creator,
+            privateMeet
         }
 
         console.log('data is', data)
@@ -151,19 +152,10 @@ const NewMeet: React.FC<NewMeetProps> = props => {
                         </Row>
                         <FormGroup>
                             <Label for="address"><h5>Privacy Details:</h5></Label>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="radio" name="private" value="true"/>{' '}
+                            <FormGroup>
+                                    <Input type="checkbox" name="private" onChange={(e: FormEvent<HTMLInputElement>) => setPrivateMeet(e.currentTarget.checked)}/>{' '}
                                     Private <FontAwesomeIcon icon={faLock}/>
-                                </Label>
-                                <FormText>This event will only be accessible by invite.</FormText>
-                            </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="radio" name="private" value="false"/>{' '}
-                                    Public <FontAwesomeIcon icon={faLockOpen}/>
-                                </Label>
-                                <FormText>This event will be accessible by everyone.</FormText>
+                                <FormText>This event will only be accessible to you.</FormText>
                             </FormGroup>
                         </FormGroup>
                     </Col>
