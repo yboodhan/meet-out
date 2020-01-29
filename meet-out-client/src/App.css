@@ -8,6 +8,11 @@
   
 }
 
+.calendar {
+  width: 50vw;
+  height: 60vh;
+  margin: 30px;
+}
 .page-footer {
   background-color: #0d969b;
   color: white;
