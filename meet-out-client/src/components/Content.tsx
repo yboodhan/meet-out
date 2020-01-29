@@ -37,7 +37,7 @@ export interface MeetForCalendar {
             zip: number;
             lat: number;
             long: number;
-          }[]
+          }
     }
 }
 

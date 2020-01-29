@@ -17,14 +17,14 @@ export default interface Meet extends mongoose.Document {
       zip: number;
       lat: number;
       long: number;
-    }[];
+    };
   }
 }
 
 //create activity schema
 let activitySchema: mongoose.Schema = new mongoose.Schema({
   name: String,
-  locations: [{
+  locations: {
     name: String,
     address: String,
     city: String,
@@ -35,7 +35,7 @@ let activitySchema: mongoose.Schema = new mongoose.Schema({
     zip: Number,
     lat: Number,
     long: Number
-  }]
+  }
 })
 
 //create meet schema
