@@ -2,7 +2,6 @@ import React, { useEffect, useState, FormEvent } from 'react'
 import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
-import { faLockOpen } from '@fortawesome/free-solid-svg-icons'
 import { Button, Col, Container, Form, FormGroup, FormText, Input, Label, Row } from 'reactstrap';
 import { Decoded } from '../App';
 
@@ -28,32 +27,23 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     let [endtime, setEndTime] = useState('')
     // let [users, setUsers] = useState([])
     let [creator, setCreator] = useState('')
-    // let [private, setPrivate] = useState(true)
+    let [privateMeet, setPrivateMeet] = useState(false)
 
     useEffect(() => {
-        if(props.user){
+        if (props.user) {
             setCreator(props.user._id)
         }
         setMessage('')
     }, [props.user, activity, description, activityAddress, city, state, zip, date, starttime, endtime])
 
-    const inputCreator = () => {
-        if (props.user) {
-            console.log('setting id to', props.user._id)
-            setCreator('' + props.user._id)
-            console.log('creator is', creator)
-        }
-    }
+
 
     const createNewMeet = (e: FormEvent) => {
         e.preventDefault()
 
-        inputCreator()
-
         // Form data
         let data: object = {
             activity,
-            creator,
             description,
             activityAddress,
             city,
@@ -61,7 +51,9 @@ const NewMeet: React.FC<NewMeetProps> = props => {
             zip,
             date,
             starttime,
-            endtime
+            endtime,
+            creator,
+            privateMeet
         }
 
         console.log('data is', data)
@@ -157,19 +149,10 @@ const NewMeet: React.FC<NewMeetProps> = props => {
                         </Row>
                         <FormGroup>
                             <Label for="address"><h5>Privacy Details:</h5></Label>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="radio" name="private" value="true"/>{' '}
+                            <FormGroup>
+                                    <Input type="checkbox" name="private" onChange={(e: FormEvent<HTMLInputElement>) => setPrivateMeet(e.currentTarget.checked)}/>{' '}
                                     Private <FontAwesomeIcon icon={faLock}/>
-                                </Label>
-                                <FormText>This event will only be accessible by invite.</FormText>
-                            </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="radio" name="private" value="false"/>{' '}
-                                    Public <FontAwesomeIcon icon={faLockOpen}/>
-                                </Label>
-                                <FormText>This event will be accessible by everyone.</FormText>
+                                <FormText>This event will only be accessible to you.</FormText>
                             </FormGroup>
                         </FormGroup>
                     </Col>
