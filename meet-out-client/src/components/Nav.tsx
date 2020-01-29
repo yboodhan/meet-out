@@ -43,7 +43,7 @@ const Nav: React.FC<NavProps> = props => {
             </Form>
 
             <NavItem>
-                <NavLink href="/profile">{props.user.firstname}</NavLink>
+                <NavLink><Link to="/profile">{props.user.firstname}</Link></NavLink>
               </NavItem>
               <NavItem>
                 <NavLink><Link to="/home">Calendar</Link></NavLink>
@@ -52,7 +52,7 @@ const Nav: React.FC<NavProps> = props => {
                 <NavLink><Link to="/create">Create</Link></NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/" onClick={handleLogout}>Logout</NavLink>
+                <NavLink><Link to="/" onClick={handleLogout}>Logout</Link></NavLink>
               </NavItem>
         </Navi>
     )}
