@@ -1,14 +1,37 @@
-import React from 'react'
+import React, { FormEvent } from 'react'
+import { Link } from 'react-router-dom'
+import { Decoded } from '../App'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { Button, Col, Form, Input, Navbar, NavbarBrand, Nav as Navi, NavItem, NavLink, NavbarText} from 'reactstrap';
+import { Button, Col, Form, Input, Navbar, NavbarBrand, Nav as Navi, NavItem, NavLink } from 'reactstrap';
 
-const Nav: React.FC = props => {
-    return (
-        <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">MO ☀︎</NavbarBrand>
-          
+import Login from './Login'
+
+interface NavProps {
+    user: Decoded | null,
+    updateUser: (newToken: string | null) => void
+}
+
+const Nav: React.FC<NavProps> = props => {
+
+    // Logout
+    const handleLogout = (e: FormEvent) => {
+        e.preventDefault()
+        localStorage.removeItem('userToken')
+        props.updateUser(null)
+    }
+
+    // Define links
+    let links = (
+        <Navi navbar>
+            <Login />
+        </Navi>
+    )
+
+    // Check user exists (select links)
+    if (props.user) {
+        links = (
+        <Navi navbar>
             <Form inline>
                 <Col m={12}>
                     <Input type="text" name="search" placeholder="Search" autofocus="autofocus"/>
@@ -16,21 +39,28 @@ const Nav: React.FC = props => {
                 <Button size="sm" type="submit" color="secondary"><FontAwesomeIcon icon={faSearch}/></Button>
             </Form>
 
-            <Navi navbar>
-              <NavItem>
-                <NavLink href="#">User Name</NavLink>
+            <NavItem>
+                <Link to="/profile">{props.user.firstname}</Link>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Home</NavLink>
+                <Link to="/">Calendar</Link>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Create</NavLink>
+                <Link to="/">Create</Link>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Logout</NavLink>
+                <Link to="/" onClick={handleLogout}>Logout</Link>
               </NavItem>
-            </Navi>
+        </Navi>
+    )}
 
+    return (
+        <div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">MO ☀︎</NavbarBrand>
+
+            {links}
+            
         </Navbar>
       </div>
     )

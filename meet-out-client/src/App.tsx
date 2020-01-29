@@ -1,25 +1,81 @@
 // Import React
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 // Import Router to navigate
 import { BrowserRouter as Router } from 'react-router-dom'
+// Import jwt decode
+import jwtDecode from 'jwt-decode'
+// Import CSS stylsheet
 import './App.css'
-
-import Nav from './components/Nav'
+// Import user type from user model
+import User from '../../meet-out-server/src/models/user'
+// Import components
 import Content from './components/Content'
 import Footer from './components/Footer'
+import Header from './components/Header'
+import Nav from './components/Nav'
+
+// Interface for decoded type
+export interface Decoded extends User {
+  exp: number
+}
 
 const App: React.FC = () => {
+
+  // Creater user state and function to set state
+  let [user, setUser] = React.useState<Decoded | null>(null)
+
+  // Check for token on load
+  useEffect(() => {
+    decodeToken(null)
+  }, [])
+
+  // Function to update the user
+  const updateUser = (newToken: string | null) => {
+    if (newToken) {
+      // Store this token
+      localStorage.setItem('userToken', newToken)
+      // Decode this token
+      decodeToken(newToken)
+    } else {
+      // If no token, user is null
+      setUser(null)
+    }
+  }
+
+  // Function to decode the token
+  const decodeToken = (existingToken: string | null) => {
+    let token: string | null = existingToken || localStorage.getItem('userToken')
+
+    // Token exists
+    if (token) {
+      // Decode token
+      let decoded: Decoded = jwtDecode(token)
+
+      // Expired or invalid token
+      if (!decoded || (Date.now() > decoded.exp * 1000)) {
+        setUser(null)
+      } else {
+        setUser(decoded)
+      }
+    } else {
+      setUser(null)
+    }
+  }
 
   return (
     <div className="App">
       <Router>
         <Nav />
+    <Router>
+      <div className="App">
+        <Nav user={user} updateUser={updateUser}/>
+        <Header />
         <main>
           <Content />
         </main>
         <Footer />
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
 
