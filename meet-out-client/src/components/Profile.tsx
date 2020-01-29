@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { Decoded } from '../App'
 import image from '../SelfieDoodle.png'
-import { Container } from 'reactstrap';
+import { Button, Container } from 'reactstrap';
 
 // Props
 interface ProfileProps {
@@ -18,6 +18,8 @@ const Profile: React.FC<ProfileProps> = props => {
     return (
         <Container className="web-body">
             <img src={image} className="img-fluid" width="400"/>
+            <br />
+            <Button color="info">EDIT</Button>
             <hr />
             <h3>Name: {props.user.firstname} {props.user.lastname}</h3>
             <h3>Email: {props.user.email}</h3>
