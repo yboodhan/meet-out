@@ -4,7 +4,6 @@ let db = require('../models')
 import { Request, Response, Router } from 'express'
 import User from '../models/user'
 import Meet from '../models/meet'
-import { userInfo } from 'os'
 const axios = require('axios'); 
 const GEO_URL = 'https://geocoding.geo.census.gov/geocoder/locations/address?street='
 
@@ -15,12 +14,12 @@ router.get('/', (req: Request, res: Response) => {
     console.log('Reached MEET ROUTE')
     db.Meet.find()
     .then((meets: Meet) => {
-        console.log(`All meets should be sent: ${meets}`)
+        console.log(`All meets should be sent.`)
         res.send({meets})
     })
     .catch((err: Error) => {
-        console.log('ERROR', err)
-        res.status(500).send({ message: 'Error happened' })
+        console.log(`Error: ${err}`)
+        res.send({err})
     })
 })
 

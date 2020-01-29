@@ -8,6 +8,7 @@ import Signup from './Signup'
 import Userhome from './Userhome'
 import Profile from './Profile'
 import EditProfile from './EditProfile'
+import NewMeet from './NewMeet'
 
 // Props
 interface ContentProps {
@@ -101,6 +102,9 @@ const Content: React.FC<ContentProps> = props => {
             } />
             <Route path="/home" render={
                 () => <Userhome allMeets={allMeets} />
+            }/>
+            <Route path="/create" render={
+                () => <NewMeet user={props.user} />
             }/>
         </div>
     )
