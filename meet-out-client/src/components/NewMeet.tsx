@@ -128,13 +128,13 @@ const NewMeet: React.FC<NewMeetProps> = props => {
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="starttime">Start:</Label>
-                                    < Input id="starttime" name="starttime" type="date" placeholder="Start Time" onChange={(e: FormEvent<HTMLInputElement>) => setStartTime(e.currentTarget.value)} />
+                                    < Input id="starttime" name="starttime" type="time" placeholder="Start Time" onChange={(e: FormEvent<HTMLInputElement>) => setStartTime(e.currentTarget.value)} />
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="address">End:</Label>
-                                    < Input id="endtime" name="endtime" type="date" placeholder="End Time" onChange={(e: FormEvent<HTMLInputElement>) => setEndTime(e.currentTarget.value)} />
+                                    < Input id="endtime" name="endtime" type="time" placeholder="End Time" onChange={(e: FormEvent<HTMLInputElement>) => setEndTime(e.currentTarget.value)} />
                                 </FormGroup> 
                             </Col>
                         </Row>
