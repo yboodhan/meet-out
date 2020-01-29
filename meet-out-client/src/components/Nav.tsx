@@ -7,6 +7,7 @@ import { Button, Col, Form, Input, Navbar, NavbarBrand, Nav as Navi, NavItem, Na
 
 import Login from './Login'
 
+// Props
 interface NavProps {
     user: Decoded | null,
     updateUser: (newToken: string | null) => void
@@ -24,7 +25,8 @@ const Nav: React.FC<NavProps> = props => {
     // Define links
     let links = (
         <Navi navbar>
-            <Login />
+            <NavbarBrand className="home-logo" href="/">MEET OUT</NavbarBrand>
+            <Login user={props.user} updateUser={props.updateUser} />
         </Navi>
     )
 
@@ -32,6 +34,7 @@ const Nav: React.FC<NavProps> = props => {
     if (props.user) {
         links = (
         <Navi navbar>
+            <NavbarBrand className="logo" href="/">MO</NavbarBrand>
             <Form inline>
                 <Col m={12}>
                     <Input type="text" name="search" placeholder="Search" autofocus="autofocus"/>
@@ -40,16 +43,16 @@ const Nav: React.FC<NavProps> = props => {
             </Form>
 
             <NavItem>
-                <Link to="/profile">{props.user.firstname}</Link>
+                <NavLink href="/profile">{props.user.firstname}</NavLink>
               </NavItem>
               <NavItem>
-                <Link to="/">Calendar</Link>
+                <NavLink href="/">Calendar</NavLink>
               </NavItem>
               <NavItem>
-                <Link to="/">Create</Link>
+                <NavLink href="/">Create</NavLink>
               </NavItem>
               <NavItem>
-                <Link to="/" onClick={handleLogout}>Logout</Link>
+                <NavLink href="/" onClick={handleLogout}>Logout</NavLink>
               </NavItem>
         </Navi>
     )}
@@ -57,10 +60,7 @@ const Nav: React.FC<NavProps> = props => {
     return (
         <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">MO ☀︎</NavbarBrand>
-
             {links}
-            
         </Navbar>
       </div>
     )

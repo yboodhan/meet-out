@@ -24,8 +24,9 @@ app.use(bodyParser.urlencoded({
 app.use(morgan('dev'))
 app.use(cors())
 
-app.use('/home', require('./controllers/home'))
 app.use('/auth', require('./controllers/auth'))
+app.use('/home', require('./controllers/home'))
+app.use('/meet', require('./controllers/meet'))
 app.use('/profile', require('./controllers/profile'))
 
 

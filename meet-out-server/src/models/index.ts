@@ -7,3 +7,4 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/meet-out', {
 })
 
 module.exports.User = require('./user')
+module.exports.Meet = require('./meet')
