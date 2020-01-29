@@ -47,6 +47,7 @@ db.Meet.create([{
     activity: {
         name: 'biking',
         locations: {
+<<<<<<< HEAD
           name: 'General Assembly',
           address: '1218 3rd Ave',
           city: 'Seattle',
@@ -54,6 +55,15 @@ db.Meet.create([{
           zip: 98101,
           lat: 50.6062,
           long: 140.3321
+=======
+        name: 'General Assembly',
+        address: '1218 3rd Ave',
+        city: 'Seattle',
+        state: 'WA',
+        zip: 98101,
+        lat: 50.6062,
+        long: 140.3321
+>>>>>>> b0ac4bdc28742a7d32478f2567c87f566f7c4798
     }
   }
 }
