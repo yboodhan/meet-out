@@ -10,7 +10,7 @@ const router = Router()
 router.get('/:id', (req: Request, res: Response) => {
     db.User.findOne({_id: (req.params as{id: string}).id })
     .then((user: User) => {
-        res.send(`Found: ${user}`)
+        res.send({user})
     })
 })
 
@@ -19,7 +19,7 @@ router.put('/:id', (req: Request, res: Response) => {
     db.User.updateOne({ _id: (req.params as{id: string}).id },
     req.body)
     .then((user: User) => {
-        res.send(user)
+        res.send({user})
     })
 })
 
