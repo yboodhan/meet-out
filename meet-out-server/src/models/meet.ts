@@ -4,26 +4,27 @@ import User from '../models/user'
 //create interface for meet type extending mongoose.Document (mongoose.Document includes ._id)
 export default interface Meet extends mongoose.Document {
   date: Date;
-  time: Date;
-  description: String;
+  starttime: Date;
+  endtime: Date;
+  description: string;
   users: User[];
-  activity: { name: String;
+  activity: { name: string;
     locations: {
-      name: String;
-      address: String;
-      city: String;
-      state: String;
-      zip: Number;
-      lat: Number;
-      long: Number;
-    };
+      name: string;
+      address: string;
+      city: string;
+      state: string;
+      zip: number;
+      lat: number;
+      long: number;
+    }[];
   }
 }
 
 //create activity schema
 let activitySchema: mongoose.Schema = new mongoose.Schema({
   name: String,
-  locations: {
+  locations: [{
     name: String,
     address: String,
     city: String,
@@ -34,13 +35,14 @@ let activitySchema: mongoose.Schema = new mongoose.Schema({
     zip: Number,
     lat: Number,
     long: Number
-  }
+  }]
 })
 
 //create meet schema
 let meetSchema: mongoose.Schema = new mongoose.Schema({
   date: Date,
-  time: Date,
+  starttime: Date,
+  endtime: Date,
   description: String,
   //reference user as array
   users: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
