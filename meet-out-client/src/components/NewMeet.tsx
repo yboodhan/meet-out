@@ -31,21 +31,16 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     // let [private, setPrivate] = useState(true)
 
     useEffect(() => {
-        setMessage('')
-    }, [activity, description, activityAddress, city, state, zip, date, starttime, endtime])
-
-    const inputCreator = () => {
         if (props.user) {
-            console.log('setting id to', props.user._id)
-            setCreator('' + props.user._id)
-            console.log('creator is', creator)
+            setCreator(props.user._id)
         }
-    }
+        setMessage('')
+    }, [props.user, activity, description, activityAddress, city, state, zip, date, starttime, endtime])
+
+
 
     const createNewMeet = (e: FormEvent) => {
         e.preventDefault()
-
-        inputCreator()
 
         // Form data
         let data: object = {
