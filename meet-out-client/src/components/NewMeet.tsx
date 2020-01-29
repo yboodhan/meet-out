@@ -36,6 +36,8 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     const createNewMeet = (e: FormEvent) => {
         e.preventDefault()
 
+        inputCreator()
+
         // Form data
         let data: object = {
             activity,
@@ -83,8 +85,12 @@ const NewMeet: React.FC<NewMeetProps> = props => {
         return(
             <Redirect to = "/" />
         )
-    } else {
-        setCreator(props.user._id)
+    } 
+
+    const inputCreator = () => {
+        if (props.user) {
+            setCreator(props.user._id)
+        }
     }
 
     return (
