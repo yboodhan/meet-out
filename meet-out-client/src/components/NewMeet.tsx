@@ -11,6 +11,7 @@ interface NewMeetProps {
 }
 
 const NewMeet: React.FC<NewMeetProps> = props => {
+
     // Assign default state
     // Message displays on page
     let [message, setMessage] = useState('')
@@ -33,6 +34,14 @@ const NewMeet: React.FC<NewMeetProps> = props => {
         setMessage('')
     }, [activity, description, activityAddress, city, state, zip, date, starttime, endtime])
 
+    const inputCreator = () => {
+        if (props.user) {
+            console.log('setting id to', props.user._id)
+            setCreator('' + props.user._id)
+            console.log('creator is', creator)
+        }
+    }
+
     const createNewMeet = (e: FormEvent) => {
         e.preventDefault()
 
@@ -52,7 +61,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
             endtime
         }
 
-        console.log(data)
+        console.log('data is', data)
 
         fetch(`${process.env.REACT_APP_SERVER_URL}/meet`, {
             method: 'POST',
@@ -84,12 +93,6 @@ const NewMeet: React.FC<NewMeetProps> = props => {
             <Redirect to = "/" />
         )
     } 
-
-    const inputCreator = () => {
-        if (props.user) {
-            setCreator(props.user._id)
-        }
-    }
 
     return (
         <div>
