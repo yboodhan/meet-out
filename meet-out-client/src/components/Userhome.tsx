@@ -3,10 +3,10 @@ import React from 'react'
 import List from './List'
 import Calendar from './Calendar'
 
-import { TMeets } from './Content'
+import Meet from '../../../meet-out-server/src/models/meet'
 
 interface UserhomeProps {
-    allMeets: TMeets[]
+    allMeets: Meet[]
 }
 
 

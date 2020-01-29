@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Route } from 'react-router-dom'
 import { Decoded } from '../App'
 import User from '../../../meet-out-server/src/models/user'
+import Meet from '../../../meet-out-server/src/models/meet'
+
 
 //Components
 import Signup from './Signup'
@@ -32,27 +34,27 @@ const allMeets = [
       activity: {name: 'biking'}
     }]
 
-    export interface TMeets {
-        date: Date;
-        starttime: Date;
-        endtime: Date;
-        description: string;
-        users: User[];
-        activity: { name: string;
-            locations: {
-            name: string;
-            address: string;
-            city: string;
-            state: string;
-            zip: number;
-            lat: number;
-            long: number;
-            }[]
-        }
-    }
+    // export interface TMeets {
+    //     date: Date;
+    //     starttime: Date;
+    //     endtime: Date;
+    //     description: string;
+    //     users: User[];
+    //     activity: { name: string;
+    //         locations: {
+    //         name: string;
+    //         address: string;
+    //         city: string;
+    //         state: string;
+    //         zip: number;
+    //         lat: number;
+    //         long: number;
+    //         }[]
+    //     }
+    // }
 
     interface getResults {
-        data: TMeets[]
+        meets: Meet[]
     }
 
 
@@ -61,7 +63,7 @@ const Content: React.FC<ContentProps> = props => {
     
 
     // State variables
-    let [allMeets , setAllMeets] = useState<TMeets[]>([])
+    let [allMeets , setAllMeets] = useState<Meet[]>([])
 
     
 
@@ -71,10 +73,11 @@ const Content: React.FC<ContentProps> = props => {
             .then(response => {
                 response.json()
                 .then((results: getResults) => {
-                    console.log('🌈🌈', results, '👻👻', response)
-                    let allMeets = results.data.map(data => {
+                    // console.log('🌈🌈', results, '👻👻', response)
+                    let allMeets = results.meets.map(data => {
                         return data
                     })
+                    // console.log('🌈🌈🌈🌈🌈', allMeets)
                     setAllMeets(allMeets)
                 })
                 .catch( (err: Error) => {
@@ -84,8 +87,7 @@ const Content: React.FC<ContentProps> = props => {
             .catch( (err: Error) => {
                 console.log('Error', err)
             })
-        
-        }, [])
+    }, [])
 
 
     return (

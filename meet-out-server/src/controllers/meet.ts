@@ -52,7 +52,8 @@ router.post('/', (req: Request, res: Response) => {
             // This is where we take all the data harvested off the front end, and actually store it.
             db.Meet.create({
                 date: req.body.date,
-                time: req.body.time,
+                starttime: req.body.starttime,
+                endtime: req.body.endtime,
                 description: req.body.description,
                 users: req.body.users,
                 activity: {
@@ -72,6 +73,9 @@ router.post('/', (req: Request, res: Response) => {
                 console.log(`New meet created: ${newMeet}`)
                 res.send({newMeet})
             })
+            .catch((err: Error) => {
+                console.log(err)
+            }) 
         })
     .catch((err: Error) => {
         console.log(err)

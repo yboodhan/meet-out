@@ -7,9 +7,9 @@ interface EditProfileProps {
     user: Decoded | null
 }
 
-const EditProfile = () => {
+const EditProfile: React.FC<EditProfileProps> = props => {
     return (
-        <div>Edit Profile Stub</div>
+        <div>{props.user}</div>
     )
 }
 
