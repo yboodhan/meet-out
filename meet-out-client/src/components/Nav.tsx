@@ -44,16 +44,16 @@ const Nav: React.FC<NavProps> = props => {
 
             <NavItem>
                 <NavLink><Link to="/profile">{props.user.firstname}</Link></NavLink>
-              </NavItem>
-              <NavItem>
+            </NavItem>
+            <NavItem>
                 <NavLink><Link to="/home">Calendar</Link></NavLink>
-              </NavItem>
-              <NavItem>
+            </NavItem>
+            <NavItem>
                 <NavLink><Link to="/create">Create</Link></NavLink>
-              </NavItem>
-              <NavItem>
+            </NavItem>
+            <NavItem>
                 <NavLink><Link to="/" onClick={handleLogout}>Logout</Link></NavLink>
-              </NavItem>
+            </NavItem>
         </Navi>
     )}
 

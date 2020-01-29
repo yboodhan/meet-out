@@ -31,8 +31,11 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     // let [private, setPrivate] = useState(true)
 
     useEffect(() => {
+        if(props.user){
+            setCreator(props.user._id)
+        }
         setMessage('')
-    }, [activity, description, activityAddress, city, state, zip, date, starttime, endtime])
+    }, [props.user, activity, description, activityAddress, city, state, zip, date, starttime, endtime])
 
     const inputCreator = () => {
         if (props.user) {
