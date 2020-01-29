@@ -3,13 +3,24 @@ import { Redirect } from 'react-router-dom'
 import { Decoded } from '../App'
 import { Button, Container } from 'reactstrap';
 
+// Props
 interface EditProfileProps {
     user: Decoded | null
 }
 
 const EditProfile: React.FC<EditProfileProps> = props => {
+    
+    if (!props.user) {
+        console.log('no user is here')
+        return <Redirect to="/" />
+    }
+
     return (
-        <div>{props.user}</div>
+        <Container className="web-body">
+            <h2>Edit your profile:</h2>
+            <br />
+            <Button type="submit" color="info">UPDATE MY PROFILE</Button>
+        </Container>
     )
 }
 

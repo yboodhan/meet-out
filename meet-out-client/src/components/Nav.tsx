@@ -1,5 +1,4 @@
 import React, { FormEvent } from 'react'
-import { Link } from 'react-router-dom'
 import { Decoded } from '../App'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -37,7 +36,7 @@ const Nav: React.FC<NavProps> = props => {
             <NavbarBrand className="logo" href="/">MO</NavbarBrand>
             <Form inline>
                 <Col m={12}>
-                    <Input type="text" name="search" placeholder="Search" autofocus="autofocus"/>
+                    <Input type="text" name="search" placeholder="Search" autoFocus/>
                 </Col>
                 <Button size="sm" type="submit" color="secondary"><FontAwesomeIcon icon={faSearch}/></Button>
             </Form>
@@ -46,7 +45,7 @@ const Nav: React.FC<NavProps> = props => {
                 <NavLink href="/profile">{props.user.firstname}</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">Calendar</NavLink>
+                <NavLink href="/home">Calendar</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/">Create</NavLink>

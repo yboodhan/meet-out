@@ -10,7 +10,6 @@ import Signup from './Signup'
 import Userhome from './Userhome'
 import Profile from './Profile'
 import EditProfile from './EditProfile'
-import { PromiseProvider } from 'mongoose'
 
 // Props
 interface ContentProps {
@@ -71,11 +70,12 @@ const Content: React.FC<ContentProps> = props => {
         // Fetch meets from get route
             fetch(`${process.env.REACT_APP_SERVER_URL}/meet`)
             .then(response => {
+                console.log('In then code', response)
                 response.json()
                 .then((results: getResults) => {
-                    // console.log('🌈🌈', results, '👻👻', response)
-                    let allMeets = results.meets.map(data => {
-                        return data
+                    console.log('🌈🌈', results, '👻👻', response)
+                    let allMeets = results.meets.map(meet => {
+                        return meet
                     })
                     // console.log('🌈🌈🌈🌈🌈', allMeets)
                     setAllMeets(allMeets)
@@ -95,14 +95,14 @@ const Content: React.FC<ContentProps> = props => {
             <Route exact path="/" render={
                 () => <Signup user={props.user} updateUser={props.updateUser} />
             } />
-            <Route path="/profile" render={
+            <Route path="/profile/edit" render={
+                () => <EditProfile user={props.user}/>
+            }/>
+            <Route exact path="/profile" render={
                 () => <Profile user={props.user} />
             } />
             <Route path="/home" render={
                 () => <Userhome allMeets={allMeets} />
-            }/>
-            <Route path="/profile/edit" render={
-                () => <EditProfile  user={props.user}/>
             }/>
         </div>
     )

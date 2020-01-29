@@ -21,7 +21,7 @@ export interface Decoded extends User {
 const App: React.FC = () => {
 
   // Creater user state and function to set state
-  let [user, setUser] = React.useState<Decoded | null>(null)
+  let [user, setUser] = useState<Decoded | null>(null)
 
   // Check for token on load
   useEffect(() => {

@@ -73,7 +73,7 @@ const Signup: React.FC<SignupProps> = props => {
         <Container className="text-left web-body">
         <Row>
         <Col md={6}>
-        <img src={image} className="img-fluid"/> 
+        <img src={image} alt="home" className="img-fluid"/> 
         </Col>
         <Col md={6}>
         <p className="app-description">Welcome to Meet Out(side). Let's do some outdoor activities together.</p>
