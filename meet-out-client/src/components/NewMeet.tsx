@@ -25,6 +25,8 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     let [date , setDate] = useState(' ')
     let [starttime, setStartTime] = useState(' ')
     let [endtime, setEndTime] = useState(' ')
+    let [creator, setCreator] = useState(props.user)
+    let [privateMeet, setPrivateMeet] = useState(false)
 
     useEffect(() => {
         setMessage('')
@@ -36,6 +38,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
         // Form data
         let data: object = {
             activity,
+            creator,
             description,
             activityAddress,
             city,
@@ -43,7 +46,8 @@ const NewMeet: React.FC<NewMeetProps> = props => {
             zip,
             date,
             starttime,
-            endtime
+            endtime,
+            privateMeet
         }
 
         fetch(`${process.env.REACT_APP_SERVER_URL}/meet`, {
@@ -56,9 +60,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
         .then( (response: Response) => {
             response.json().then(result => {
             if (response.ok) {
-                return(
-                    <Redirect to = "/home" />
-                )
+                console.log('Response ok')
             } else {
                 // Error
                 setMessage(`${response.status} ${response.statusText}: ${result.message}`)

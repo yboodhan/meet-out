@@ -22,6 +22,8 @@ interface ContentProps {
 export interface MeetForCalendar {
     _id: number,
     title: string,
+    creator: string,
+    private: boolean,
     date: Date,
     start: Date,
     end: Date,
@@ -86,6 +88,8 @@ const Content: React.FC<ContentProps> = props => {
                     let allMeets: MeetForCalendar[] = results.meets.map(meet => {
                         return { 
                         _id: meet._id,
+                        creator: meet.creator,
+                        private: meet.private,
                         title: meet.activity.name, 
                         date: new Date(meet.date.toString()),
                         start: new Date(meet.starttime.toString()),
