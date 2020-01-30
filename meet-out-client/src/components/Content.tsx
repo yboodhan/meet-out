@@ -81,7 +81,6 @@ const Content: React.FC<ContentProps> = props => {
         // Fetch meets from get route
             fetch(`${process.env.REACT_APP_SERVER_URL}/meet`)
             .then(response => {
-                console.log('In then code', response)
                 response.json()
                 .then((results: getResults) => {
                     console.log('🌈🌈', results, '👻👻', response)
