@@ -10,10 +10,11 @@ const EventTag: React.FC = () => {
             <h4>Event Name</h4>
             <h5>Date</h5>
             <h6>Time</h6>
-            <small>Description</small>
+            <div className="text-truncate">
+            <small>Description of the event in detail. SO much detail. Bla BLa.</small>
+            </div>
 
-            <br/>
-            <br/>
+            <br />
             <Button color="info">More Info</Button>{' '}
             <Button color="info">View</Button> {' '}
             {/* only if user is creator */}
