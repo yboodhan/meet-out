@@ -20,8 +20,6 @@ interface ContentProps {
 
 export interface MeetForCalendar {
     _id: number,
-    creator: string,
-    private: boolean,
     title: string,
     creator: string,
     private: boolean,
