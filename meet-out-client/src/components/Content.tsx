@@ -12,6 +12,7 @@ import Profile from './Profile'
 import EditProfile from './EditProfile'
 import NewMeet from './NewMeet'
 
+
 // Props
 interface ContentProps {
     user: Decoded | null,

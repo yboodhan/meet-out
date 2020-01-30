@@ -17,6 +17,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Decoded } from '../App';
 import { notDeepEqual } from 'assert'
 import Meet from '../../../meet-out-server/src/models/meet'
+import DisplayMap from './Map'
 
 interface CalendarProps {
     // buttonLabel?: string,
@@ -48,7 +49,7 @@ interface DefaultMeetForCalendar {
             zip: null;
             lat: null;
             long: null;
-          }
+        }
     },
     myPrivateMeet: null,
     myPublicMeet: null,
@@ -84,7 +85,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
                 zip: null,
                 lat: null,
                 long: null,
-              }
+            }
         },
         myPrivateMeet: null,
         myPublicMeet: null,
@@ -126,6 +127,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
     
     return (
         <div className='calendar'>
+        <DisplayMap />
             <Calendar
                 selectable
                 localizer={localizer}
@@ -142,7 +144,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
             <div>
             <Modal isOpen={modal} toggle={toggle} className={className}>
             <ModalHeader toggle={toggle}>{currentMeet.title} at {currentMeet.activity.locations.name}</ModalHeader>
-              <ModalBody>
+                <ModalBody>
                     <h2>Owner: {currentMeet.myPrivateMeet ? 'You' : currentMeet.creator }</h2>
                     <h3>{ currentMeet.date ? currentMeet.date.toDateString() : 'not available'}</h3>
                     <h3>{currentMeet.start ? currentMeet.start.toTimeString(): 'not available' } - {currentMeet.end ? currentMeet.end.toTimeString(): 'not available'}</h3> {/* find something to show date/time in pretty way? */}
@@ -152,15 +154,15 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
                         (props.user && u === props.user._id) ? 'You' : {u}
                         ) : 'No one is attending :(' }
                     </h4>
-              </ModalBody>
-              
-              <ModalFooter>
-                  { currentMeet.myPrivateMeet || currentMeet.myPublicMeet ? editButton : (!currentMeet.myPublicMeet && currentMeet.attending ? cancelAttendanceButton : attendButton ) }
+                </ModalBody>
+
+                <ModalFooter>
+                    { currentMeet.myPrivateMeet || currentMeet.myPublicMeet ? editButton : (!currentMeet.myPublicMeet && currentMeet.attending ? cancelAttendanceButton : attendButton ) }
                 {/* <Button color="primary" onClick={toggle}>Do Something</Button>
                 <Button color="secondary" onClick={toggle}>Cancel</Button> */}
-              </ModalFooter>
+                </ModalFooter>
             </Modal>
-          </div>
+            </div>
         </div>
     )
 }
