@@ -86,7 +86,7 @@ const Content: React.FC<ContentProps> = props => {
                                 }
 
                                 let allMeets = results.meets.map<MeetForCalendar>(meet => {
-                                    let dateString = meet.date.toString().slice(0,11)
+                                    let dateString = meet.date.toString().slice(0,10)
 
                                     return { 
                                     _id: meet._id,
@@ -94,8 +94,8 @@ const Content: React.FC<ContentProps> = props => {
                                     private: meet.private,
                                     title: meet.activity.name, 
                                     date: new Date(dateString),
-                                    start: new Date(dateString + meet.starttime),
-                                    end: new Date(dateString + meet.endtime),
+                                    start: new Date(dateString + ' ' + meet.starttime),
+                                    end: new Date(dateString + ' ' + meet.endtime),
                                     description: meet.description,
                                     users: meet.users,
                                     activity: meet.activity,
