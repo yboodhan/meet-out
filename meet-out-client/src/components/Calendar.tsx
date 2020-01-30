@@ -13,7 +13,7 @@ import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 import {MeetForCalendar} from './Content'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Container, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Decoded } from '../App';
 import { notDeepEqual } from 'assert'
 import Meet from '../../../meet-out-server/src/models/meet'
@@ -125,7 +125,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
     // }
     
     return (
-        <div className='calendar'>
+        <Container className="calendar">
             <Calendar
                 selectable
                 localizer={localizer}
@@ -161,7 +161,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
               </ModalFooter>
             </Modal>
           </div>
-        </div>
+        </Container>
     )
 }
 
