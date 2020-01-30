@@ -14,7 +14,6 @@ const MeetDetailsModal = (props: any) => {
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
