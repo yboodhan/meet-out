@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Decoded } from '../App'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { Button, Col, Form, Input, Navbar, NavbarBrand, Nav as Navi, NavItem, NavLink } from 'reactstrap';
+import { Button, Col, Form, Input, Navbar, NavbarBrand, Nav as Navi, NavLink } from 'reactstrap';
 
 import Login from './Login'
 
@@ -42,27 +42,28 @@ const Nav: React.FC<NavProps> = props => {
                 <Button size="sm" type="submit" color="secondary"><FontAwesomeIcon icon={faSearch}/></Button>
             </Form>
 
-            <NavItem>
+            <div className="NavItem">
                 <NavLink><Link to="/profile">{props.user.firstname}</Link></NavLink>
-              </NavItem>
-              <NavItem>
+            </div>
+            <div className="NavItem">
                 <NavLink><Link to="/home">Calendar</Link></NavLink>
-              </NavItem>
-              <NavItem>
+            </div>
+            <div className="NavItem">
                 <NavLink><Link to="/create">Create</Link></NavLink>
-              </NavItem>
-              <NavItem>
+            </div>
+            <div className="NavItem">
                 <NavLink><Link to="/" onClick={handleLogout}>Logout</Link></NavLink>
-              </NavItem>
+            </div>
         </Navi>
     )}
+
 
     return (
         <div>
         <Navbar color="light" light expand="md">
             {links}
         </Navbar>
-      </div>
+        </div>
     )
 }
 

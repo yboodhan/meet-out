@@ -28,6 +28,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     // let [users, setUsers] = useState([])
     let [creator, setCreator] = useState('')
     let [privateMeet, setPrivateMeet] = useState(false)
+    let [referRedirect, setReferRedirect] = useState(false)
 
     useEffect(() => {
         if (props.user) {
@@ -68,8 +69,8 @@ const NewMeet: React.FC<NewMeetProps> = props => {
         .then( (response: Response) => {
             response.json().then(result => {
             if (response.ok) {
-                console.log('response is FOINE!')
-                return <Redirect to = "/home" />
+                console.log('Response ok')
+                setReferRedirect(true)
             } else {
                 // Error
                 setMessage(`${response.status} ${response.statusText}: ${result.message}`)
@@ -82,6 +83,12 @@ const NewMeet: React.FC<NewMeetProps> = props => {
             setMessage(`Error: ${err.toString()}`)
         })
     
+    }
+
+    if (referRedirect === true) {
+        return(
+            <Redirect to = "/home" />
+        )
     }
 
     if (!props.user) {

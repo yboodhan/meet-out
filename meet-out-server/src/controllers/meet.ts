@@ -2,7 +2,6 @@ require('dotenv').config()
 // Declare variables, import dependencies
 let db = require('../models')
 import { Request, Response, Router } from 'express'
-import User from '../models/user'
 import Meet from '../models/meet'
 const axios = require('axios'); 
 const GEO_URL = 'https://geocoding.geo.census.gov/geocoder/locations/address?street='

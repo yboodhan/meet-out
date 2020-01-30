@@ -42,17 +42,17 @@ const EditProfile: React.FC<EditProfileProps> = props => {
                     <Row form>
                         <Col md={6}>
                         <FormGroup>
-                            <Input type="text" name="firstname" id="firstname" placeholder="First name" value={props.user.firstname} onChange={(e: FormEvent<HTMLInputElement>) => setFirstname(e.currentTarget.value)} required/>
+                            <Input type="text" name="firstname" placeholder="First name" value={props.user.firstname} onChange={(e: FormEvent<HTMLInputElement>) => setFirstname(e.currentTarget.value)} required/>
                         </FormGroup>
                         </Col>
                         <Col md={6}>
                         <FormGroup>
-                            <Input type="text" name="lastname" id="lastname" placeholder="Last name" value={props.user.lastname} onChange={(e: FormEvent<HTMLInputElement>) => setLastname(e.currentTarget.value)} required/>
+                            <Input type="text" name="lastname" placeholder="Last name" value={props.user.lastname} onChange={(e: FormEvent<HTMLInputElement>) => setLastname(e.currentTarget.value)} required/>
                         </FormGroup>
                         </Col>
                     </Row>
                     <FormGroup>
-                            <Input type="email" name="email" id="email" placeholder="Email" value={props.user.email} onChange={(e: FormEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)} required/>
+                            <Input type="email" name="email" placeholder="Email" value={props.user.email} onChange={(e: FormEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)} required/>
                     </FormGroup>
                     <FormText color="danger">{message}</FormText>
                     <hr />

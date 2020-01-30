@@ -23,6 +23,8 @@ export interface MeetForCalendar {
     creator: string,
     private: boolean,
     title: string,
+    creator: string,
+    private: boolean,
     date: Date,
     start: Date,
     end: Date,

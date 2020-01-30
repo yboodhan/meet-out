@@ -43,7 +43,10 @@ let activitySchema: mongoose.Schema = new mongoose.Schema({
 //create meet schema
 let meetSchema: mongoose.Schema = new mongoose.Schema({
   creator: String,
-  private: Boolean,
+  private: {
+    type: Boolean,
+    default: true
+  },
   date: Date,
   starttime: String,
   endtime: String,
