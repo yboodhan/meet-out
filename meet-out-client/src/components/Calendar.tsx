@@ -141,7 +141,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
             />
             <div>
             <Modal isOpen={modal} toggle={toggle} className={className}>
-            <ModalHeader toggle={toggle}>{currentMeet.title} at {currentMeet.activity.locations.name}</ModalHeader>
+            <ModalHeader toggle={toggle}><h1>{currentMeet.title}</h1></ModalHeader>
               <ModalBody>
                 <MeetModalBody currentMeet={currentMeet} user={props.user} />
               </ModalBody>

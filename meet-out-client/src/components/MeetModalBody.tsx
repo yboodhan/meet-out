@@ -12,13 +12,14 @@ interface ModalBodyProps {
 
 const MeetDetailsModal: React.FC<ModalBodyProps> = props => {
 
-// let header = props.currentMeet.creator </h2>
+// if(props.currentMeet.myPrivateMeet) {
+
+// }
 
   return (
     <div>
-     <h2>Owner: {props.currentMeet.creator} </h2>
-     {/* {header} */}
-                   {/*  <h3>{ currentMeet.date ? currentMeet.date.toDateString() : 'not available'}</h3> */}
+     <h3>Owner: {props.currentMeet.creator?.slice(0,8)} </h3>
+    <h3>{ props.currentMeet.date ? props.currentMeet.date.toDateString() : 'not available'}</h3>
                     {/* <h3>{currentMeet.start ? currentMeet.start.toTimeString(): 'not available' } - {currentMeet.end ? currentMeet.end.toTimeString(): 'not available'}</h3>  */}
                     {/* find something to show date/time in pretty way? */}
                     {/* <h3>STUB - LOCATION INFO</h3>
