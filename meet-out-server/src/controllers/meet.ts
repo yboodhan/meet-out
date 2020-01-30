@@ -54,8 +54,8 @@ router.post('/', (req: Request, res: Response) => {
 
             // This is where we take all the data harvested off the front end, and actually store it.
             db.Meet.create({
-                creator: req.body.creator,
-                private: req.body.privateMeet,
+                creator: req.body.user,
+                private: req.body.private,
                 date: req.body.date,
                 starttime: req.body.starttime,
                 endtime: req.body.endtime,

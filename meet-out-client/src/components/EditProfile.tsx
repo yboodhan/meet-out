@@ -33,7 +33,8 @@ const EditProfile: React.FC<EditProfileProps> = props => {
             <Row>
                 <Col m={6}>
                     <FormGroup>
-                            PUT PHOTO HERE
+                            UPLOAD HERE
+                            {/* <Button >Upload Photo</Button> */}
                     </FormGroup>
                 </Col>
 

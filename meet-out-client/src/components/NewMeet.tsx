@@ -124,7 +124,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
                         <Row>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Input id="state" type="text" name="state" placeholder="State" onChange={(e: FormEvent<HTMLInputElement>) => setUSState(e.currentTarget.value)} required />
+                                    <Input id="state" type="text" name="state" placeholder="State" maxLength={2} onChange={(e: FormEvent<HTMLInputElement>) => setUSState(e.currentTarget.value)} required />
                                     <FormText>Two-character state code only.</FormText>
                                 </FormGroup>
                             </Col>
