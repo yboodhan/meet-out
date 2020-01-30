@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Button, Container } from 'reactstrap'
 import {MeetForCalendar} from './Content'
 import Moment from 'react-moment'
 import moment from 'moment'
-
+import EditMeet from './EditMeet'
 
 // pass the event into this and display the event info
 interface EventTagProps {
@@ -14,6 +15,10 @@ const EventTag: React.FC<EventTagProps> = props => {
     let startTime = moment(props.meet.start).format("hh:mm a")
     let endTime = moment(props.meet.end).format("hh:mm a")
 
+    const handleEdit = () => {
+        // feed edit meet info and link
+        
+    }
 
     return (
         <Container className="event-tag">
@@ -29,8 +34,7 @@ const EventTag: React.FC<EventTagProps> = props => {
             <br />
             <Button color="info">More Info</Button>{' '}
             <Button color="info">View</Button> {' '}
-            {/* only if user is creator */}
-            <Button color="info">Edit</Button>
+            <Button onClick={handleEdit} color="info">Edit</Button>
 
         </Container>
     )
