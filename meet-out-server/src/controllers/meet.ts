@@ -2,6 +2,7 @@ require('dotenv').config()
 // Declare variables, import dependencies
 let db = require('../models')
 import { Request, Response, Router } from 'express'
+import User from '../models/user'
 import Meet from '../models/meet'
 const axios = require('axios'); 
 const GEO_URL = 'https://geocoding.geo.census.gov/geocoder/locations/address?street='
@@ -11,7 +12,7 @@ const router = Router()
 // Get route sends all Meets to the front-end
 router.get('/', (req: Request, res: Response) => {
     console.log('Reached MEET ROUTE')
-    db.Meet.find()
+    db.Meet.find({private: false})
     .then((meets: Meet) => {
         console.log(`All meets should be sent.`)
         res.send({meets})
