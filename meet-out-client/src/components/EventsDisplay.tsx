@@ -1,13 +1,17 @@
 import React from 'react'
 import { Container } from 'reactstrap'
-import EventTag from './EventTag'
+import {MeetForCalendar} from './Content'
 
-const EventsDisplay: React.FC = () => {
+interface EventsDisplayProps {
+    myMeets: any
+}
+
+const EventsDisplay: React.FC<EventsDisplayProps> = props => {
     return (
         <Container>
         <h2>All Events:</h2>
         <Container className="scroll-panel">
-            <EventTag />
+            {props.myMeets}
         </Container>
         </Container>
     )

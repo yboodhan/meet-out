@@ -4,7 +4,7 @@ import { Col, Container, Row } from 'reactstrap';
 import List from './List'
 import Calendar from './Calendar'
 import EventsDisplay from './EventsDisplay'
-
+import EventTag from './EventTag'
 import {MeetForCalendar} from './Content'
 import { Decoded } from '../App'
 
@@ -19,6 +19,10 @@ interface UserhomeProps {
 
 const Userhome: React.FC<UserhomeProps> = (props) => {
 
+    let allEvents = props.myPrivateMeets.map( meet => {
+        return <EventTag meet={meet}/>
+    })
+
     return (
         <Container className="web-body">
 
@@ -26,7 +30,7 @@ const Userhome: React.FC<UserhomeProps> = (props) => {
 
                 <Col md={4}>
                     <EventsDisplay 
-
+                        myMeets={allEvents}
                     />
                 </Col>
 

@@ -1,17 +1,21 @@
 import React from 'react'
-import { Button, Container } from 'reactstrap';
+import { Button, Container } from 'reactstrap'
+import {MeetForCalendar} from './Content'
 
 
 // pass the event into this and display the event info
+interface EventTagProps {
+    meet: MeetForCalendar
+}
 
-const EventTag: React.FC = () => {
+const EventTag: React.FC<EventTagProps> = props => {
     return (
         <Container className="event-tag">
-            <h4>Event Name</h4>
-            <h5>Date</h5>
-            <h6>Time</h6>
+            <h4>{props.meet.activity.name}</h4>
+            <h5>{props.meet.date}</h5>
+            <h6>{props.meet.start}-{props.meet.end}</h6>
             <div className="text-truncate">
-            <small>Description of the event in detail. SO much detail. Bla BLa.</small>
+            <small>{props.meet.description}</small>
             </div>
 
             <br />
