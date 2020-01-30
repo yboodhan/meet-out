@@ -13,11 +13,12 @@ import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 import {MeetForCalendar} from './Content'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Container, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Decoded } from '../App';
-import { notDeepEqual } from 'assert'
 import Meet from '../../../meet-out-server/src/models/meet'
 import DisplayMap from './Map'
+import MeetModalBody from './MeetModalBody'
+import MeetModalFooter from './MeetModalFooter'
 
 interface CalendarProps {
     // buttonLabel?: string,
@@ -29,7 +30,7 @@ interface CalendarProps {
     notAttendingPublicMeets: MeetForCalendar[];
 }
 
-interface DefaultMeetForCalendar {
+export interface DefaultMeetForCalendar {
     _id: null,
     creator: null,
     private: null,
@@ -92,33 +93,16 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
         attending: null
     })
     
-
-
     let displayMeets = [...props.myPrivateMeets, ...props.myPublicMeets, ...props.attendingPublicMeets, ...props.notAttendingPublicMeets].map(meet => {
         return meet
     })
     
-    
     const toggle = () => setModal(!modal);
-    
 
     const showDetails = (meet: MeetForCalendar) => {
         setCurrentMeet(meet)
         toggle()
     }
-
-
-    let editButton = <Button>EDIT</Button>
-    let cancelButton = <Button>CANCEL</Button>
-    let cancelAttendanceButton = <Button>CANCEL ATTENDANCE</Button>
-    let attendButton = <Button>ATTEND</Button>
-
-
-    // include:
-                //delete button/functionality
-                //if not already a user on the event, button to "add myself" to event that updates the meet with current user id
-                //edit button/functionality? -- confirm waht this looks like if clicked
-        
 
     //function to go to add event form
     // const addMeetOnSelect = ({start, end}: { start: string | Date, end: string | Date }) => {
@@ -126,8 +110,9 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
     // }
     
     return (
-        <div className='calendar'>
-        <DisplayMap />
+        <Container>
+        <h2>Calendar:</h2>
+        <Container className="calendar">
             <Calendar
                 selectable
                 localizer={localizer}
@@ -143,27 +128,18 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
             />
             <div>
             <Modal isOpen={modal} toggle={toggle} className={className}>
-            <ModalHeader toggle={toggle}>{currentMeet.title} at {currentMeet.activity.locations.name}</ModalHeader>
-                <ModalBody>
-                    <h2>Owner: {currentMeet.myPrivateMeet ? 'You' : currentMeet.creator }</h2>
-                    <h3>{ currentMeet.date ? currentMeet.date.toDateString() : 'not available'}</h3>
-                    <h3>{currentMeet.start ? currentMeet.start.toTimeString(): 'not available' } - {currentMeet.end ? currentMeet.end.toTimeString(): 'not available'}</h3> {/* find something to show date/time in pretty way? */}
-                    <h3>STUB - LOCATION INFO</h3>
-                    <h4>Attending:
-                        { currentMeet.users !== null ? currentMeet.users.forEach(u => 
-                        (props.user && u === props.user._id) ? 'You' : {u}
-                        ) : 'No one is attending :(' }
-                    </h4>
-                </ModalBody>
-
-                <ModalFooter>
-                    { currentMeet.myPrivateMeet || currentMeet.myPublicMeet ? editButton : (!currentMeet.myPublicMeet && currentMeet.attending ? cancelAttendanceButton : attendButton ) }
-                {/* <Button color="primary" onClick={toggle}>Do Something</Button>
-                <Button color="secondary" onClick={toggle}>Cancel</Button> */}
-                </ModalFooter>
+            <ModalHeader toggle={toggle}><h1>{currentMeet.title}</h1></ModalHeader>
+              <ModalBody>
+                <MeetModalBody currentMeet={currentMeet} user={props.user} />
+              </ModalBody>
+              
+              <ModalFooter>
+                  <MeetModalFooter currentMeet={currentMeet} user={props.user}/>
+              </ModalFooter>
             </Modal>
-            </div>
-        </div>
+          </div>
+        </Container>
+        </Container>
     )
 }
 
