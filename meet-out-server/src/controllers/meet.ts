@@ -2,6 +2,7 @@ require('dotenv').config()
 // Declare variables, import dependencies
 let db = require('../models')
 import { Request, Response, Router } from 'express'
+import User from '../models/user'
 import Meet from '../models/meet'
 const axios = require('axios'); 
 const GEO_URL = 'https://geocoding.geo.census.gov/geocoder/locations/address?street='
@@ -9,9 +10,10 @@ const GEO_URL = 'https://geocoding.geo.census.gov/geocoder/locations/address?str
 const router = Router()
 
 // Get route sends all Meets to the front-end
+// Add USER model to this so that the front-end can see the user's first name & last name
 router.get('/', (req: Request, res: Response) => {
     console.log('Reached MEET ROUTE')
-    db.Meet.find()
+    db.Meet.find({private: false})
     .then((meets: Meet) => {
         console.log(`All meets should be sent.`)
         res.send({meets})
@@ -78,10 +80,11 @@ router.post('/', (req: Request, res: Response) => {
                 console.log(`New meet created: ${newMeet}`)
                 res.send({newMeet})
             })
-            .catch((err: Error) => {
-                console.log(err)
-            }) 
-        })
+        .catch((err: Error) => {
+            console.log(err)
+            res.send({err})
+        }) 
+    })
     .catch((err: Error) => {
         console.log(err)
         res.send('Error creating event!')
