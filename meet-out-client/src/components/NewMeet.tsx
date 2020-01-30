@@ -16,7 +16,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     let [message, setMessage] = useState('')
 
     // Form data
-    let [activity, setActivity] = useState('')
+    let [activityName, setActivityName] = useState('')
     let [description, setDescription] = useState('')
     let [activityAddress, setAddress] = useState('')
     let [city, setCity] = useState('')
@@ -35,7 +35,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
             setCreator(props.user._id)
         }
         setMessage('')
-    }, [props.user, activity, description, activityAddress, city, state, zip, date, starttime, endtime])
+    }, [props.user, activityName, description, activityAddress, city, state, zip, date, starttime, endtime])
 
 
 
@@ -44,7 +44,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
 
         // Form data
         let data: object = {
-            activity,
+            activityName,
             description,
             activityAddress,
             city,
@@ -107,7 +107,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
                     <Col md={6}>
                         <FormGroup>
                             <Label for="activityName"><h5>Event Name:</h5></Label>
-                            <Input id="activityName" type="text" name="activityName" placeholder="What are we doing?" onChange={(e: FormEvent<HTMLInputElement>) => setActivity(e.currentTarget.value)} required />
+                            <Input id="activityName" type="text" name="activityName" placeholder="What are we doing?" onChange={(e: FormEvent<HTMLInputElement>) => setActivityName(e.currentTarget.value)} required />
                         </FormGroup>
                         <FormGroup>
                             <Label for="description"><h5>Event Description:</h5></Label>
