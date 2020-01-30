@@ -19,9 +19,19 @@ interface UserhomeProps {
 
 const Userhome: React.FC<UserhomeProps> = (props) => {
 
-    let allEvents = props.myPrivateMeets.map( meet => {
+    let myPrivateEvents = props.myPrivateMeets.map( meet => {
         return <EventTag meet={meet}/>
     })
+
+    let myPublicEvents = props.myPublicMeets.map( meet => {
+        return <EventTag meet={meet}/>
+    })
+
+    let attendingPublicEvents = props.attendingPublicMeets.map( meet => {
+        return <EventTag meet={meet}/>
+    })
+
+    let allEvents = myPrivateEvents.concat(myPublicEvents).concat(attendingPublicEvents)
 
     return (
         <Container className="web-body">
