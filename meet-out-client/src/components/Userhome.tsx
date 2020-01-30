@@ -7,8 +7,11 @@ import {MeetForCalendar} from './Content'
 import { Decoded } from '../App'
 
 interface UserhomeProps {
-    allMeets: MeetForCalendar[];
     user: Decoded | null;
+    myPrivateMeets: MeetForCalendar[];
+    myPublicMeets: MeetForCalendar[];
+    attendingPublicMeets: MeetForCalendar[];
+    notAttendingPublicMeets: MeetForCalendar[];
 }
 
 
@@ -17,7 +20,11 @@ const Userhome: React.FC<UserhomeProps> = (props) => {
     return (
         <div>
             <List />
-            <Calendar allMeets={props.allMeets} user={props.user} />
+            <Calendar user={props.user} 
+                    myPrivateMeets={props.myPrivateMeets} 
+                    myPublicMeets={props.myPublicMeets} 
+                    attendingPublicMeets={props.attendingPublicMeets} 
+                    notAttendingPublicMeets={props.notAttendingPublicMeets}  />
         </div>
     )
 }

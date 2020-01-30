@@ -11,15 +11,12 @@ import Userhome from './Userhome'
 import Profile from './Profile'
 import EditProfile from './EditProfile'
 import NewMeet from './NewMeet'
-import Meet from '../../../meet-out-server/src/models/meet'
-import Meet from '../../../meet-out-server/src/models/meet'
 
 // Props
 interface ContentProps {
     user: Decoded | null,
     updateUser: (newToken: string | null) => void
 }
-
 
 export interface MeetForCalendar {
     _id: number,
@@ -45,54 +42,6 @@ export interface MeetForCalendar {
     }
 }
 
-interface MeetForCalendarNull {
-    _id: null,
-    creator: null,
-    private: null,
-    title: null,
-    date: null,
-    start: null,
-    end: null,
-    description: null,
-    users: User[],
-    activity: {
-        name: null,
-        locations: {
-            name: null;
-            address: null;
-            city: null;
-            state: null;
-            zip: null;
-            lat: null;
-            long: null;
-          }
-    }
-}
-
-const MeetForCalendarNull = {
-    _id: null,
-    creator: null,
-    private: null,
-    title: null,
-    date: null,
-    start: null,
-    end: null,
-    description: null,
-    users: User[],
-    activity: {
-        name: null,
-        locations: {
-            name: null;
-            address: null;
-            city: null;
-            state: null;
-            zip: null;
-            lat: null;
-            long: null;
-          }
-    }
-}
-
 interface getResults {
     meets: Meet[]
 }
@@ -101,113 +50,90 @@ interface getResults {
 const Content: React.FC<ContentProps> = props => {
 
     // State variables
-    let [allMeets , setAllMeets] = useState<MeetForCalendar[] | MeetForCalendarNull[]>([])
+    let [allMeets , setAllMeets] = useState<MeetForCalendar[]>([])
     // let [allMeets , setAllMeets] = useState<MeetForCalendar[]>(testMeets)
 
-    let [myPrivateMeets, setMyPrivateMeets] = useState<MeetForCalendar[] | MeetForCalendarNull[]>([])
-    let [myPublicMeets, setMyPublicMeets] = useState<MeetForCalendar[] | MeetForCalendarNull[]>([])
-    let [attendingPublicMeets, setAttendingPublicMeets] = useState<MeetForCalendar[] | MeetForCalendarNull[]>([])
-    let [notAttendingPublicMeets, setNotAttendingPublicMeets] = useState<MeetForCalendar[] | MeetForCalendarNull[]>([])
-    
+    let [myPrivateMeets, setMyPrivateMeets] = useState<MeetForCalendar[]>([])
+    let [myPublicMeets, setMyPublicMeets] = useState<MeetForCalendar[]>([])
+    let [attendingPublicMeets, setAttendingPublicMeets] = useState<MeetForCalendar[]>([])
+    let [notAttendingPublicMeets, setNotAttendingPublicMeets] = useState<MeetForCalendar[]>([])
+    let [message, setMessage] = useState('')
 
     useEffect(() => {
-        // Fetch meets from get route
-            fetch(`${process.env.REACT_APP_SERVER_URL}/meet`)
-            .then(response => {
-                console.log('In then code', response)
-                response.json()
-                .then((results: getResults) => {
-                    console.log('🌈🌈', results, '👻👻', response)
-                        //create allMeets, myPrivate, myPublic, attending & not attending meets categories
+        // If there is a user, fetch meets from get route
+            if(props.user != null){
+                fetch(`${process.env.REACT_APP_SERVER_URL}/meet`)
+                .then(response => {
+                    console.log('In then code', response)
+                    response.json()
+                    .then((results: getResults) => {
+                        console.log('🌈🌈', results, '👻👻', response)
+
+                            //create allMeets, myPrivate, myPublic, attending & not attending meets categories
+                            if(results) {
+                                let allMeets = results.meets.map<MeetForCalendar>(meet => {
+                                    return { 
+                                    _id: meet._id,
+                                    creator: meet.creator,
+                                    private: meet.private,
+                                    title: meet.activity.name, 
+                                    date: new Date(meet.date.toString()),
+                                    start: new Date(meet.starttime.toString()),
+                                    end: new Date(meet.endtime.toString()),
+                                    description: meet.description,
+                                    users: meet.users,
+                                    activity: meet.activity
+                                    }
+                                })
+                                
+                                let myPrivateMeets = allMeets.filter(meet => 
+                                    props.user != null && meet.creator == props.user._id && meet.private
+                                )
+
+                                let myPublicMeets = allMeets.filter(meet => 
+                                    props.user != null && meet.creator == props.user._id && !meet.private 
+                                )
+                                
+                                const amAttending = (meet: MeetForCalendar) => {
+                                    if(props.user != null){
+                                        for(let i = 0; i < meet.users.length; i++) {
+                                            if(meet.users[i] == props.user._id) {
+                                                return true
+                                            }
+                                        }
+                                    return false
+                                    }
+                                }
+
+                                let attendingPublicMeets = allMeets.filter(meet => 
+                                    props.user != null && meet.creator != props.user._id && !meet.private && amAttending(meet)
+                                )
                         
+                                let notAttendingPublicMeets = allMeets.filter(meet => 
+                                    props.user != null && meet.creator != props.user._id && !meet.private && !amAttending(meet)
+                                )
+                        
+        
+                            //set state for each meet category variable
+                            setAllMeets(allMeets)
+                            setMyPrivateMeets(myPrivateMeets)
+                            setMyPublicMeets(myPublicMeets)
+                            setAttendingPublicMeets(attendingPublicMeets)
+                            setNotAttendingPublicMeets(notAttendingPublicMeets)
 
-                        if(results) {
-
-                            let allMeets = results.meets.map(meet => {
-                                return { 
-                                _id: meet._id || null,
-                                creator: meet.creator || null,
-                                private: meet.private || null,
-                                title: meet.activity.name || null, 
-                                date: new Date(meet.date.toString()) || null,
-                                start: new Date(meet.starttime.toString()) || null,
-                                end: new Date(meet.endtime.toString()) || null,
-                                description: meet.description || null,
-                                users: meet.users || null,
-                                activity: meet.activity || null
-                                }
-                            })
-                    
-                            let myPrivateMeets = allMeets.map(meet => {
-                                let myPrivateMeet
-                                if(meet.creator == props.user._id && meet.private) {
-                                    myPrivateMeet = meet
-                                } else {
-                                    myPrivateMeet = MeetForCalendarNull
-                                }
-                                return myPrivateMeet
-                            })
-
-                            let myPublicMeets = allMeets.map(meet => {
-                                let myPublicMeet = MeetForCalendarNull
-                                if(meet.creator == props.user._id && !meet.private) {
-                                    myPublicMeet = meet
-                                }
-                                return myPublicMeet
-                            })
-
-                            let attendingPublicMeets = allMeets.map(meet => {
-                                let amAttending = false
-                                let myAttending
-                                if(meet.creator != props.user._id && !meet.private) {
-                                    for(let i = 0; i < meet.users.length; i++) {
-                                        if(meet.users[i] == props.user._id) {
-                                            amAttending = true
-                                            break
-                                        }
-                                    }
-                                    if(amAttending) {
-                                        myAttending = meet
-                                    }
-                                }
-                                return myAttending
-                            })
-                    
-                            let notAttendingPublicMeets = allMeets.map(meet => {
-                                let amAttending = true
-                                let myAttending
-                                if(meet.creator != props.user._id && !meet.private) {
-                                    for(let i = 0; i < meet.users.length; i++) {
-                                        if(meet.users[i] == props.user._id) {
-                                            amAttending = true
-                                            break
-                                        }
-                                    }
-                                    if(!amAttending) {
-                                        myAttending = meet
-                                    }
-                                }
-                                return myAttending
-                            })
-                    
-    
-                    //set state for each meet category variable
-                    setAllMeets(allMeets)
-                    setMyPrivateMeets(myPrivateMeets)
-                    setMyPublicMeets(myPublicMeets)
-                    setAttendingPublicMeets(attendingPublicMeets)
-                    setNotAttendingPublicMeets(notAttendingPublicMeets)
-
-                }
+                        } else {
+                        setMessage('No events scheduled')  
+                        }
+                    })
+                    .catch( (err: Error) => {
+                        console.log('Error', err)
+                    })
                 })
                 .catch( (err: Error) => {
                     console.log('Error', err)
                 })
-            })
-            .catch( (err: Error) => {
-                console.log('Error', err)
-            })
-    }, [])
+            }
+    }, [props.user])
 
 
     return (
@@ -222,7 +148,13 @@ const Content: React.FC<ContentProps> = props => {
                 () => <Profile user={props.user} />
             } />
             <Route path="/home" render={
-                () => <Userhome allMeets={allMeets} user={props.user} />
+                () => <Userhome 
+                    user={props.user} 
+                    myPrivateMeets={myPrivateMeets} 
+                    myPublicMeets={myPublicMeets} 
+                    attendingPublicMeets={attendingPublicMeets} 
+                    notAttendingPublicMeets={notAttendingPublicMeets} 
+             />
             }/>
             <Route path="/create" render={
                 () => <NewMeet user={props.user} />

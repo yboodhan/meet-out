@@ -15,13 +15,16 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 import {MeetForCalendar} from './Content'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Decoded } from '../App';
-import Meet from '../../../meet-out-server/src/models/meet'
+import { notDeepEqual } from 'assert'
 
 interface CalendarProps {
-    allMeets: MeetForCalendar[],
     // buttonLabel?: string,
     className?: string,
-    user: Decoded | null
+    user: Decoded | null,
+    myPrivateMeets: MeetForCalendar[];
+    myPublicMeets: MeetForCalendar[];
+    attendingPublicMeets: MeetForCalendar[];
+    notAttendingPublicMeets: MeetForCalendar[];
 }
 
 interface DefaultMeetForCalendar {
@@ -80,6 +83,12 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
                 }
         }
     })
+
+
+    let displayMeets = [...props.myPrivateMeets, ...props.myPublicMeets, ...props.attendingPublicMeets, ...props.notAttendingPublicMeets].map(meet => {
+        return meet
+    })
+    
     
     const toggle = () => setModal(!modal);
     
@@ -104,6 +113,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
             <Calendar
                 selectable
                 localizer={localizer}
+                // events={props.allMeets}
                 events={displayMeets}
                 views={['month', 'week', 'day', 'agenda']}
                 // startAccessor="start"
@@ -117,7 +127,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
             <Modal isOpen={modal} toggle={toggle} className={className}>
               <ModalHeader toggle={toggle}>{currentMeet.title}</ModalHeader>
               <ModalBody>
-                {displayMeetInfo}
+                {/* {displayMeetInfo} */}
               </ModalBody>
               <ModalFooter>
                 <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
