@@ -33,7 +33,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     useEffect(() => {
         if (props.user) {
             setCreator(props.user._id)
-            // setUsers(props.user._id)
+            setUsers(props.user._id)
         }
         setMessage('')
     }, [props.user, activityName, description, activityAddress, city, state, zip, date, starttime, endtime])
@@ -45,7 +45,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
 
         // Form data
         let data: object = {
-            // users,
+            users,
             activityName,
             description,
             activityAddress,
