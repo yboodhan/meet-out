@@ -125,6 +125,8 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
     // }
     
     return (
+        <Container>
+        <h2>Calendar:</h2>
         <Container className="calendar">
             <Calendar
                 selectable
@@ -161,6 +163,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
               </ModalFooter>
             </Modal>
           </div>
+        </Container>
         </Container>
     )
 }

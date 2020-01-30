@@ -23,7 +23,15 @@ const Userhome: React.FC<UserhomeProps> = (props) => {
         <Container className="web-body">
 
             <Row>
-                <Col md={6}>
+
+                <Col md={4}>
+                    <EventsDisplay 
+
+                    />
+                </Col>
+
+
+                <Col md={8}>
                     <Calendar user={props.user} 
                             myPrivateMeets={props.myPrivateMeets} 
                             myPublicMeets={props.myPublicMeets} 
@@ -31,13 +39,9 @@ const Userhome: React.FC<UserhomeProps> = (props) => {
                             notAttendingPublicMeets={props.notAttendingPublicMeets} 
                     />
                 </Col>
-                <Col md={6}>
-                    <EventsDisplay 
 
-                    />
-                </Col>
+
             </Row>
-
 
         </Container>
 
