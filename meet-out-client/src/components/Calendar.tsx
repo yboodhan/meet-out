@@ -16,6 +16,7 @@ import {MeetForCalendar} from './Content'
 import { Container, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Decoded } from '../App';
 import Meet from '../../../meet-out-server/src/models/meet'
+import DisplayMap from './Map'
 import MeetModalBody from './MeetModalBody'
 import MeetModalFooter from './MeetModalFooter'
 
@@ -49,7 +50,7 @@ export interface DefaultMeetForCalendar {
             zip: null;
             lat: null;
             long: null;
-          }
+        }
     },
     myPrivateMeet: null,
     myPublicMeet: null,
@@ -85,7 +86,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
                 zip: null,
                 lat: null,
                 long: null,
-              }
+            }
         },
         myPrivateMeet: null,
         myPublicMeet: null,
@@ -109,6 +110,8 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
     }
     
     return (
+        <Container>
+        <h2>Calendar:</h2>
         <Container className="calendar">
             <Calendar
                 selectable
@@ -135,6 +138,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
               </ModalFooter>
             </Modal>
           </div>
+        </Container>
         </Container>
     )
 }

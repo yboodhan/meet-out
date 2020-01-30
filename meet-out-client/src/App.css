@@ -9,9 +9,7 @@
 }
 
 .calendar {
-  width: 50vw;
-  height: 60vh;
-  margin: 30px;
+  height: 65vh;
 }
 .page-footer {
   background-color: #0d969b;
@@ -29,5 +27,20 @@
 }
 
 .web-body {
-  margin-top: 5em;
+  margin-top: 3em;
+}
+
+.scroll-panel {
+  border: 1px solid rgba(128, 128, 128, 0.205);
+  max-height: 65vh;
+  overflow: scroll;
+  border-radius: 5%;
+}
+
+.event-tag {
+  text-align: left;
+  border: 1px solid rgba(198, 236, 240, 0.685);
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 0.5em;
 }
