@@ -16,7 +16,7 @@ const MeetDetailsModal: React.FC<ModalBodyProps> = props => {
 
   return (
     <div>
-     <h2>Owner: {props.currentMeet.title} </h2>
+     <h2>Owner: {props.currentMeet.creator} </h2>
      {/* {header} */}
                    {/*  <h3>{ currentMeet.date ? currentMeet.date.toDateString() : 'not available'}</h3> */}
                     {/* <h3>{currentMeet.start ? currentMeet.start.toTimeString(): 'not available' } - {currentMeet.end ? currentMeet.end.toTimeString(): 'not available'}</h3>  */}
