@@ -38,7 +38,7 @@ export interface MeetForCalendar {
             zip: number;
             lat: number;
             long: number;
-          }
+        }
     },
     myPrivateMeet: boolean,
     myPublicMeet: boolean,
@@ -162,7 +162,7 @@ const Content: React.FC<ContentProps> = props => {
                     myPublicMeets={myPublicMeets} 
                     attendingPublicMeets={attendingPublicMeets} 
                     notAttendingPublicMeets={notAttendingPublicMeets} 
-             />
+            />
             }/>
             <Route path="/create" render={
                 () => <NewMeet user={props.user} />
