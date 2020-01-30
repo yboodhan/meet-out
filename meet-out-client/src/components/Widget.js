@@ -1,34 +1,27 @@
 import React from 'react'
 import { Button, Container } from 'reactstrap'
 import cloudinary from 'cloudinary-core'
+import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 
-const Widget = props => {
+class Widget extends React.Component = props => {
+    // let options = {
+    //     cloud_name: "demo",
+    //     upload_preset: "a5vxnzbp",
+    //     multiple: true,
+    //     returnJustUrl: true
+    // };
     
-    let options = {
-        cloud_name: "demo",
-        upload_preset: "a5vxnzbp",
-        multiple: true,
-        returnJustUrl: true
-    };
-    
-    // let widget = cloudinary.createUploadWidget({ 
-    //     cloudName: process.env.CLOUDINARY_CLOUD_NAME, uploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET_NAME }, 
-    //     (error, result) => {
-    //         console.log('Error', error)
-    //         checkUploadResult(result)
-    //     });
+    checkUploadResult = (resultEvent) => {
+        if (resultEvent === 'success') {
+            console.log(resultEvent.info.secure_url)
+        }
+    }
 
-    // const checkUploadResult = (resultEvent) => {
-    //     if (resultEvent === 'success') {
-    //         console.log(resultEvent.info.secure_url)
-    //     }
-    // }
-
-    // const showWidget = (widget) => {
-    //     widget.open()
-    // }
-
+    showWidget = (widget) => {
+        console.log('Upload was clicked')
+        widget.open()
+    }
 
     // ReactCloudinaryUploader.open(options)
     // .then(image => {
@@ -40,19 +33,23 @@ const Widget = props => {
     //     console.error(err);
     // })
 
-    return (
+    render() {
+        let widget = window.cloudinary.createUploadWidget({ 
+            cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+            uploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET_NAME }, 
+            (error, result) => {
+                console.log('Error', error)
+                checkUploadResult(result)
+        })
+
+        return (
         <Container className="web-body">
             <Button onClick={showWidget(widget)}>
-            <ReactCloudinaryUploader
-                cloudName='appmasters-io'
-                uploadPreset='willim-dev'
-                onUploadSuccess={(image)=>{
-                    console.log("image",image);
-                }}
-            />
+                Upload Image
             </Button>
         </Container>
-    )
+        )
+    }
 }
 
 export default Widget
