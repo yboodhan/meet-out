@@ -15,8 +15,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 import {MeetForCalendar} from './Content'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Decoded } from '../App';
-import { notDeepEqual } from 'assert'
 import Meet from '../../../meet-out-server/src/models/meet'
+import MeetModalBody from './MeetModalBody'
 
 interface CalendarProps {
     // buttonLabel?: string,
@@ -28,7 +28,7 @@ interface CalendarProps {
     notAttendingPublicMeets: MeetForCalendar[];
 }
 
-interface DefaultMeetForCalendar {
+export interface DefaultMeetForCalendar {
     _id: null,
     creator: null,
     private: null,
@@ -143,15 +143,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
             <Modal isOpen={modal} toggle={toggle} className={className}>
             <ModalHeader toggle={toggle}>{currentMeet.title} at {currentMeet.activity.locations.name}</ModalHeader>
               <ModalBody>
-                    <h2>Owner: {currentMeet.myPrivateMeet ? 'You' : currentMeet.creator }</h2>
-                    <h3>{ currentMeet.date ? currentMeet.date.toDateString() : 'not available'}</h3>
-                    <h3>{currentMeet.start ? currentMeet.start.toTimeString(): 'not available' } - {currentMeet.end ? currentMeet.end.toTimeString(): 'not available'}</h3> {/* find something to show date/time in pretty way? */}
-                    <h3>STUB - LOCATION INFO</h3>
-                    <h4>Attending:
-                        { currentMeet.users !== null ? currentMeet.users.forEach(u => 
-                        (props.user && u === props.user._id) ? 'You' : {u}
-                        ) : 'No one is attending :(' }
-                    </h4>
+                <MeetModalBody currentMeet={currentMeet} user={props.user} />
               </ModalBody>
               
               <ModalFooter>
