@@ -12,8 +12,8 @@ const EventTag: React.FC<EventTagProps> = props => {
     return (
         <Container className="event-tag">
             <h4>{props.meet.activity.name}</h4>
-            <h5>{props.meet.date}</h5>
-            <h6>{props.meet.start}-{props.meet.end}</h6>
+            <h5>{props.meet.date.toDateString()}</h5>
+            <h6>{props.meet.start.toTimeString()}-{props.meet.end.toTimeString()}</h6>
             <div className="text-truncate">
             <small>{props.meet.description}</small>
             </div>
