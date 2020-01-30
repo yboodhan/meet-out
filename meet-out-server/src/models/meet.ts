@@ -3,7 +3,8 @@ import User from '../models/user'
 
 //create interface for meet type extending mongoose.Document (mongoose.Document includes ._id)
 export default interface Meet extends mongoose.Document {
-  creator: string,
+  creator: string;
+  private: boolean;
   date: Date;
   starttime: string;
   endtime: string;
@@ -42,6 +43,7 @@ let activitySchema: mongoose.Schema = new mongoose.Schema({
 //create meet schema
 let meetSchema: mongoose.Schema = new mongoose.Schema({
   creator: String,
+  private: Boolean,
   date: Date,
   starttime: String,
   endtime: String,
