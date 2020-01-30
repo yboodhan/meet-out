@@ -39,7 +39,10 @@ export interface MeetForCalendar {
             lat: number;
             long: number;
           }
-    }
+    },
+    myPrivateMeet: boolean,
+    myPublicMeet: boolean,
+    attending: boolean
 }
 
 interface getResults {
@@ -71,6 +74,17 @@ const Content: React.FC<ContentProps> = props => {
 
                             //create allMeets, myPrivate, myPublic, attending & not attending meets categories
                             if(results) {
+                                const amAttending = (meet: Meet) => {
+                                    if(props.user != null){
+                                        for(let i = 0; i < meet.users.length; i++) {
+                                            if(meet.users[i] == props.user._id) {
+                                                return true
+                                            }
+                                        }
+                                    return false
+                                    }
+                                }
+
                                 let allMeets = results.meets.map<MeetForCalendar>(meet => {
                                     return { 
                                     _id: meet._id,
@@ -82,35 +96,28 @@ const Content: React.FC<ContentProps> = props => {
                                     end: new Date(meet.endtime.toString()),
                                     description: meet.description,
                                     users: meet.users,
-                                    activity: meet.activity
+                                    activity: meet.activity,
+                                    myPrivateMeet: (props.user != null && meet.creator == props.user._id && meet.private) ? true : false,
+                                    myPublicMeet: (props.user != null && meet.creator == props.user._id && !meet.private) ? true : false,
+                                    attending: amAttending(meet) ? true : false
                                     }
                                 })
                                 
                                 let myPrivateMeets = allMeets.filter(meet => 
-                                    props.user != null && meet.creator == props.user._id && meet.private
+                                    meet.myPrivateMeet  
                                 )
 
                                 let myPublicMeets = allMeets.filter(meet => 
-                                    props.user != null && meet.creator == props.user._id && !meet.private 
+                                    meet.myPublicMeet
                                 )
                                 
-                                const amAttending = (meet: MeetForCalendar) => {
-                                    if(props.user != null){
-                                        for(let i = 0; i < meet.users.length; i++) {
-                                            if(meet.users[i] == props.user._id) {
-                                                return true
-                                            }
-                                        }
-                                    return false
-                                    }
-                                }
-
+                                
                                 let attendingPublicMeets = allMeets.filter(meet => 
-                                    props.user != null && meet.creator != props.user._id && !meet.private && amAttending(meet)
+                                    props.user != null && meet.creator != props.user._id && !meet.private && meet.attending
                                 )
                         
                                 let notAttendingPublicMeets = allMeets.filter(meet => 
-                                    props.user != null && meet.creator != props.user._id && !meet.private && !amAttending(meet)
+                                    props.user != null && meet.creator != props.user._id && !meet.private && !meet.attending
                                 )
                         
         
@@ -120,6 +127,7 @@ const Content: React.FC<ContentProps> = props => {
                             setMyPublicMeets(myPublicMeets)
                             setAttendingPublicMeets(attendingPublicMeets)
                             setNotAttendingPublicMeets(notAttendingPublicMeets)
+                            console.log('🐳🐳🐳🐳  My Private Meets:', myPrivateMeets, '🌈🌈🌈 My Public Meets:', myPublicMeets, '🍣🍣🍣🍣 Public Meets I am Attending:', attendingPublicMeets, '🙅🏼‍♀️🙅🏼‍♀️🙅🏼‍♀️🙅🏼‍♀️ Public Meets I am NOT Attending:', notAttendingPublicMeets )
 
                         } else {
                         setMessage('No events scheduled')  

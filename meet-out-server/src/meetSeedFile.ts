@@ -24,8 +24,8 @@ db.Meet.create([{
 }, {
     creator: '5e2fc7e5555d613b5454aaf5',
     private: false,
-    date: new Date('January 27, 2020 12:00:00'),
-    starttime: new Date('January 27, 2020 12:00:00'),
+    date: new Date('January 12, 2020 12:00:00'),
+    starttime: new Date('January 12, 2020 12:00:00'),
     endtime: new Date('January 12, 2020 15:00:00'),
     description: "let's go biking!",
     users: ['5e2fc7e5555d613b5454aaf5', '5e2fc87c94fe903b8674fe47'],
@@ -49,7 +49,7 @@ db.Meet.create([{
     starttime: new Date('January 30, 2020 18:00:00'),
     endtime: new Date('January 30, 2020 20:00:00'),
     description: "kayaking is fun!",
-    users: ['5e2fc87c94fe903b8674fe47', '5e2fc96822a4423bd1f4e176'],
+    users: ['5e2fc87c94fe903b8674fe47', '5e2fc96822a4423bd1f4e176', '5e2fc7e5555d613b5454aaf5'],
     activity: {
         name: 'kayaking',
         locations: {
@@ -66,13 +66,34 @@ db.Meet.create([{
 {
   creator: '5e2fc96822a4423bd1f4e176',
   private: true,
-  date: new Date('January 12, 2020 18:00:00'),
-  starttime: new Date('January 12, 2020 18:00:00'),
-  endtime: new Date('January 12, 2020 20:00:00'),
+  date: new Date('January 6, 2020 18:00:00'),
+  starttime: new Date('January 6, 2020 18:00:00'),
+  endtime: new Date('January 6, 2020 20:00:00'),
   description: "I hate rowing!",
   users: ['5e2fc96822a4423bd1f4e176'],
   activity: {
       name: 'rowing',
+      locations: {
+      name: 'General Assembly',
+      address: '1218 3rd Ave',
+      city: 'Seattle',
+      state: 'WA',
+      zip: 98101,
+      lat: 50.6062,
+      long: 140.3321
+  }
+}
+},
+{
+  creator: '5e2fc96822a4423bd1f4e176',
+  private: false,
+  date: new Date('January 6, 2020 16:00:00'),
+  starttime: new Date('January 6, 2020 16:00:00'),
+  endtime: new Date('January 6, 2020 18:00:00'),
+  description: "YOGA",
+  users: ['5e2fc96822a4423bd1f4e176'],
+  activity: {
+      name: 'yoga',
       locations: {
       name: 'General Assembly',
       address: '1218 3rd Ave',

@@ -79,10 +79,11 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
                 state: null,
                 zip: null,
                 lat: null,
-                long: null
-                }
+                long: null,
+              }
         }
     })
+    
 
 
     let displayMeets = [...props.myPrivateMeets, ...props.myPublicMeets, ...props.attendingPublicMeets, ...props.notAttendingPublicMeets].map(meet => {
@@ -96,6 +97,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
     const showDetails = (meet: MeetForCalendar) => {
         setCurrentMeet(meet)
         toggle()
+
     }
     // include:
                 //delete button/functionality
