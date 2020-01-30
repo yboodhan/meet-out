@@ -1,53 +1,13 @@
 import React from 'react'
-import { Col, Container, Row } from 'reactstrap';
+import { Container } from 'reactstrap'
+import EventTag from './EventTag'
 
-const EventsDisplay: React.FC = props => {
+const EventsDisplay: React.FC = () => {
     return (
         <Container>
         <h2>All Events:</h2>
         <Container className="scroll-panel">
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-            <div>HELLO</div>
-
+            <EventTag />
         </Container>
         </Container>
     )
