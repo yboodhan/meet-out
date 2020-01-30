@@ -10,10 +10,6 @@ interface ModalFooterBodyProps {
     currentMeet: MeetForCalendar | DefaultMeetForCalendar
   }
   
-
-
-
-
 const MeetModalFooter: React.FC<ModalFooterBodyProps> = props => {
 
     let editButton = <Button>EDIT</Button>

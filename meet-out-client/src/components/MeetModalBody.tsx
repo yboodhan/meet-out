@@ -15,8 +15,12 @@ const MeetDetailsModal: React.FC<ModalBodyProps> = props => {
 
   if(props.user) {
 
-    let attendingUsers: JSX.Element | JSX.Element[] = <p>'No one is attending :('</p>
+    let date = 'date unavailable'
+    if(props.currentMeet.date) {
+      moment(props.currentMeet.date.toDateString()).format("MM/DD/YYYY")
+    }
 
+    let attendingUsers: JSX.Element | JSX.Element[] = <p>'No one is attending :('</p>
       if(props.currentMeet.myPrivateMeet) {
         attendingUsers = <p>You</p>
       } else if (props.currentMeet.users !== null) {
