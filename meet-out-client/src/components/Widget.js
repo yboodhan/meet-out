@@ -1,51 +1,46 @@
 import React from 'react'
 import { Button, Container } from 'reactstrap'
-import cloudinary from 'cloudinary-core'
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
-
 
 class Widget extends React.Component {
-    // let options = {
-    //     cloud_name: "demo",
-    //     upload_preset: "a5vxnzbp",
-    //     multiple: true,
-    //     returnJustUrl: true
-    // };
-    
-    checkUploadResult = (resultEvent) => {
-        if (resultEvent === 'success') {
-            console.log(resultEvent.info.secure_url)
-        }
-    }
 
     showWidget = (widget) => {
-        console.log('Upload was clicked')
         widget.open()
     }
 
-    // ReactCloudinaryUploader.open(options)
-    // .then(image => {
-    //     if (this.props.returnJustUrl)
-    //         image = image.url;
-    //     console.log("image",image);
-    // })
-    // .catch(err => {
-    //     console.error(err);
-    // })
-
     render() {
         let widget = window.cloudinary.createUploadWidget({ 
-            cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-            uploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET_NAME }, 
+            cloudName: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
+            uploadPreset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET_NAME }, 
             (error, result) => {
-                console.log('Error', error)
-                console.log(result)
-                this.checkUploadResult(result)
+                if (!error && result && result.event === "success") {
+                    console.log(result.info.secure_url)
+
+                    let url = result.info.secure_url
+
+                    // set the state here for photo
+                    this.props.updatePhoto(url)
+
+                    // fetch(`${process.env.REACT_APP_SERVER_URL}/profile`, {
+                    //     method: 'PUT',
+                    //     body: JSON.stringify({ photo: result.info.secure_url }),
+                    //     headers: { 
+                    //         'Content-Type': 'application/json'
+                    //     }
+                    // })
+                    // .then((response) => response.json())
+                    // .then((result) => {
+                    //     console.log('result is', result)
+                    //     //set the new photo here
+                    // })
+                    // .catch((error) => {
+                    //     console.log('error', error)
+                    // })
+                }
         })
 
         return (
         <Container className="web-body">
-            <Button onClick={this.showWidget(widget)}>
+            <Button onClick={ () => this.showWidget(widget) }>
                 Upload Image
             </Button>
         </Container>

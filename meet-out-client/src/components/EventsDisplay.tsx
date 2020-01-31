@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from 'reactstrap'
-import {MeetForCalendar} from './Content'
+
 
 interface EventsDisplayProps {
     myMeets: any
@@ -10,9 +10,9 @@ const EventsDisplay: React.FC<EventsDisplayProps> = props => {
     return (
         <Container>
         <h2>All Events:</h2>
-        <Container className="scroll-panel">
-            {props.myMeets}
-        </Container>
+            <Container className="scroll-panel">
+                {props.myMeets}
+            </Container>
         </Container>
     )
 }

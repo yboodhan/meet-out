@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, Container, Row } from 'reactstrap';
+import { Redirect } from 'react-router-dom'
 
-import List from './List'
 import Calendar from './Calendar'
 import EventsDisplay from './EventsDisplay'
 import EventTag from './EventTag'
@@ -9,19 +9,36 @@ import {MeetForCalendar} from './Content'
 import { Decoded } from '../App'
 
 interface UserhomeProps {
-    user: Decoded | null;
-    myPrivateMeets: MeetForCalendar[];
-    myPublicMeets: MeetForCalendar[];
-    attendingPublicMeets: MeetForCalendar[];
-    notAttendingPublicMeets: MeetForCalendar[];
+    user: Decoded | null,
+    myPrivateMeets: MeetForCalendar[],
+    myPublicMeets: MeetForCalendar[],
+    attendingPublicMeets: MeetForCalendar[],
+    notAttendingPublicMeets: MeetForCalendar[],
+    currentMeet: MeetForCalendar | null,
+    updateMeet: (currentMeet: MeetForCalendar | null) => void
 }
 
 
 const Userhome: React.FC<UserhomeProps> = (props) => {
+if (!props.user) {
+    return(
+        <Redirect to = "/" />
+    )
+} 
 
-    let allEvents = props.myPrivateMeets.map( meet => {
-        return <EventTag meet={meet}/>
+    let myPrivateEvents = props.myPrivateMeets.map( meet => {
+        return <EventTag user={props.user} meet={meet} updateMeet={props.updateMeet}/>
     })
+
+    let myPublicEvents = props.myPublicMeets.map( meet => {
+        return <EventTag user={props.user} meet={meet} updateMeet={props.updateMeet}/>
+    })
+
+    let attendingPublicEvents = props.attendingPublicMeets.map( meet => {
+        return <EventTag user={props.user} meet={meet} updateMeet={props.updateMeet}/>
+    })
+
+    let allEvents = myPrivateEvents.concat(myPublicEvents).concat(attendingPublicEvents)
 
     return (
         <Container className="web-body">
@@ -40,7 +57,9 @@ const Userhome: React.FC<UserhomeProps> = (props) => {
                             myPrivateMeets={props.myPrivateMeets} 
                             myPublicMeets={props.myPublicMeets} 
                             attendingPublicMeets={props.attendingPublicMeets} 
-                            notAttendingPublicMeets={props.notAttendingPublicMeets} 
+                            notAttendingPublicMeets={props.notAttendingPublicMeets}
+                            updateMeet = {props.updateMeet}
+                            currentMeet = {props.currentMeet}
                     />
                 </Col>
 
@@ -50,6 +69,7 @@ const Userhome: React.FC<UserhomeProps> = (props) => {
         </Container>
 
     )
+
 }
 
 export default Userhome
