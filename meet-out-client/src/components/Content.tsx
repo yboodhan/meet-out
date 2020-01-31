@@ -63,7 +63,7 @@ const Content: React.FC<ContentProps> = props => {
     let [attendingPublicMeets, setAttendingPublicMeets] = useState<MeetForCalendar[]>([])
     let [notAttendingPublicMeets, setNotAttendingPublicMeets] = useState<MeetForCalendar[]>([])
     let [message, setMessage] = useState('')
-    let [meet, setMeet] = useState<MeetForCalendar>()
+    let [currentMeet, setCurrentMeet] = useState<MeetForCalendar>()
 
     useEffect(() => {
         // If there is a user, fetch meets from get route
@@ -148,9 +148,9 @@ const Content: React.FC<ContentProps> = props => {
             }
     }, [props.user])
 
-    const updateMeet = (meet: MeetForCalendar) => {
+    const updateMeet = (currentMeet: MeetForCalendar | undefined) => {
         //update the current meet being edited
-        setMeet(meet)
+        setCurrentMeet(currentMeet)
     }
 
 
@@ -177,9 +177,9 @@ const Content: React.FC<ContentProps> = props => {
             <Route path="/create" render={
                 () => <NewMeet user={props.user} />
             }/>
-            {/* <Route path="/edit" render={
-                () => <EditMeet meet={meet} user={props.user} updateMeet={updateMeet} />
-            }/> */}
+            <Route path="/edit" render={
+                () => <EditMeet currentMeet={currentMeet} user={props.user} updateMeet={updateMeet} />
+            }/>
         </div>
     )
 }
