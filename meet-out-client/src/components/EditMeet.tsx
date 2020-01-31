@@ -143,7 +143,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
                         </Row>
                     </Col>
                     <Col md={6}>
-                        <Label for="address"><h5>Time Details:</h5></Label>
+                        <Label for="address"><h5>Updated Time Details:</h5></Label>
                         <FormGroup>
                             <Label for="address">Date:</Label>
                             < Input id="date" name="date" type="date" placeholder="Date" value={props.currentMeet.date.toDateString()} onChange={(e: FormEvent<HTMLInputElement>) => setDate(e.currentTarget.value)} required />
@@ -163,7 +163,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
                             </Col>
                         </Row>
                         <FormGroup>
-                            <Label for="address"><h5>Privacy Details:</h5></Label>
+                            <Label for="address"><h5>Updated Privacy Details:</h5></Label>
                             <FormGroup>
                                     <Input type="checkbox" name="private" onChange={(e: FormEvent<HTMLInputElement>) => setPrivateMeet(e.currentTarget.checked)}/>{' '}
                                     Private <FontAwesomeIcon icon={faLock}/>
