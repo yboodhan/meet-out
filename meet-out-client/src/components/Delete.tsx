@@ -15,18 +15,17 @@ const Delete: React.FC<DeleteProps> = props => {
         console.log('set the current meet to this one')
         console.log(`${process.env.REACT_APP_SERVER_URL}/meet/${props.meet._id}`)
 
-        // let token = localStorage.getItem('userToken')
+        let token = localStorage.getItem('userToken')
+        console.log(token)
 
         fetch(`${process.env.REACT_APP_SERVER_URL}/meet/${props.meet._id}`, {
             method: 'DELETE',
-            body: JSON.stringify(props.meet._id),
             headers: {
-            'Content-Type': 'application/json'
-            // 'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`
             }
         })
         .then( (response: Response) => {
-            response.json().then(result => {
+            console.log(response)
             if (response.ok) {
                 console.log('Response ok')
                 console.log('deleted')
@@ -34,8 +33,6 @@ const Delete: React.FC<DeleteProps> = props => {
                 // Error
                 console.log('error')
             }
-            })
-            .catch( (err: Error) => console.log(err))
         })
         .catch( (err: Error) => {
             console.log('Error', err)
