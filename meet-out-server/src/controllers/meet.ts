@@ -38,12 +38,6 @@ router.get('/:id', (req: Request, res: Response) => {
     })
 })
 
-// router.get('/:id', (req: Request, res: Response) => {
-//     db.Meet.findById(req.params.id)
-//     .then(meets => {
-
-//     })
-// })
 
 router.put('/', (req: Request, res: Response) => {
     db.meet.updateOne({ _id: (req.body as{id: string}).id }, req.body)
