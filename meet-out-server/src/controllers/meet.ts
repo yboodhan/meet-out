@@ -92,13 +92,14 @@ router.post('/', (req: Request, res: Response) => {
 })
 
 router.delete('/:id', (req: Request, res: Response) => {
+    console.log('Accessed server-side')
     db.Meet.deleteOne({_id: req.params.id})
     .then(() => {
-        res.send('Deleted')
+        res.status(204).send()
     })
     .catch((err: Error) => {
-        console.log(err)
-        res.send('Error deleting event.')
+        console.log('err in del rte', err)
+        res.status(500).send({message: 'Error deleting event.'})
     })
 })
 
