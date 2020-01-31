@@ -114,30 +114,30 @@ const EditMeet: React.FC<EditMeetProps> = props => {
                     <Col md={6}>
                         <FormGroup>
                             <Label for="activityName"><h5>Event Name:</h5></Label>
-                            <Input id="activityName" type="text" name="activityName" placeholder="What are we doing?" value={props.currentMeet.activity.name} onChange={(e: FormEvent<HTMLInputElement>) => setActivityName(e.currentTarget.value)} required />
+                            <Input id="activityName" type="text" name="activityName" placeholder="What are we doing?" defaultValue={props.currentMeet.activity.name} onChange={(e: FormEvent<HTMLInputElement>) => setActivityName(e.currentTarget.value)} required />
                         </FormGroup>
                         <FormGroup>
                             <Label for="description"><h5>Event Description:</h5></Label>
-                            <Input id="description" type="textarea" name="description" placeholder="Details" value={props.currentMeet.description} onChange={(e: FormEvent<HTMLInputElement>) => setDescription(e.currentTarget.value)} required />
+                            <Input id="description" type="textarea" name="description" placeholder="Details" defaultValue={props.currentMeet.description} onChange={(e: FormEvent<HTMLInputElement>) => setDescription(e.currentTarget.value)} required />
                         </FormGroup>
 
                         <FormGroup>
                             <Label for="address"><h5>Location Details:</h5></Label>
-                            <Input id="address" type="text" name="activityAddress" placeholder="Address" value={props.currentMeet.activity.locations.address} onChange={(e: FormEvent<HTMLInputElement>) => setAddress(e.currentTarget.value)} required />
+                            <Input id="address" type="text" name="activityAddress" placeholder="Address" defaultValue={props.currentMeet.activity.locations.address} onChange={(e: FormEvent<HTMLInputElement>) => setAddress(e.currentTarget.value)} required />
                         </FormGroup>
                         <FormGroup>
-                            <Input id="city" type="text" name="city" placeholder="City"  value={props.currentMeet.activity.locations.city} onChange={(e: FormEvent<HTMLInputElement>) => setCity(e.currentTarget.value)} required />
+                            <Input id="city" type="text" name="city" placeholder="City"  defaultValue={props.currentMeet.activity.locations.city} onChange={(e: FormEvent<HTMLInputElement>) => setCity(e.currentTarget.value)} required />
                         </FormGroup>
                         <Row>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Input id="state" type="text" name="state" placeholder="State" value={props.currentMeet.activity.locations.state} maxLength={2} onChange={(e: FormEvent<HTMLInputElement>) => setUSState(e.currentTarget.value)} required />
+                                    <Input id="state" type="text" name="state" placeholder="State" defaultValue={props.currentMeet.activity.locations.state} maxLength={2} onChange={(e: FormEvent<HTMLInputElement>) => setUSState(e.currentTarget.value)} required />
                                     <FormText>Two-character state code only.</FormText>
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Input id="zip" name="zip" type="number" placeholder="Zip Code" value={props.currentMeet.activity.locations.zip} onChange={(e: FormEvent<HTMLInputElement>) => setZip(e.currentTarget.value)} required />
+                                    <Input id="zip" name="zip" type="number" placeholder="Zip Code" defaultValue={props.currentMeet.activity.locations.zip} onChange={(e: FormEvent<HTMLInputElement>) => setZip(e.currentTarget.value)} required />
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -146,19 +146,19 @@ const EditMeet: React.FC<EditMeetProps> = props => {
                         <Label for="address"><h5>Updated Time Details:</h5></Label>
                         <FormGroup>
                             <Label for="address">Date:</Label>
-                            < Input id="date" name="date" type="date" placeholder="Date" value={props.currentMeet.date.toDateString()} onChange={(e: FormEvent<HTMLInputElement>) => setDate(e.currentTarget.value)} required />
+                            < Input id="date" name="date" type="date" placeholder="Date" defaultValue={props.currentMeet.date.toDateString()} onChange={(e: FormEvent<HTMLInputElement>) => setDate(e.currentTarget.value)} required />
                         </FormGroup>
                         <Row>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="starttime">Start:</Label>
-                                    < Input id="starttime" name="starttime" type="time" value={props.currentMeet.start.toTimeString()} placeholder="Start Time" onChange={(e: FormEvent<HTMLInputElement>) => setStartTime(e.currentTarget.value)} required />
+                                    < Input id="starttime" name="starttime" type="time" defaultValue={props.currentMeet.start.toTimeString()} placeholder="Start Time" onChange={(e: FormEvent<HTMLInputElement>) => setStartTime(e.currentTarget.value)} required />
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="address">End:</Label>
-                                    < Input id="endtime" name="endtime" type="time" value={props.currentMeet.end.toTimeString()} placeholder="End Time" onChange={(e: FormEvent<HTMLInputElement>) => setEndTime(e.currentTarget.value)} required />
+                                    < Input id="endtime" name="endtime" type="time" defaultValue={props.currentMeet.end.toTimeString()} placeholder="End Time" onChange={(e: FormEvent<HTMLInputElement>) => setEndTime(e.currentTarget.value)} required />
                                 </FormGroup> 
                             </Col>
                         </Row>
