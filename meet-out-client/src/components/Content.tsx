@@ -78,7 +78,7 @@ const Content: React.FC<ContentProps> = props => {
                                 const amAttending = (meet: Meet) => {
                                     if(props.user != null){
                                         for(let i = 0; i < meet.users.length; i++) {
-                                            if(meet.users[i] == props.user._id) {
+                                            if(meet.users[i] === props.user._id) {
                                                 return true
                                             }
                                         }
@@ -116,11 +116,11 @@ const Content: React.FC<ContentProps> = props => {
                                 
                                 
                                 let attendingPublicMeets = allMeets.filter(meet => 
-                                    props.user != null && meet.creator != props.user._id && !meet.private && meet.attending
+                                    props.user != null && meet.creator !== props.user._id && !meet.private && meet.attending
                                 )
                         
                                 let notAttendingPublicMeets = allMeets.filter(meet => 
-                                    props.user != null && meet.creator != props.user._id && !meet.private && !meet.attending
+                                    props.user != null && meet.creator !== props.user._id && !meet.private && !meet.attending
                                 )
                         
         
