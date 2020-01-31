@@ -29,7 +29,7 @@ app.use(cors())
 
 app.use('/auth', require('./controllers/auth'))
 app.use('/home', require('./controllers/home'))
-app.use('/meet', expressJwt({ secret: process.env.JWT_SECRET}), require('./controllers/meet'))
+app.use('/meet', expressJwt({ secret: process.env.REACT_APP_JWT_SECRET}), require('./controllers/meet'))
 app.use('/profile', require('./controllers/profile'))
 // TODO: Add, expressJwt({ secret: 'ghjk' }) middleware
 
