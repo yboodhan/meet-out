@@ -56,8 +56,7 @@ const Content: React.FC<ContentProps> = props => {
 
     // State variables
     let [allMeets , setAllMeets] = useState<MeetForCalendar[]>([])
-    // let [allMeets , setAllMeets] = useState<MeetForCalendar[]>(testMeets)
-
+    let [newOrUpdatedMeet, setNewOrUpdatedMeet] = useState<MeetForCalendar | null>(null)
     let [myPrivateMeets, setMyPrivateMeets] = useState<MeetForCalendar[]>([])
     let [myPublicMeets, setMyPublicMeets] = useState<MeetForCalendar[]>([])
     let [attendingPublicMeets, setAttendingPublicMeets] = useState<MeetForCalendar[]>([])
@@ -160,12 +159,13 @@ const Content: React.FC<ContentProps> = props => {
                     console.log('Error', err)
                 })
             }
-    }, [props.user])
+    }, [props.user, newOrUpdatedMeet])
 
     const updateMeet = (currentMeet: MeetForCalendar | null) => {
         //update the current meet being edited
         console.log('updating meet to', currentMeet)
         setCurrentMeet(currentMeet)
+        setNewOrUpdatedMeet(currentMeet)
     }
 
 
@@ -192,7 +192,7 @@ const Content: React.FC<ContentProps> = props => {
             />
             }/>
             <Route path="/create" render={
-                () => <NewMeet user={props.user} />
+                () => <NewMeet user={props.user} updateMeet={updateMeet}/>
             }/>
             <Route path="/edit" render={
                 () => <EditMeet currentMeet={currentMeet} user={props.user} />

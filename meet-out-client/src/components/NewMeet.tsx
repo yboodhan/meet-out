@@ -4,9 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { Button, Col, Container, Form, FormGroup, FormText, Input, Label, Row } from 'reactstrap';
 import { Decoded } from '../App';
+import { MeetForCalendar } from './Content';
 
 interface NewMeetProps {
-    user: Decoded | null
+    user: Decoded | null,
+    updateMeet: (currentMeet: MeetForCalendar | null) => void
 }
 
 const NewMeet: React.FC<NewMeetProps> = props => {
@@ -60,18 +62,20 @@ const NewMeet: React.FC<NewMeetProps> = props => {
         }
 
         console.log('data is', data)
-
+        let token = localStorage.getItem('userToken')
         fetch(`${process.env.REACT_APP_SERVER_URL}/meet`, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
             }
         })
         .then( (response: Response) => {
             response.json().then(result => {
             if (response.ok) {
-                console.log('Response ok')
+                props.updateMeet(result)
+                console.log('Response ok', result)
                 setReferRedirect(true)
             } else {
                 // Error
