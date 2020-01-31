@@ -24,7 +24,7 @@ router.post('/login', (req: Request, res: Response) => {
             return res.status(401).send({message: 'Invalid Credentials'})
         }
         // Assign the token, assign the expiration
-        let token: string = jwt.sign(user.toJSON(), process.env.JWT_SECRET, {
+        let token: string = jwt.sign(user.toJSON(), process.env.REACT_APP_JWT_SECRET, {
             expiresIn: 60 * 60 * 1 //Expires in 1 hour
         })
         res.send({ token })

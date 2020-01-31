@@ -42,8 +42,10 @@ const EditMeet: React.FC<EditMeetProps> = props => {
     const createNewMeet = (e: FormEvent) => {
         e.preventDefault()
 
+
         // Form data
         let data: object = {
+            id: props.currentMeet ? props.currentMeet._id : null,
             users,
             activityName,
             description,
@@ -70,7 +72,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
         .then( (response: Response) => {
             response.json().then(result => {
             if (response.ok) {
-                console.log('Response ok')
+                console.log('Response ok', response)
                 setReferRedirect(true)
             } else {
                 // Error
@@ -86,7 +88,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
     
     }
 
-    if (referRedirect === true) {
+    if (referRedirect) {
         return(
             <Redirect to = "/home" />
         )

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import {MeetForCalendar} from './Content'
 import { Button, Container } from 'reactstrap'
 import { PromiseProvider } from 'mongoose'
@@ -29,6 +30,7 @@ const Delete: React.FC<DeleteProps> = props => {
             if (response.ok) {
                 console.log('Response ok')
                 console.log('deleted')
+                window.location.reload()
             } else {
                 // Error
                 console.log('error')
