@@ -29,40 +29,20 @@ router.get('/:id', (req: Request, res: Response) => {
             console.log(`Error: ${err}`)
             res.send({err})
         })
-
-        // console.log('Reached MEET ROUTE')
-        // db.Meet.find()
-        // .then((meets: Meet) => {
-        //     console.log(`All meets should be sent.`)
-        //     res.send({meets})
-        // })
-        // .catch((err: Error) => {
-        //     console.log(`Error: ${err}`)
-        //     res.send({err})
-        // })
-})
+    })
 })
 
-// This route gets just one meeting by it's ID
-// router.get('/:id', (req: Request, res: Response) => {
-//     db.Meet.findOne({_id: req.params.id})
-//     .then((meet: Meet) => {
-//         console.log(`Should be displaying one meet: ${meet}`)
-//         res.send({meet})
-//     })
-// })
 
-// router.get('/:id', (req: Request, res: Response) => {
-//     db.Meet.findById(req.params.id)
-//     .then(meets => {
-
-//     })
-// })
-
-router.put('/', (req: Request, res: Response) => {
-    db.meet.updateOne({ _id: (req.body as{id: string}).id }, req.body)
+router.put('/:id', (req: Request, res: Response) => {
+    console.log('getting to put route')
+    db.Meet.updateOne({_id: req.params.id}, req.body)
     .then((meet: Meet) => {
-        res.send({ meet })
+        console.log('updated meet!')
+        res.send({hi: 'updated the meet'})
+    })
+    .catch((err: Error) => {
+        console.log(`Error: ${err}`)
+        res.send({err})
     })
 })
 
@@ -119,13 +99,14 @@ router.post('/', (req: Request, res: Response) => {
 })
 
 router.delete('/:id', (req: Request, res: Response) => {
+    console.log('Accessed server-side')
     db.Meet.deleteOne({_id: req.params.id})
     .then(() => {
-        res.render('/')
+        res.status(204).send()
     })
     .catch((err: Error) => {
-        console.log(err)
-        res.send('Error deleting event.')
+        console.log('err in del rte', err)
+        res.status(500).send({message: 'Error deleting event.'})
     })
 })
 

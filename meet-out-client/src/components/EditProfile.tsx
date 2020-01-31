@@ -60,7 +60,7 @@ const EditProfile: React.FC<EditProfileProps> = props => {
           .then( result => {
             if (response.ok) {
               props.updateUser( result.token )
-            //   setReferRedirect(true)
+              setReferRedirect(true)
             } else {
               setMessage(`${response.status} ${response.statusText}: ${result.message}`)
             }
@@ -72,11 +72,11 @@ const EditProfile: React.FC<EditProfileProps> = props => {
         })
     }
 
-    // if (referRedirect) {
-    //     return(
-    //         <Redirect to = "/home" />
-    //     )
-    // }
+    if (referRedirect) {
+        return(
+            <Redirect to = "/home" />
+        )
+    }
 
     if (!props.user) {
         return <Redirect to="/" />

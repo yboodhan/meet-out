@@ -15,18 +15,18 @@ const EditMeet: React.FC<EditMeetProps> = props => {
     let [message, setMessage] = useState('')
 
     // Form data
-    let [activityName, setActivityName] = useState('')
-    let [description, setDescription] = useState('')
-    let [activityAddress, setAddress] = useState('')
-    let [city, setCity] = useState('')
-    let [state, setUSState] = useState('')
-    let [zip, setZip] = useState('')
-    let [date , setDate] = useState('')
-    let [starttime, setStartTime] = useState('')
-    let [endtime, setEndTime] = useState('')
-    let [users, setUsers] = useState([])
-    let [creator, setCreator] = useState('')
-    let [privateMeet, setPrivateMeet] = useState(false)
+    let [activityName, setActivityName] = useState(props.currentMeet ? props.currentMeet.activity.name : '')
+    let [description, setDescription] = useState(props.currentMeet ? props.currentMeet.description : '')
+    let [activityAddress, setAddress] = useState(props.currentMeet ? props.currentMeet.activity.locations.address : '')
+    let [city, setCity] = useState(props.currentMeet ? props.currentMeet.activity.locations.city : '')
+    let [state, setUSState] = useState(props.currentMeet ? props.currentMeet.activity.locations.state : '')
+    let [zip, setZip] = useState(props.currentMeet ? props.currentMeet.activity.locations.zip : '')
+    let [date , setDate] = useState(props.currentMeet ? props.currentMeet.date : '')
+    let [starttime, setStartTime] = useState(props.currentMeet ? props.currentMeet.starttime : '')
+    let [endtime, setEndTime] = useState(props.currentMeet ? props.currentMeet.endtime : '')
+    let [users, setUsers] = useState(props.currentMeet ? props.currentMeet.users : [])
+    let [creator, setCreator] = useState(props.currentMeet ? props.currentMeet.creator : '')
+    let [privateMeet, setPrivateMeet] = useState(props.currentMeet ? props.currentMeet.private : '')
     let [referRedirect, setReferRedirect] = useState(false)
 
     useEffect(() => {
@@ -42,25 +42,30 @@ const EditMeet: React.FC<EditMeetProps> = props => {
     const createNewMeet = (e: FormEvent) => {
         e.preventDefault()
 
+
         // Form data
-        let data: object = {
-            users,
-            activityName,
-            description,
-            activityAddress,
-            city,
-            state,
-            zip,
-            date,
-            starttime,
-            endtime,
-            creator,
-            privateMeet
+        let data = {
+            id: props.currentMeet ? props.currentMeet._id : null,
+            creator: creator,
+            private: privateMeet,
+            date: date,
+            starttime: starttime,
+            endtime: endtime,
+            description: description,
+            users: users,
+            activity: { name: activityName,
+              locations: {
+                address: activityAddress,
+                city: city,
+                state: state,
+                zip: zip,
+              }
+            }
         }
 
         console.log('data is', data)
 
-        fetch(`${process.env.REACT_APP_SERVER_URL}/meet`, {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/meet/${data.id}`, {
             method: 'PUT',
             body: JSON.stringify(data),
             headers: {
@@ -70,7 +75,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
         .then( (response: Response) => {
             response.json().then(result => {
             if (response.ok) {
-                console.log('Response ok')
+                console.log('Response ok', response)
                 setReferRedirect(true)
             } else {
                 // Error
@@ -86,7 +91,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
     
     }
 
-    if (referRedirect === true) {
+    if (referRedirect) {
         return(
             <Redirect to = "/home" />
         )
