@@ -13,13 +13,14 @@ const router = Router()
 // Add USER model to this so that the front-end can see the user's first name & last name
 router.get('/', (req: Request, res: Response) => {
     console.log('Reached MEET ROUTE')
-    db.User.findById(req.params.id)
+    db.User.findById(req.body.user)
     .then((user: User) => {
-        db.Meet.find({private: false} || {users: {$in: user}} || {creator: user.id})
+        console.log(user)
+        db.Meet.find({ $or: [{private: false}, {users: {$in: user}}, {creator: user._id}] })
         .then((meets: Meet) => {
             console.log('All pertinent meets should be sent')
-            res.send({meets})
-        })
+            res.send({meets, user})
+        }
     })
     .catch((err: Error) => {
         console.log(`Error: ${err}`)
