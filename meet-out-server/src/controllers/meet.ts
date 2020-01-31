@@ -24,16 +24,16 @@ router.get('/', (req: Request, res: Response) => {
 //             res.send({meets, user})
 //         })
 
-    db.Meet.find()
-    .then((meets: Meet) => {
-        console.log(`All meets should be sent.`)
-        res.send({meets})
-
-    })
-    .catch((err: Error) => {
-        console.log(`Error: ${err}`)
-        res.send({err})
-    })
+        console.log('Reached MEET ROUTE')
+        db.Meet.find()
+        .then((meets: Meet) => {
+            console.log(`All meets should be sent.`)
+            res.send({meets})
+        })
+        .catch((err: Error) => {
+            console.log(`Error: ${err}`)
+            res.send({err})
+        })
 })
 
 // This route gets just one meeting by it's ID
