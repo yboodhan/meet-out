@@ -123,7 +123,7 @@ const Content: React.FC<ContentProps> = props => {
                                 })
                                 
                                 let myPrivateMeets = allMeets.filter(meet => 
-                                    meet.myPrivateMeet  
+                                    meet.myPrivateMeet
                                 )
 
                                 let myPublicMeets = allMeets.filter(meet => 
