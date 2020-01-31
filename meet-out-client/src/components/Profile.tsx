@@ -20,7 +20,7 @@ const Profile: React.FC<ProfileProps> = props => {
 
     return (
         <Container className="web-body">
-            <img src={image} alt="profile" className="img-fluid" width="400"/>
+            <img src={props.user.photo ? props.user.photo : image} alt="profile" className="img-fluid profile" width="400"/>
             <br />
             <Link to="/profile/edit"><Button color="info">Edit</Button></Link>
             <hr />
