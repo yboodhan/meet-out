@@ -15,8 +15,10 @@ class Widget extends React.Component {
                 if (!error && result && result.event === "success") {
                     console.log(result.info.secure_url)
 
+                    let url = result.info.secure_url
+
                     // set the state here for photo
-                    this.props.updateUser()
+                    this.props.updatePhoto(url)
 
                     // fetch(`${process.env.REACT_APP_SERVER_URL}/profile`, {
                     //     method: 'PUT',

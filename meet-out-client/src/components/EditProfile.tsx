@@ -27,9 +27,18 @@ const EditProfile: React.FC<EditProfileProps> = props => {
             setPassword(props.user.password)
         }
     }, [])
+
+    const updatePhoto = (photoUrl: string) => {
+        console.log('setting new profile photo now')
+        console.log(photoUrl)
+        setPhoto(photoUrl)
+        console.log('photo url', photo)
+    }
     
 
     const handleSubmit = (e: FormEvent) => {
+        console.log('submitting form data now')
+        console.log(photo)
         e.preventDefault()
 
         let data: object = {
@@ -84,8 +93,8 @@ const EditProfile: React.FC<EditProfileProps> = props => {
             <Row>
                 <Col m={6}>
                     <FormGroup>
-                            <img src={props.user.photo ? props.user.photo : image} alt="profile" className="img-fluid" width="400"/>
-                            <Widget updateUser={props.updateUser} />
+                            <img src={photo ? photo : image} alt="profile" className="img-fluid profile" width="400" />
+                            <Widget updatePhoto={updatePhoto} />
                     </FormGroup>
                 </Col>
 
