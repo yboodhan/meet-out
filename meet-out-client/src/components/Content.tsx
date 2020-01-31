@@ -91,14 +91,12 @@ const Content: React.FC<ContentProps> = props => {
                             //create allMeets, myPrivate, myPublic, attending & not attending meets categories
                             if(results) {
                                 const amAttending = (meet: Meet) => {
-                                    if(props.user != null){
-                                        for(let i = 0; i < meet.users.length; i++) {
-                                            if(meet.users[i] === props.user._id) {
-                                                return true
-                                            }
+                                    for(let i = 0; i < meet.users.length; i++) {
+                                        if(meet.users[i]._id === props.user?._id) {
+                                            return true
                                         }
-                                    return false
                                     }
+                                    return false
                                 }
 
                                 let allMeets = results.meets.map<MeetForCalendar>(meet => {
@@ -120,6 +118,7 @@ const Content: React.FC<ContentProps> = props => {
                                     attending: amAttending(meet) ? true : false
                                     }
                                 })
+                                console.log(allMeets)
                                 
                                 let myPrivateMeets = allMeets.filter(meet => 
                                     meet.myPrivateMeet

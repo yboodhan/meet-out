@@ -27,7 +27,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     let [date , setDate] = useState('')
     let [starttime, setStartTime] = useState('')
     let [endtime, setEndTime] = useState('')
-    let [users, setUsers] = useState([])
+    let [users, setUsers] = useState<string[]>([])
     let [creator, setCreator] = useState('')
     let [privateMeet, setPrivateMeet] = useState(false)
     let [referRedirect, setReferRedirect] = useState(false)
@@ -36,6 +36,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
         if (props.user) {
             setCreator(props.user._id)
             setUsers(props.user._id)
+
         }
         setMessage('')
     }, [props.user, activityName, description, activityAddress, city, state, zip, date, starttime, endtime])
