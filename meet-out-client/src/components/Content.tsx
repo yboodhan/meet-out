@@ -63,12 +63,24 @@ const Content: React.FC<ContentProps> = props => {
     let [notAttendingPublicMeets, setNotAttendingPublicMeets] = useState<MeetForCalendar[]>([])
     let [message, setMessage] = useState('')
 
+    // let token = localStorage.getItem('userToken')
+    // fetch(`${process.env.REACT_APP_SERVER_URL}/auth/profile`, {
+    //   headers: {
+    //     'Authorization': `Bearer ${token}`
+    //   }
+    // })
+
     useEffect(() => {
         // If there is a user, fetch meets from get route
             if(props.user != null){
-                fetch(`${process.env.REACT_APP_SERVER_URL}/meet`)
+                let token = localStorage.getItem('userToken')
+                fetch(`${process.env.REACT_APP_SERVER_URL}/meet`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
                 .then(response => {
-                    console.log('In then code', response)
+                    console.log('In the code', response)
                     response.json()
                     .then((results: getResults) => {
                         console.log('🌈🌈', results, '👻👻', response)
