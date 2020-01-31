@@ -100,9 +100,9 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     //     )
     // }
 
-    if (referRedirect === true) {
+    if (referRedirect) {
         return(
-            <Redirect to ="/home" />
+            <Redirect to ="/show" />
         )
     }
 

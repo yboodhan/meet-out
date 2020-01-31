@@ -8,7 +8,8 @@ import {MeetForCalendar} from './Content'
 
 interface EditMeetProps {
     user: Decoded | null,
-    currentMeet: MeetForCalendar | null
+    currentMeet: MeetForCalendar | null,
+    updateMeet: (currentMeet: MeetForCalendar | null) => void
 }
 
 const EditMeet: React.FC<EditMeetProps> = props => {
@@ -76,6 +77,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
             response.json().then(result => {
             if (response.ok) {
                 console.log('Response ok', response)
+                props.updateMeet(result)
                 setReferRedirect(true)
             } else {
                 // Error
@@ -93,7 +95,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
 
     if (referRedirect) {
         return(
-            <Redirect to = "/home" />
+            <Redirect to = "/show" />
         )
     }
 
