@@ -15,11 +15,19 @@ router.get('/:id', (req: Request, res: Response) => {
 })
 
 router.put('/', (req: Request, res: Response) => {
+    console.log((req.body as{id: string}).id )
+    // console.log('req.user', req)
     //this needs coverage to handle blank fields. User should be able to update just one field, if they so desire.
     db.User.updateOne({ _id: (req.body as{id: string}).id },
     req.body)
     .then((user: User) => {
-        res.send({ user })
+        // TODO: Reissue token
+        let token: string = ''
+        res.send({ token })
+    })
+    .catch((error: Error) => {
+        console.log(error)
+        res.status(500).send({ message: 'Server Error' })
     })
 })
 

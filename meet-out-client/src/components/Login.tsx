@@ -24,6 +24,7 @@ const Login: React.FC<LoginProps> = props => {
     // Submit the form
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
+        console.log(`${process.env.REACT_APP_SERVER_URL}/auth/login`)
         fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
           method: 'POST',
           body: JSON.stringify({

@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
 import { MeetForCalendar } from './Content';
-import { DefaultMeetForCalendar } from './Calendar'
+// import { DefaultMeetForCalendar } from './Calendar'
 import { Decoded } from '../App';
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 
 interface ModalBodyProps {
   user: Decoded | null,
-  currentMeet: MeetForCalendar | DefaultMeetForCalendar
+  currentMeet: MeetForCalendar 
 }
 
 
@@ -15,11 +15,15 @@ const MeetDetailsModal: React.FC<ModalBodyProps> = props => {
 
   if(props.user) {
 
-    let attendingUsers: JSX.Element | JSX.Element[] = <p>'No one is attending :('</p>
+    let date = 'date unavailable'
+    if(props.currentMeet.date) {
+      moment(props.currentMeet.date.toDateString()).format("MM/DD/YYYY")
+    }
 
-      if(props.currentMeet.myPrivateMeet) {
+    let attendingUsers: JSX.Element | JSX.Element[] = <p>'No one is attending :('</p>
+      if(props.currentMeet.myPrivateMeet || props.currentMeet.myPublicMeet) {
         attendingUsers = <p>You</p>
-      } else if (props.currentMeet.users !== null) {
+      } else if (props.currentMeet?.users !== null) {
         attendingUsers = props.currentMeet.users?.map(u => {
           return <p>{u}</p>
         })
@@ -36,7 +40,7 @@ const MeetDetailsModal: React.FC<ModalBodyProps> = props => {
           <h4>{ props.currentMeet.date ? props.currentMeet.date.toDateString() : 'not available'}</h4>
           <h4>{props.currentMeet.start ? moment(props.currentMeet.start).format("h:mm a"): 'not available' } - {props.currentMeet.end ? moment(props.currentMeet.end).format("h:mm a"): 'not available'}</h4>
           {/* find something to show date/time in pretty way? */}
-          <h5>Owner: {props.currentMeet.creator?.slice(0,8)} </h5>
+          <h5>Owner: {props.currentMeet.myPrivateMeet || props.currentMeet.myPublicMeet ? 'You' : props.currentMeet.creator?.slice(0,8)} </h5>
 
           <a href={mapLink} target="_blank" rel="noopener noreferrer"> {mapLinkText} </a>
 

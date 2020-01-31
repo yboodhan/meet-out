@@ -11,6 +11,9 @@ interface ProfileProps {
 
 const Profile: React.FC<ProfileProps> = props => {
 
+
+    //TODO SEND USER INFO
+    
     if (!props.user) {
         return <Redirect to="/" />
     }

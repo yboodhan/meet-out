@@ -11,6 +11,7 @@ import Userhome from './Userhome'
 import Profile from './Profile'
 import EditProfile from './EditProfile'
 import NewMeet from './NewMeet'
+import EditMeet from './EditMeet'
 
 
 // Props
@@ -62,6 +63,7 @@ const Content: React.FC<ContentProps> = props => {
     let [attendingPublicMeets, setAttendingPublicMeets] = useState<MeetForCalendar[]>([])
     let [notAttendingPublicMeets, setNotAttendingPublicMeets] = useState<MeetForCalendar[]>([])
     let [message, setMessage] = useState('')
+    let [currentMeet, setCurrentMeet] = useState<MeetForCalendar | null>(null)
 
     // let token = localStorage.getItem('userToken')
     // fetch(`${process.env.REACT_APP_SERVER_URL}/auth/profile`, {
@@ -148,15 +150,21 @@ const Content: React.FC<ContentProps> = props => {
                         setMessage('No events scheduled')  
                         }
                     })
-                    .catch( (err: Error) => {
+                    .catch((err: Error) => {
                         console.log('Error', err)
                     })
                 })
-                .catch( (err: Error) => {
+                .catch((err: Error) => {
                     console.log('Error', err)
                 })
             }
     }, [props.user])
+
+    const updateMeet = (currentMeet: MeetForCalendar | null) => {
+        //update the current meet being edited
+        console.log('updating meet to', currentMeet)
+        setCurrentMeet(currentMeet)
+    }
 
 
     return (
@@ -165,7 +173,7 @@ const Content: React.FC<ContentProps> = props => {
                 () => <Signup user={props.user} updateUser={props.updateUser} />
             } />
             <Route path="/profile/edit" render={
-                () => <EditProfile user={props.user}/>
+                () => <EditProfile user={props.user} updateUser={props.updateUser}/>
             }/>
             <Route exact path="/profile" render={
                 () => <Profile user={props.user} />
@@ -176,11 +184,16 @@ const Content: React.FC<ContentProps> = props => {
                     myPrivateMeets={myPrivateMeets} 
                     myPublicMeets={myPublicMeets} 
                     attendingPublicMeets={attendingPublicMeets} 
-                    notAttendingPublicMeets={notAttendingPublicMeets} 
+                    notAttendingPublicMeets={notAttendingPublicMeets}
+                    updateMeet={updateMeet}
+                    currentMeet={currentMeet}
             />
             }/>
             <Route path="/create" render={
                 () => <NewMeet user={props.user} />
+            }/>
+            <Route path="/edit" render={
+                () => <EditMeet currentMeet={currentMeet} user={props.user} />
             }/>
         </div>
     )
