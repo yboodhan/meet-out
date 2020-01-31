@@ -1,5 +1,6 @@
 // Use import as opposed to standard "const express = require('express') " so that app is recognized as an "express" item!
 import express, { Request, Response } from 'express'
+import cors  from 'cors'
 import mongoose from 'mongoose'
 //importing json module from body-parser npm module
 const bodyParser = require('body-parser')
@@ -8,7 +9,7 @@ const bodyParser = require('body-parser')
 import User from './models/user'
 
 require('dotenv').config()
-let cors = require('cors')
+
 // let expressJwt = require('express-jwt')
 let morgan = require('morgan')
 let rowdyLogger = require('rowdy-logger')
@@ -28,7 +29,7 @@ app.use('/auth', require('./controllers/auth'))
 app.use('/home', require('./controllers/home'))
 app.use('/meet', require('./controllers/meet'))
 app.use('/profile', require('./controllers/profile'))
-
+// TODO: Add, expressJwt({ secret: 'ghjk' }) middleware
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Home Stub')

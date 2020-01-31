@@ -40,7 +40,9 @@ const EventTag: React.FC<EventTagProps> = props => {
 
     if (props.user && props.user._id === props.meet.creator) {
         deleteButton = <Delete meet={props.meet} updateMeet={props.updateMeet}/>
-    } 
+    }
+
+    
 
     return (
         <Container className="event-tag">
@@ -55,7 +57,6 @@ const EventTag: React.FC<EventTagProps> = props => {
 
             <br />
             <Button size="sm" color="info">More Info</Button>{' '}
-            <Button size="sm" color="info">View</Button> {' '}
             <Button size="sm" onClick={handleMeet} color="info">Edit</Button>{' '}
             {deleteButton}
 

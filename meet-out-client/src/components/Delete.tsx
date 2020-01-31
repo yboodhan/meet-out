@@ -10,8 +10,6 @@ interface DeleteProps {
 
 const Delete: React.FC<DeleteProps> = props => {
 
-
-
     const deleteMeet = () => {
         props.updateMeet(props.meet)
         console.log('set the current meet to this one')
@@ -24,7 +22,7 @@ const Delete: React.FC<DeleteProps> = props => {
             body: JSON.stringify(props.meet._id),
             headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            // 'Authorization': `Bearer ${token}`
             }
         })
         .then( (response: Response) => {

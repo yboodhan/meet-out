@@ -12,25 +12,21 @@ interface EditProfileProps {
 }
 
 const EditProfile: React.FC<EditProfileProps> = props => {
-
-
-    let [email, setEmail] = useState('')
-    let [firstname, setFirstname] = useState('')
-    let [lastname, setLastname] = useState('')
+    let [email, setEmail] = useState(props.user ? props.user.email : '')
+    let [firstname, setFirstname] = useState(props.user ? props.user.firstname : '')
+    let [lastname, setLastname] = useState(props.user ? props.user.lastname : '')
     let [message, setMessage] = useState('')
-    let [password, setPassword] = useState('')
-    let [photo, setPhoto] = useState('')
+    let [photo, setPhoto] = useState(props.user ? props.user.photo : '')
     let [referRedirect, setReferRedirect] = useState(false)
 
-    useEffect( () => {
-        if (props.user) {
-            setPassword(props.user.password)
-        }
-    }, [])
+    // useEffect( () => {
+    //     if (props.user) {
+    //         setPassword(props.user.password)
+    //     }
+    // }, [])
 
     const updatePhoto = (photoUrl: string) => {
-        console.log('setting new profile photo now')
-        console.log(photoUrl)
+        console.log('setting new profile photo now', photoUrl)
         setPhoto(photoUrl)
         console.log('photo url', photo)
     }
@@ -42,18 +38,21 @@ const EditProfile: React.FC<EditProfileProps> = props => {
         e.preventDefault()
 
         let data: object = {
+            id: props.user ? props.user._id : '',
             email,
             firstname,
             lastname,
-            password,
             photo
         }
+
+        let token = localStorage.getItem('userToken')
 
         fetch(`${process.env.REACT_APP_SERVER_URL}/profile`, {
           method: 'PUT',
           body: JSON.stringify(data),
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
           }
         })
         .then( (response: Response) => {
@@ -61,7 +60,7 @@ const EditProfile: React.FC<EditProfileProps> = props => {
           .then( result => {
             if (response.ok) {
               props.updateUser( result.token )
-              setReferRedirect(true)
+            //   setReferRedirect(true)
             } else {
               setMessage(`${response.status} ${response.statusText}: ${result.message}`)
             }
@@ -73,11 +72,11 @@ const EditProfile: React.FC<EditProfileProps> = props => {
         })
     }
 
-    if (referRedirect === true) {
-        return(
-            <Redirect to = "/home" />
-        )
-    }
+    // if (referRedirect) {
+    //     return(
+    //         <Redirect to = "/home" />
+    //     )
+    // }
 
     if (!props.user) {
         return <Redirect to="/" />
@@ -102,17 +101,17 @@ const EditProfile: React.FC<EditProfileProps> = props => {
                     <Row form>
                         <Col md={6}>
                         <FormGroup>
-                            <Input type="text" name="firstname" placeholder="First name" value={props.user.firstname} onChange={(e: FormEvent<HTMLInputElement>) => setFirstname(e.currentTarget.value)} required/>
+                            <Input type="text" name="firstname" placeholder="First name" defaultValue={props.user.firstname} onChange={(e: FormEvent<HTMLInputElement>) => setFirstname(e.currentTarget.value)} required/>
                         </FormGroup>
                         </Col>
                         <Col md={6}>
                         <FormGroup>
-                            <Input type="text" name="lastname" placeholder="Last name" value={props.user.lastname} onChange={(e: FormEvent<HTMLInputElement>) => setLastname(e.currentTarget.value)} required/>
+                            <Input type="text" name="lastname" placeholder="Last name" defaultValue={props.user.lastname} onChange={(e: FormEvent<HTMLInputElement>) => setLastname(e.currentTarget.value)} required/>
                         </FormGroup>
                         </Col>
                     </Row>
                     <FormGroup>
-                            <Input type="email" name="email" placeholder="Email" value={props.user.email} onChange={(e: FormEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)} required/>
+                            <Input type="email" name="email" placeholder="Email" defaultValue={props.user.email} onChange={(e: FormEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)} required/>
                     </FormGroup>
                     <FormText color="danger">{message}</FormText>
                     <hr />
