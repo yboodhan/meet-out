@@ -2,6 +2,7 @@ import React, { useState, FormEvent } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Decoded } from '../App'
 import { Button, Col, Container, Form, FormGroup, FormText, Input, Row } from 'reactstrap';
+import Widget from './Widget'
 
 // Props
 interface EditProfileProps {
@@ -34,7 +35,7 @@ const EditProfile: React.FC<EditProfileProps> = props => {
                 <Col m={6}>
                     <FormGroup>
                             UPLOAD HERE
-                            {/* <Button >Upload Photo</Button> */}
+                            <Widget />
                     </FormGroup>
                 </Col>
 

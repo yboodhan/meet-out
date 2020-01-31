@@ -1,16 +1,8 @@
 import React from 'react'
 import { Button, Container } from 'reactstrap'
-import cloudinary from 'cloudinary-core'
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 
 class Widget extends React.Component {
-    // let options = {
-    //     cloud_name: "demo",
-    //     upload_preset: "a5vxnzbp",
-    //     multiple: true,
-    //     returnJustUrl: true
-    // };
     
     checkUploadResult = (resultEvent) => {
         if (resultEvent === 'success') {
@@ -23,20 +15,10 @@ class Widget extends React.Component {
         widget.open()
     }
 
-    // ReactCloudinaryUploader.open(options)
-    // .then(image => {
-    //     if (this.props.returnJustUrl)
-    //         image = image.url;
-    //     console.log("image",image);
-    // })
-    // .catch(err => {
-    //     console.error(err);
-    // })
-
     render() {
         let widget = window.cloudinary.createUploadWidget({ 
-            cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-            uploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET_NAME }, 
+            cloudName: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
+            uploadPreset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET_NAME }, 
             (error, result) => {
                 console.log('Error', error)
                 console.log(result)
@@ -45,7 +27,7 @@ class Widget extends React.Component {
 
         return (
         <Container className="web-body">
-            <Button onClick={this.showWidget(widget)}>
+            <Button onClick={ () => this.showWidget(widget)}>
                 Upload Image
             </Button>
         </Container>
