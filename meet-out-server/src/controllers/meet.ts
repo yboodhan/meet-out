@@ -52,11 +52,13 @@ router.get('/:id', (req: Request, res: Response) => {
 // })
 
 // router.get('/:id', (req: Request, res: Response) => {
-//     db.Meet.findById(req.params.id)
-//     .then(meets => {
-
+//     db.Meet.findOne({_id: req.params.id})
+//     .then((meet: Meet) => {
+//         console.log(`Should be displaying one meet: ${meet}`)
+//         res.send({meet})
 //     })
 // })
+
 
 router.put('/', (req: Request, res: Response) => {
     db.meet.updateOne({ _id: (req.body as{id: string}).id }, req.body)
