@@ -138,11 +138,11 @@ const Content: React.FC<ContentProps> = props => {
                         setMessage('No events scheduled')  
                         }
                     })
-                    .catch( (err: Error) => {
+                    .catch((err: Error) => {
                         console.log('Error', err)
                     })
                 })
-                .catch( (err: Error) => {
+                .catch((err: Error) => {
                     console.log('Error', err)
                 })
             }

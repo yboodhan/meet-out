@@ -106,8 +106,9 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
 
     //function to go to add event form
         const addMeetOnSelect = ({start, end}: { start: string | Date, end: string | Date }) => {
-            //link to  add form
-            //
+            //link to add form, pass start and end
+            
+            
     }
     
     return (

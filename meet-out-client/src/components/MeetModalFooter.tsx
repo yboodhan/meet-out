@@ -4,6 +4,7 @@ import moment from 'moment'
 import { Decoded } from '../App';
 import { MeetForCalendar } from './Content';
 import { DefaultMeetForCalendar } from './Calendar'
+import { Link } from 'react-router-dom'
 
 interface ModalFooterBodyProps {
     user: Decoded | null,
@@ -12,7 +13,11 @@ interface ModalFooterBodyProps {
   
 const MeetModalFooter: React.FC<ModalFooterBodyProps> = props => {
 
-    let editButton = <Button>EDIT</Button>
+    const toEditForm = () => {
+        return <Link to="/edit" />
+    }
+
+    let editButton = <Button className="button" onClick={toEditForm}>EDIT</Button>
     let cancelButton = <Button>CANCEL</Button>
     let cancelAttendanceButton = <Button>CANCEL ATTENDANCE</Button>
     let attendButton = <Button>ATTEND</Button>
