@@ -32,7 +32,7 @@ router.get('/:id', (req: Request, res: Response) => {
 })
 
 
-router.put('/', (req: Request, res: Response) => {
+router.put('/:id', (req: Request, res: Response) => {
     console.log('getting to put route')
     db.Meet.updateOne({ _id: (req.body as{id: string}).id }, req.body)
     .then((meet: Meet) => {
