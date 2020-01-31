@@ -20,11 +20,11 @@ interface UserhomeProps {
 
 
 const Userhome: React.FC<UserhomeProps> = (props) => {
-if (!props.user) {
-    return(
-        <Redirect to = "/" />
-    )
-} 
+    if (!props.user) {
+        return(
+            <Redirect to = "/" />
+        )
+    } 
 
     let myPrivateEvents = props.myPrivateMeets.map( meet => {
         return <EventTag user={props.user} meet={meet} updateMeet={props.updateMeet}/>
