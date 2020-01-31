@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import React, {useEffect, useState} from 'react'
 import { Button, Container, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Link , Redirect} from 'react-router-dom'
 import {MeetForCalendar} from './Content'
 import Moment from 'react-moment'
 import moment from 'moment'
@@ -15,9 +15,13 @@ interface EventTagProps {
     meet: MeetForCalendar,
     user: Decoded | null,
     className?: string
+    updateMeet: (currentMeet: MeetForCalendar | null) => void
 }
 
 const EventTag: React.FC<EventTagProps> = props => {
+
+    let [referRedirect, setReferRedirect] = useState(false)
+
     let startTime = moment(props.meet.start).format("hh:mm a")
     let endTime = moment(props.meet.end).format("hh:mm a")
 
@@ -59,9 +63,18 @@ const EventTag: React.FC<EventTagProps> = props => {
         toggle()
     }
 
-    const handleEdit = () => {
-        // feed edit meet info and link
-        
+
+    const handleMeet = () => {
+        console.log('redirecting')
+        //update the current meet
+        props.updateMeet(props.meet)
+        setReferRedirect(true)
+    }
+
+    if (referRedirect) {
+        return (
+            <Redirect to='/edit' />
+        )
     }
 
     return (
@@ -76,9 +89,10 @@ const EventTag: React.FC<EventTagProps> = props => {
             </div>
 
             <br />
+
             <Button color="info" onClick={meet => showDetails(props.meet)}>More Info</Button>{' '}
             <Button color="info" >View</Button> {' '}
-            <Button onClick={handleEdit} color="info">Edit</Button>
+            <Button onClick={handleMeet} color="info">Edit</Button>
 
             <div>
             <Modal isOpen={modal} toggle={toggle} className={className}>

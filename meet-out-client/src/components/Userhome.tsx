@@ -9,11 +9,12 @@ import {MeetForCalendar} from './Content'
 import { Decoded } from '../App'
 
 interface UserhomeProps {
-    user: Decoded | null;
-    myPrivateMeets: MeetForCalendar[];
-    myPublicMeets: MeetForCalendar[];
-    attendingPublicMeets: MeetForCalendar[];
-    notAttendingPublicMeets: MeetForCalendar[];
+    user: Decoded | null,
+    myPrivateMeets: MeetForCalendar[],
+    myPublicMeets: MeetForCalendar[],
+    attendingPublicMeets: MeetForCalendar[],
+    notAttendingPublicMeets: MeetForCalendar[],
+    updateMeet: (currentMeet: MeetForCalendar | null) => void
 }
 
 
@@ -25,15 +26,16 @@ if (!props.user) {
 } 
 
     let myPrivateEvents = props.myPrivateMeets.map( meet => {
-        return <EventTag user={props.user} meet={meet}/>
+
+        return <EventTag user={props.user} meet={meet} updateMeet={props.updateMeet}/>
     })
 
     let myPublicEvents = props.myPublicMeets.map( meet => {
-        return <EventTag user={props.user} meet={meet}/>
+        return <EventTag user={props.user} meet={meet} updateMeet={props.updateMeet}/>
     })
 
     let attendingPublicEvents = props.attendingPublicMeets.map( meet => {
-        return <EventTag user={props.user} meet={meet}/>
+        return <EventTag user={props.user} meet={meet} updateMeet={props.updateMeet}/>
     })
 
     let allEvents = myPrivateEvents.concat(myPublicEvents).concat(attendingPublicEvents)

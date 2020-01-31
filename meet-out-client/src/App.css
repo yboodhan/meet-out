@@ -44,3 +44,8 @@
   margin-bottom: 1em;
   padding: 0.5em;
 }
+
+.profile {
+  max-height: 200px;
+  width: auto;
+}
