@@ -9,26 +9,27 @@ import {MeetForCalendar} from './Content'
 import { Decoded } from '../App'
 
 interface UserhomeProps {
-    user: Decoded | null;
-    myPrivateMeets: MeetForCalendar[];
-    myPublicMeets: MeetForCalendar[];
-    attendingPublicMeets: MeetForCalendar[];
-    notAttendingPublicMeets: MeetForCalendar[];
+    user: Decoded | null,
+    myPrivateMeets: MeetForCalendar[],
+    myPublicMeets: MeetForCalendar[],
+    attendingPublicMeets: MeetForCalendar[],
+    notAttendingPublicMeets: MeetForCalendar[],
+    updateMeet: (currentMeet: MeetForCalendar | null) => void
 }
 
 
 const Userhome: React.FC<UserhomeProps> = (props) => {
 
     let myPrivateEvents = props.myPrivateMeets.map( meet => {
-        return <EventTag meet={meet}/>
+        return <EventTag meet={meet} updateMeet={props.updateMeet}/>
     })
 
     let myPublicEvents = props.myPublicMeets.map( meet => {
-        return <EventTag meet={meet}/>
+        return <EventTag meet={meet} updateMeet={props.updateMeet}/>
     })
 
     let attendingPublicEvents = props.attendingPublicMeets.map( meet => {
-        return <EventTag meet={meet}/>
+        return <EventTag meet={meet} updateMeet={props.updateMeet}/>
     })
 
     let allEvents = myPrivateEvents.concat(myPublicEvents).concat(attendingPublicEvents)

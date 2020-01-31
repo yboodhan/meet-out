@@ -8,8 +8,7 @@ import {MeetForCalendar} from './Content'
 
 interface EditMeetProps {
     user: Decoded | null,
-    currentMeet: MeetForCalendar | undefined,
-    updateMeet: (currentMeet: MeetForCalendar | undefined) => void
+    currentMeet: MeetForCalendar | null
 }
 
 const EditMeet: React.FC<EditMeetProps> = props => {
