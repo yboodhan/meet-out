@@ -28,36 +28,8 @@ router.get('/:id', (req: Request, res: Response) => {
             console.log(`Error: ${err}`)
             res.send({err})
         })
-
-        // console.log('Reached MEET ROUTE')
-        // db.Meet.find()
-        // .then((meets: Meet) => {
-        //     console.log(`All meets should be sent.`)
-        //     res.send({meets})
-        // })
-        // .catch((err: Error) => {
-        //     console.log(`Error: ${err}`)
-        //     res.send({err})
-        // })
+    })
 })
-})
-
-// This route gets just one meeting by it's ID
-// router.get('/:id', (req: Request, res: Response) => {
-//     db.Meet.findOne({_id: req.params.id})
-//     .then((meet: Meet) => {
-//         console.log(`Should be displaying one meet: ${meet}`)
-//         res.send({meet})
-//     })
-// })
-
-// router.get('/:id', (req: Request, res: Response) => {
-//     db.Meet.findOne({_id: req.params.id})
-//     .then((meet: Meet) => {
-//         console.log(`Should be displaying one meet: ${meet}`)
-//         res.send({meet})
-//     })
-// })
 
 
 router.put('/', (req: Request, res: Response) => {
@@ -122,7 +94,7 @@ router.post('/', (req: Request, res: Response) => {
 router.delete('/:id', (req: Request, res: Response) => {
     db.Meet.deleteOne({_id: req.params.id})
     .then(() => {
-        res.render('/')
+        res.send('Deleted')
     })
     .catch((err: Error) => {
         console.log(err)

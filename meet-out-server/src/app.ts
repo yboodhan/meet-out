@@ -18,14 +18,14 @@ let rowdyLogger = require('rowdy-logger')
 const app = express()
 let rowdyResults = rowdyLogger.begin(app)
 
-app.use(bodyParser.json())
+app.use(morgan('dev'))
+app.use(cors())
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(bodyParser.json())
 
-
-app.use(morgan('dev'))
-app.use(cors())
 
 app.use('/auth', require('./controllers/auth'))
 app.use('/home', require('./controllers/home'))
@@ -44,10 +44,3 @@ app.get('*',(req: Request, res: Response) => {
 app.listen(process.env.PORT || 3000, () => {
     rowdyResults.print()
 })
-
-// app.use('/auth', expressJwt({ secret: process.env.JWT_SECRET }).unless({
-//     path: [
-//       { url: '/auth/login', methods: ['POST']},
-//       { url: '/auth/signup', methods: ['POST']}
-//     ]
-//   }), require('./controllers/auth'))
