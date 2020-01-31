@@ -12,7 +12,7 @@ import Profile from './Profile'
 import EditProfile from './EditProfile'
 import NewMeet from './NewMeet'
 import EditMeet from './EditMeet'
-
+import ShowMeet from './ShowMeet'
 
 // Props
 interface ContentProps {
@@ -196,8 +196,12 @@ const Content: React.FC<ContentProps> = props => {
                 () => <NewMeet user={props.user} updateMeet={updateMeet}/>
             }/>
             <Route path="/edit" render={
-                () => <EditMeet currentMeet={currentMeet} user={props.user} />
+                () => <EditMeet currentMeet={currentMeet} updateMeet={updateMeet} user={props.user} />
             }/>
+            <Route path="/show" render={
+                () => <ShowMeet currentMeet={currentMeet} user={props.user} />
+            }/>
+
         </div>
     )
 }
