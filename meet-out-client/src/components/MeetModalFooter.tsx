@@ -1,23 +1,35 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Button} from 'reactstrap'
 import moment from 'moment'
 import { Decoded } from '../App';
 import { MeetForCalendar } from './Content';
-import { DefaultMeetForCalendar } from './Calendar'
-import { Link } from 'react-router-dom'
+// import { DefaultMeetForCalendar } from './Calendar'
+import { Redirect } from 'react-router-dom'
 
 interface ModalFooterBodyProps {
     user: Decoded | null,
-    currentMeet: MeetForCalendar | DefaultMeetForCalendar
+    currentMeet: MeetForCalendar
+    updateMeet: (currentMeet: MeetForCalendar | null) => void
   }
   
 const MeetModalFooter: React.FC<ModalFooterBodyProps> = props => {
+    
+    let [referRedirect, setReferRedirect] = useState(false)
 
-    const toEditForm = () => {
-        return <Link to="/edit" />
+    const handleMeet = () => {
+        console.log('redirecting')
+        //update the current meet
+        props.updateMeet(props.currentMeet)
+        setReferRedirect(true)
     }
 
-    let editButton = <Button className="button" onClick={toEditForm}>EDIT</Button>
+    if (referRedirect) {
+        return (
+            <Redirect to='/edit' />
+        )
+    }
+
+    let editButton = <Button onClick={handleMeet} color="info">Edit</Button>
     let cancelButton = <Button>CANCEL</Button>
     let cancelAttendanceButton = <Button>CANCEL ATTENDANCE</Button>
     let attendButton = <Button>ATTEND</Button>
@@ -31,6 +43,7 @@ const MeetModalFooter: React.FC<ModalFooterBodyProps> = props => {
         showButtons = [attendButton]
     }
 
+
     return (
         <div>
             
@@ -41,5 +54,6 @@ const MeetModalFooter: React.FC<ModalFooterBodyProps> = props => {
         </div>
     )
 }
+
 
 export default MeetModalFooter

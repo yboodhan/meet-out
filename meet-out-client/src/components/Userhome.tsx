@@ -14,6 +14,7 @@ interface UserhomeProps {
     myPublicMeets: MeetForCalendar[],
     attendingPublicMeets: MeetForCalendar[],
     notAttendingPublicMeets: MeetForCalendar[],
+    currentMeet: MeetForCalendar | null,
     updateMeet: (currentMeet: MeetForCalendar | null) => void
 }
 
@@ -57,7 +58,9 @@ if (!props.user) {
                             myPrivateMeets={props.myPrivateMeets} 
                             myPublicMeets={props.myPublicMeets} 
                             attendingPublicMeets={props.attendingPublicMeets} 
-                            notAttendingPublicMeets={props.notAttendingPublicMeets} 
+                            notAttendingPublicMeets={props.notAttendingPublicMeets}
+                            updateMeet = {props.updateMeet}
+                            currentMeet = {props.currentMeet}
                     />
                 </Col>
 

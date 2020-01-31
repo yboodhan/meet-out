@@ -6,9 +6,11 @@ import Moment from 'react-moment'
 import moment from 'moment'
 import { Decoded } from '../App';
 import EditMeet from './EditMeet'
-import MeetModalBody from './MeetModalBody'
-import MeetModalFooter from './MeetModalFooter'
-import { DefaultMeetForCalendar } from './Calendar'
+import MeetModal from './MeetModal'
+
+
+
+// import { DefaultMeetForCalendar } from './Calendar'
 
 // pass the event into this and display the event info
 interface EventTagProps {
@@ -27,39 +29,11 @@ const EventTag: React.FC<EventTagProps> = props => {
 
     const {className} = props;
 
-
-    let [currentMeet, setCurrentMeet] = useState<MeetForCalendar | DefaultMeetForCalendar>({
-        _id: null,
-        creator: null,
-        private: null,
-        title: null,
-        date: null,
-        start: null,
-        end: null,
-        description: null,
-        users: null,
-        activity: {
-            name: null,
-            locations: {
-                name: null,
-                address: null,
-                city: null,
-                state: null,
-                zip: null,
-                lat: null,
-                long: null,
-            }
-        },
-        myPrivateMeet: null,
-        myPublicMeet: null,
-        attending: null
-    })
-
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
     
     const showDetails = (meet: MeetForCalendar) => {
-        setCurrentMeet(meet)
+        props.updateMeet(props.meet)
         toggle()
     }
 
@@ -96,14 +70,8 @@ const EventTag: React.FC<EventTagProps> = props => {
 
             <div>
             <Modal isOpen={modal} toggle={toggle} className={className}>
-            <ModalHeader toggle={toggle}><h1>{currentMeet.title}</h1></ModalHeader>
-              <ModalBody>
-                <MeetModalBody currentMeet={currentMeet} user={props.user} />
-              </ModalBody>
-              
-              <ModalFooter>
-                  <MeetModalFooter currentMeet={currentMeet} user={props.user}/>
-              </ModalFooter>
+            <ModalHeader toggle={toggle}><h1>{props.meet.title}</h1></ModalHeader>
+              <MeetModal user={props.user} currentMeet={props.meet} modal={modal} updateMeet={props.updateMeet} toggle={toggle} />
             </Modal>
           </div>
         </Container>

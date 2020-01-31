@@ -174,6 +174,7 @@ const Content: React.FC<ContentProps> = props => {
                     attendingPublicMeets={attendingPublicMeets} 
                     notAttendingPublicMeets={notAttendingPublicMeets}
                     updateMeet={updateMeet}
+                    currentMeet={currentMeet}
             />
             }/>
             <Route path="/create" render={
