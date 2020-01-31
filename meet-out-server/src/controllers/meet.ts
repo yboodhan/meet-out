@@ -12,10 +12,10 @@ const router = Router()
 
 // Get route sends all Meets to the front-end
 // Add USER model to this so that the front-end can see the user's first name & last name
-router.get('/', (req: Request, res: Response) => {
+router.get('/:id', (req: Request, res: Response) => {
     console.log('Reached MEET ROUTE')
 
-//     db.User.findById(req.body._id)
+//     db.User.findById(req.params._id)
 //     .then((user: User) => {
 //         console.log(user)
 //         db.Meet.find({ $or: [{private: false}, {users: {$in: user}}, {creator: user._id}] })
@@ -37,13 +37,13 @@ router.get('/', (req: Request, res: Response) => {
 })
 
 // This route gets just one meeting by it's ID
-router.get('/:id', (req: Request, res: Response) => {
-    db.Meet.findOne({_id: req.params.id})
-    .then((meet: Meet) => {
-        console.log(`Should be displaying one meet: ${meet}`)
-        res.send({meet})
-    })
-})
+// router.get('/:id', (req: Request, res: Response) => {
+//     db.Meet.findOne({_id: req.params.id})
+//     .then((meet: Meet) => {
+//         console.log(`Should be displaying one meet: ${meet}`)
+//         res.send({meet})
+//     })
+// })
 
 
 router.put('/', (req: Request, res: Response) => {
