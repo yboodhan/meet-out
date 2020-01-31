@@ -91,9 +91,18 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     
     }
 
+    // if (referRedirect === true) {
+    //     return(
+    //         <Redirect to ={{
+    //             pathname: "/home",
+    //             state: { referrer: 'new meet' }
+    //         }} />
+    //     )
+    // }
+
     if (referRedirect === true) {
         return(
-            <Redirect to = "/home" />
+            <Redirect to ="/home" />
         )
     }
 
