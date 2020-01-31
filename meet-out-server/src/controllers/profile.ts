@@ -32,3 +32,7 @@ router.put('/', (req: Request, res: Response) => {
 })
 
 module.exports = router
+
+// let token: string = jwt.sign(user.toJSON(), process.env.JWT_SECRET, {
+//     expiresIn: 60 * 60 * 1 //Expires in 1 hour
+// })

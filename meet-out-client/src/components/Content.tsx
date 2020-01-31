@@ -65,12 +65,24 @@ const Content: React.FC<ContentProps> = props => {
     let [message, setMessage] = useState('')
     let [currentMeet, setCurrentMeet] = useState<MeetForCalendar | null>(null)
 
+    // let token = localStorage.getItem('userToken')
+    // fetch(`${process.env.REACT_APP_SERVER_URL}/auth/profile`, {
+    //   headers: {
+    //     'Authorization': `Bearer ${token}`
+    //   }
+    // })
+
     useEffect(() => {
         // If there is a user, fetch meets from get route
             if(props.user != null){
-                fetch(`${process.env.REACT_APP_SERVER_URL}/meet`)
+                let token = localStorage.getItem('userToken')
+                fetch(`${process.env.REACT_APP_SERVER_URL}/meet`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
                 .then(response => {
-                    console.log('In then code', response)
+                    console.log('In the code', response)
                     response.json()
                     .then((results: getResults) => {
                         console.log('🌈🌈', results, '👻👻', response)
@@ -80,7 +92,7 @@ const Content: React.FC<ContentProps> = props => {
                                 const amAttending = (meet: Meet) => {
                                     if(props.user != null){
                                         for(let i = 0; i < meet.users.length; i++) {
-                                            if(meet.users[i] == props.user._id) {
+                                            if(meet.users[i] === props.user._id) {
                                                 return true
                                             }
                                         }
@@ -118,11 +130,11 @@ const Content: React.FC<ContentProps> = props => {
                                 
                                 
                                 let attendingPublicMeets = allMeets.filter(meet => 
-                                    props.user != null && meet.creator != props.user._id && !meet.private && meet.attending
+                                    props.user != null && meet.creator !== props.user._id && !meet.private && meet.attending
                                 )
                         
                                 let notAttendingPublicMeets = allMeets.filter(meet => 
-                                    props.user != null && meet.creator != props.user._id && !meet.private && !meet.attending
+                                    props.user != null && meet.creator !== props.user._id && !meet.private && !meet.attending
                                 )
                         
         

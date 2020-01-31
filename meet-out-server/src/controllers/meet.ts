@@ -1,6 +1,7 @@
 require('dotenv').config()
 // Declare variables, import dependencies
 let db = require('../models')
+let jwt = require('jsonwebtoken')
 import { Request, Response, Router } from 'express'
 import User from '../models/user'
 import Meet from '../models/meet'
@@ -13,10 +14,21 @@ const router = Router()
 // Add USER model to this so that the front-end can see the user's first name & last name
 router.get('/', (req: Request, res: Response) => {
     console.log('Reached MEET ROUTE')
+
+//     db.User.findById(req.body._id)
+//     .then((user: User) => {
+//         console.log(user)
+//         db.Meet.find({ $or: [{private: false}, {users: {$in: user}}, {creator: user._id}] })
+//         .then((meets: Meet) => {
+//             console.log('All pertinent meets should be sent')
+//             res.send({meets, user})
+//         })
+
     db.Meet.find()
     .then((meets: Meet) => {
         console.log(`All meets should be sent.`)
         res.send({meets})
+
     })
     .catch((err: Error) => {
         console.log(`Error: ${err}`)
@@ -39,6 +51,14 @@ router.get('/:id', (req: Request, res: Response) => {
 
 //     })
 // })
+
+router.put('/', (req: Request, res: Response) => {
+    db.meet.updateOne({ _id: (req.body as{id: string}).id }, req.body)
+    .then((meet: Meet) => {
+        res.send({ meet })
+    })
+})
+
 
 // This route posts a new meet
 router.post('/', (req: Request, res: Response) => {
