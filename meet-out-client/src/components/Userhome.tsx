@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, Container, Row } from 'reactstrap';
+import { Redirect } from 'react-router-dom'
 
-import List from './List'
 import Calendar from './Calendar'
 import EventsDisplay from './EventsDisplay'
 import EventTag from './EventTag'
@@ -14,11 +14,17 @@ interface UserhomeProps {
     myPublicMeets: MeetForCalendar[],
     attendingPublicMeets: MeetForCalendar[],
     notAttendingPublicMeets: MeetForCalendar[],
+    currentMeet: MeetForCalendar | null,
     updateMeet: (currentMeet: MeetForCalendar | null) => void
 }
 
 
 const Userhome: React.FC<UserhomeProps> = (props) => {
+if (!props.user) {
+    return(
+        <Redirect to = "/" />
+    )
+} 
 
     let myPrivateEvents = props.myPrivateMeets.map( meet => {
         return <EventTag user={props.user} meet={meet} updateMeet={props.updateMeet}/>
@@ -51,7 +57,9 @@ const Userhome: React.FC<UserhomeProps> = (props) => {
                             myPrivateMeets={props.myPrivateMeets} 
                             myPublicMeets={props.myPublicMeets} 
                             attendingPublicMeets={props.attendingPublicMeets} 
-                            notAttendingPublicMeets={props.notAttendingPublicMeets} 
+                            notAttendingPublicMeets={props.notAttendingPublicMeets}
+                            updateMeet = {props.updateMeet}
+                            currentMeet = {props.currentMeet}
                     />
                 </Col>
 
@@ -61,6 +69,7 @@ const Userhome: React.FC<UserhomeProps> = (props) => {
         </Container>
 
     )
+
 }
 
 export default Userhome

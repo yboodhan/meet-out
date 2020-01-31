@@ -1,11 +1,18 @@
 import React, {useEffect, useState} from 'react'
+import { Button, Container, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import { Link , Redirect} from 'react-router-dom'
-import { Button, Container } from 'reactstrap'
 import {MeetForCalendar} from './Content'
 import Moment from 'react-moment'
 import { Decoded } from '../App'
 import moment from 'moment'
+import { Decoded } from '../App';
 import EditMeet from './EditMeet'
+import MeetModal from './MeetModal'
+
+
+
+// import { DefaultMeetForCalendar } from './Calendar'
+
 import { userInfo } from 'os'
 import Delete from './Delete'
 
@@ -13,6 +20,8 @@ import Delete from './Delete'
 interface EventTagProps {
     user: Decoded | null,
     meet: MeetForCalendar,
+    user: Decoded | null,
+    className?: string
     updateMeet: (currentMeet: MeetForCalendar | null) => void
 }
 
@@ -22,6 +31,17 @@ const EventTag: React.FC<EventTagProps> = props => {
 
     let startTime = moment(props.meet.start).format("hh:mm a")
     let endTime = moment(props.meet.end).format("hh:mm a")
+
+    const {className} = props;
+
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal);
+    
+    const showDetails = (meet: MeetForCalendar) => {
+        props.updateMeet(props.meet)
+        toggle()
+    }
+
 
     const handleMeet = () => {
         console.log('redirecting')
@@ -56,10 +76,17 @@ const EventTag: React.FC<EventTagProps> = props => {
             </div>
 
             <br />
-            <Button size="sm" color="info">More Info</Button>{' '}
+        
+            <Button size="sm" color="info" onClick={meet => showDetails(props.meet)}>More Info</Button>{' '}
             <Button size="sm" onClick={handleMeet} color="info">Edit</Button>{' '}
             {deleteButton}
 
+            <div>
+            <Modal isOpen={modal} toggle={toggle} className={className}>
+            <ModalHeader toggle={toggle}><h1>{props.meet.title}</h1></ModalHeader>
+              <MeetModal user={props.user} currentMeet={props.meet} modal={modal} updateMeet={props.updateMeet} toggle={toggle} />
+            </Modal>
+          </div>
         </Container>
     )
 }
