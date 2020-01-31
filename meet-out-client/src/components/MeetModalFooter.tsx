@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Button} from 'reactstrap'
+import JoinMeetButton from './JoinMeetButton'
 import moment from 'moment'
 import { Decoded } from '../App';
 import { MeetForCalendar } from './Content';
@@ -29,10 +30,10 @@ const MeetModalFooter: React.FC<ModalFooterBodyProps> = props => {
         )
     }
 
+    let joinButton = <JoinMeetButton user={props.user} currentMeet={props.currentMeet} updateMeet={props.updateMeet}/>
     let editButton = <Button onClick={handleMeet} color="info">Edit</Button>
     let cancelButton = <Button>CANCEL</Button>
     let cancelAttendanceButton = <Button>CANCEL ATTENDANCE</Button>
-    let attendButton = <Button>ATTEND</Button>
 
     let showButtons: JSX.Element[]
     if(props.currentMeet.myPrivateMeet || props.currentMeet.myPublicMeet) {
@@ -40,7 +41,7 @@ const MeetModalFooter: React.FC<ModalFooterBodyProps> = props => {
     } else if(!props.currentMeet.myPublicMeet && props.currentMeet.attending) {
         showButtons = [cancelAttendanceButton]
     } else {
-        showButtons = [attendButton]
+        showButtons = [joinButton]
     }
 
 

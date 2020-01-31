@@ -15,16 +15,18 @@ interface UserhomeProps {
     attendingPublicMeets: MeetForCalendar[],
     notAttendingPublicMeets: MeetForCalendar[],
     currentMeet: MeetForCalendar | null,
-    updateMeet: (currentMeet: MeetForCalendar | null) => void
+    updateMeet: (currentMeet: MeetForCalendar | null) => void,
+    // referrer: string | null
 }
 
 
 const Userhome: React.FC<UserhomeProps> = (props) => {
-    if (!props.user) {
-        return(
-            <Redirect to = "/" />
-        )
-    } 
+
+if (!props.user) {
+    return(
+        <Redirect to = "/" />
+    )
+} 
 
     let myPrivateEvents = props.myPrivateMeets.map( meet => {
         return <EventTag user={props.user} meet={meet} updateMeet={props.updateMeet}/>
@@ -39,6 +41,16 @@ const Userhome: React.FC<UserhomeProps> = (props) => {
     })
 
     let allEvents = myPrivateEvents.concat(myPublicEvents).concat(attendingPublicEvents)
+
+
+    // if(props.referrer === 'new meet') {
+    //     return(
+            
+
+            
+    //     )
+    // }
+    
 
     return (
         <Container className="web-body">

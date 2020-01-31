@@ -19,6 +19,7 @@ router.get('/:id', (req: Request, res: Response) => {
     .then((user: User) => {
         console.log(user)
         db.Meet.find({ $or: [{private: false}, {users: {$in: user}}, {creator: user._id}] })
+        .populate('users')
         .then((meets: Meet) => {
             console.log('All pertinent meets should be sent')
             console.log('meets are:', meets)
