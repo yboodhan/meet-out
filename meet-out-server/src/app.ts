@@ -1,6 +1,6 @@
 // Use import as opposed to standard "const express = require('express') " so that app is recognized as an "express" item!
 import express, { Request, Response } from 'express'
-import cors  from 'cors'
+let cors = require('cors')
 import mongoose from 'mongoose'
 //importing json module from body-parser npm module
 const bodyParser = require('body-parser')
