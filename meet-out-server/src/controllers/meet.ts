@@ -32,12 +32,12 @@ router.get('/:id', (req: Request, res: Response) => {
 })
 
 
-router.put('/', (req: Request, res: Response) => {
+router.put('/:id', (req: Request, res: Response) => {
     console.log('getting to put route')
-    db.Meet.updateOne({ _id: (req.body as{id: string}).id }, req.body)
+    db.Meet.updateOne({_id: req.params.id}, req.body)
     .then((meet: Meet) => {
         console.log('updated meet!')
-        res.send({ meet })
+        res.send({hi: 'updated the meet'})
     })
     .catch((err: Error) => {
         console.log(`Error: ${err}`)

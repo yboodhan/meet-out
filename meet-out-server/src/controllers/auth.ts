@@ -47,7 +47,7 @@ router.post('/signup', (req: Request, res: Response) => {
         // Otherwise, create the user, a token, and assign the token.
         db.User.create(req.body)
         .then((newUser: User) => {
-            let token: string = jwt.sign(newUser.toJSON(), process.env.JWT_SECRET, {
+            let token: string = jwt.sign(newUser.toJSON(), process.env.REACT_APP_JWT_SECRET, {
                 expiresIn: 60 * 60 * 1 //Expires in one hour
             })
             res.send({ token })
