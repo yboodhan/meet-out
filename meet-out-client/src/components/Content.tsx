@@ -76,7 +76,9 @@ const Content: React.FC<ContentProps> = props => {
         // If there is a user, fetch meets from get route
             if(props.user != null){
                 let token = localStorage.getItem('userToken')
-                fetch(`${process.env.REACT_APP_SERVER_URL}/meet`, {
+                console.log(props.user._id)
+                console.log(`${process.env.REACT_APP_SERVER_URL}/meet/${props.user._id ? props.user._id : null}`)
+                fetch(`${process.env.REACT_APP_SERVER_URL}/meet/${props.user._id ? props.user._id : null}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
