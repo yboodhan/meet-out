@@ -93,7 +93,7 @@ const EditProfile: React.FC<EditProfileProps> = props => {
             <Row>
                 <Col m={6}>
                     <FormGroup>
-                            <img src={photo ? photo : image} alt="profile" className="img-fluid profile" width="400" />
+                            <img src={photo ? photo : props.user.photo ? props.user.photo : image} alt="profile" className="img-fluid profile" width="400" />
                             <Widget updatePhoto={updatePhoto} />
                     </FormGroup>
                 </Col>
