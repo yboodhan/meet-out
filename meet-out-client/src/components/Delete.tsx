@@ -13,7 +13,7 @@ const Delete: React.FC<DeleteProps> = props => {
     const deleteMeet = () => {
         props.updateMeet(props.meet)
         console.log('set the current meet to this one')
-        console.log(props.meet._id)
+        console.log(`${process.env.REACT_APP_SERVER_URL}/meet/${props.meet._id}`)
 
         // let token = localStorage.getItem('userToken')
 
