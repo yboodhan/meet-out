@@ -27,6 +27,8 @@ export interface MeetForCalendar {
     private: boolean,
     date: Date,
     start: Date,
+    starttime?: Date,
+    endtime?: Date,
     end: Date,
     description: string,
     users: User[],
