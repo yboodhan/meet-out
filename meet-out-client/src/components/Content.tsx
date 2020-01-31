@@ -161,7 +161,7 @@ const Content: React.FC<ContentProps> = props => {
                 () => <Signup user={props.user} updateUser={props.updateUser} />
             } />
             <Route path="/profile/edit" render={
-                () => <EditProfile user={props.user}/>
+                () => <EditProfile user={props.user} updateUser={props.updateUser}/>
             }/>
             <Route exact path="/profile" render={
                 () => <Profile user={props.user} />

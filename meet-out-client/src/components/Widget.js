@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, Container } from 'reactstrap'
 
-
 class Widget extends React.Component {
 
     showWidget = (widget) => {
@@ -17,7 +16,7 @@ class Widget extends React.Component {
                     console.log(result.info.secure_url)
 
                     // set the state here for photo
-                    
+                    this.props.updateUser()
 
                     // fetch(`${process.env.REACT_APP_SERVER_URL}/profile`, {
                     //     method: 'PUT',

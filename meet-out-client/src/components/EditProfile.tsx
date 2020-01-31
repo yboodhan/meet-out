@@ -1,27 +1,77 @@
-import React, { useState, FormEvent } from 'react'
+import React, { useState, FormEvent, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Decoded } from '../App'
 import { Button, Col, Container, Form, FormGroup, FormText, Input, Row } from 'reactstrap';
 import Widget from './Widget'
+import image from '../SelfieDoodle.png'
 
 // Props
 interface EditProfileProps {
-    user: Decoded | null
+    user: Decoded | null,
+    updateUser: (newToken: string | null) => void
 }
 
 const EditProfile: React.FC<EditProfileProps> = props => {
+
 
     let [email, setEmail] = useState('')
     let [firstname, setFirstname] = useState('')
     let [lastname, setLastname] = useState('')
     let [message, setMessage] = useState('')
+    let [password, setPassword] = useState('')
+    let [photo, setPhoto] = useState('')
+    let [referRedirect, setReferRedirect] = useState(false)
+
+    useEffect( () => {
+        if (props.user) {
+            setPassword(props.user.password)
+        }
+    }, [])
     
-    if (!props.user) {
-        return <Redirect to="/" />
-    }
 
     const handleSubmit = (e: FormEvent) => {
-        console.log('edited profile')
+        e.preventDefault()
+
+        let data: object = {
+            email,
+            firstname,
+            lastname,
+            password,
+            photo
+        }
+
+        fetch(`${process.env.REACT_APP_SERVER_URL}/profile`, {
+          method: 'PUT',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then( (response: Response) => {
+          response.json()
+          .then( result => {
+            if (response.ok) {
+              props.updateUser( result.token )
+              setReferRedirect(true)
+            } else {
+              setMessage(`${response.status} ${response.statusText}: ${result.message}`)
+            }
+          })
+        })
+        .catch( (err: Error) => {
+          console.log(err)
+          setMessage(`${err.toString()}`)
+        })
+    }
+
+    if (referRedirect === true) {
+        return(
+            <Redirect to = "/home" />
+        )
+    }
+
+    if (!props.user) {
+        return <Redirect to="/" />
     }
 
 
@@ -34,8 +84,8 @@ const EditProfile: React.FC<EditProfileProps> = props => {
             <Row>
                 <Col m={6}>
                     <FormGroup>
-                            UPLOAD HERE
-                            <Widget />
+                            <img src={props.user.photo ? props.user.photo : image} alt="profile" className="img-fluid" width="400"/>
+                            <Widget updateUser={props.updateUser} />
                     </FormGroup>
                 </Col>
 
