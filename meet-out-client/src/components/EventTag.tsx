@@ -5,7 +5,6 @@ import {MeetForCalendar} from './Content'
 import Moment from 'react-moment'
 import { Decoded } from '../App'
 import moment from 'moment'
-import { Decoded } from '../App';
 import EditMeet from './EditMeet'
 import MeetModal from './MeetModal'
 
@@ -20,7 +19,6 @@ import Delete from './Delete'
 interface EventTagProps {
     user: Decoded | null,
     meet: MeetForCalendar,
-    user: Decoded | null,
     className?: string
     updateMeet: (currentMeet: MeetForCalendar | null) => void
 }
