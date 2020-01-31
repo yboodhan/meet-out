@@ -27,7 +27,6 @@ if (!props.user) {
 } 
 
     let myPrivateEvents = props.myPrivateMeets.map( meet => {
-
         return <EventTag user={props.user} meet={meet} updateMeet={props.updateMeet}/>
     })
 

@@ -3,6 +3,7 @@ import { Button, Container, Modal, ModalHeader, ModalBody, ModalFooter } from 'r
 import { Link , Redirect} from 'react-router-dom'
 import {MeetForCalendar} from './Content'
 import Moment from 'react-moment'
+import { Decoded } from '../App'
 import moment from 'moment'
 import { Decoded } from '../App';
 import EditMeet from './EditMeet'
@@ -12,8 +13,12 @@ import MeetModal from './MeetModal'
 
 // import { DefaultMeetForCalendar } from './Calendar'
 
+import { userInfo } from 'os'
+import Delete from './Delete'
+
 // pass the event into this and display the event info
 interface EventTagProps {
+    user: Decoded | null,
     meet: MeetForCalendar,
     user: Decoded | null,
     className?: string
@@ -51,6 +56,14 @@ const EventTag: React.FC<EventTagProps> = props => {
         )
     }
 
+    let deleteButton
+
+    if (props.user && props.user._id === props.meet.creator) {
+        deleteButton = <Delete meet={props.meet} updateMeet={props.updateMeet}/>
+    }
+
+    
+
     return (
         <Container className="event-tag">
             <h4>{props.meet.activity.name}</h4>
@@ -63,10 +76,10 @@ const EventTag: React.FC<EventTagProps> = props => {
             </div>
 
             <br />
-
-            <Button color="info" onClick={meet => showDetails(props.meet)}>More Info</Button>{' '}
-            <Button color="info" >View</Button> {' '}
-            <Button onClick={handleMeet} color="info">Edit</Button>
+        
+            <Button size="sm" color="info" onClick={meet => showDetails(props.meet)}>More Info</Button>{' '}
+            <Button size="sm" onClick={handleMeet} color="info">Edit</Button>{' '}
+            {deleteButton}
 
             <div>
             <Modal isOpen={modal} toggle={toggle} className={className}>
