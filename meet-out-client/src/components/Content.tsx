@@ -115,7 +115,7 @@ const Content: React.FC<ContentProps> = props => {
                                     attending: amAttending(meet) ? true : false
                                     }
                                 })
-                                console.log(allMeets)
+                                console.log('here are all meets', allMeets)
                                 
                                 let myPrivateMeets = allMeets.filter(meet => 
                                     meet.myPrivateMeet

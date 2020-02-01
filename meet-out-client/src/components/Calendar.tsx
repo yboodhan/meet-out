@@ -41,6 +41,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
     const toggle = () => setModal(!modal);
 
     const showDetails = (meet: MeetForCalendar) => {
+        console.log('Logging: ', meet)
         props.updateMeet(meet)
         toggle()
     }

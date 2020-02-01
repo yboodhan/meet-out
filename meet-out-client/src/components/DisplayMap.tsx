@@ -13,7 +13,7 @@ interface DisplayMapProps {
 const DisplayMap: React.FC<DisplayMapProps> = props => {
     // UNCOMMENT THIS WHEN PASSED LAT AND LONG FROM BACK END:
     // let center = {lat: props.currentMeet ? props.currentMeet.activity.locations.lat : 0, lng: props.currentMeet ? props.currentMeet.activity.locations.long : 0 }
-    let center = {lat: 11, lng: 11 }
+    let center = {lat: props.currentMeet ? props.currentMeet.activity.locations.lat : 0, lng: props.currentMeet ? props.currentMeet.activity.locations.long : 0 }
     console.log(center)
     let zoom = 12
     let mapKeys: string = `${process.env.REACT_APP_GOOGLE_MAP}`
@@ -35,9 +35,9 @@ const DisplayMap: React.FC<DisplayMapProps> = props => {
     //     console.log('center', center)
     // })
 
+    console.log(props.currentMeet)
     return (
-
-        <div style={{ height: '30vh', width: '30vw' }}>
+        <div style={{ height: '25vh', width: '25vw' }}>
             <br />
             <GoogleMapReact
                 bootstrapURLKeys={{ key: mapKeys }}
@@ -45,15 +45,13 @@ const DisplayMap: React.FC<DisplayMapProps> = props => {
                 defaultZoom={zoom}
             >
                 <Marker
-                    // UNCOMMENT THESE WHEN PASSED LAT AND LONG FROM BACK END:
-                    // lat={props.currentMeet ? props.currentMeet.activity.locations.lat : 0}
-                    // lng={props.currentMeet ? props.currentMeet.activity.locations.long : 0}
-                    lat={11}
-                    lng={11}
+                    lat={props.currentMeet ? props.currentMeet.activity.locations.lat : 0}
+                    lng={props.currentMeet ? props.currentMeet.activity.locations.long : 0}
+                    // lat={11}
+                    // lng={11}
                     text="Marker"
                 />
             </GoogleMapReact>
-            MAP ERROR
         </div>
     );
 }
