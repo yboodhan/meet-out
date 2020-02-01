@@ -2,8 +2,9 @@ import React from 'react'
 import { Decoded } from '../App';
 import {MeetForCalendar} from './Content'
 import { Redirect } from 'react-router-dom'
-import { Col, Container, Row } from 'reactstrap';
+import { Col, Container, Row, Badge } from 'reactstrap';
 import DisplayMap from './DisplayMap'
+import moment from 'moment'
 
 // takes in the current meet value and spits out info
 // can be accessed when the meet is created and by link from calendar page (onclick)
@@ -31,6 +32,10 @@ const ShowMeet: React.FC<ShowMeetProps> = props => {
             creator = props.currentMeet.users.find((user) => user._id  === (props.currentMeet ? props.currentMeet.creator : ''))?.firstname as string
         }
 
+    let attendees = props.currentMeet.users.map( user => {
+        return <div>{user.firstname as string}</div>
+    })
+
     return (
         <Container className="web-body show-page">
             <h1>{props.currentMeet.title}</h1>
@@ -38,13 +43,19 @@ const ShowMeet: React.FC<ShowMeetProps> = props => {
             <hr />
             <Row>
                 <Col md={6}>
-
+                <h6>Details:</h6>
+                <p>{props.currentMeet.description}</p>
+                <br />
+                <h6>Attendees: <Badge color="secondary">{props.currentMeet.users.length}</Badge></h6>
+                {attendees}
                 </Col>
                 <Col md={6}>
+                <h6>When:</h6>
+                <p>{props.currentMeet.date ? props.currentMeet.date.toDateString() : 'not available'}</p>
+                <p>{props.currentMeet.start ? moment(props.currentMeet.start).format("h:mm a"): 'not available' } - {props.currentMeet.end ? moment(props.currentMeet.end).format("h:mm a"): 'not available'}</p>
+                <h6>Where:</h6>
+                <DisplayMap />
 
-                    <Row>
-                        <DisplayMap />
-                    </Row>
                 </Col>
             </Row>
 
