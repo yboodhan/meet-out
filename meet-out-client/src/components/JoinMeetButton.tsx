@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Button } from 'reactstrap'
 import {MeetForCalendar} from './Content'
 import { Decoded } from '../App'
+import { Redirect } from 'react-router-dom'
 
 interface JoinMeetButtonProps {
     user: Decoded | null,
@@ -12,7 +13,7 @@ interface JoinMeetButtonProps {
 const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
     
     // let [message, setMessage] = useState('')    
-    // let [referRedirect, setReferRedirect] = useState(false)
+    let [referRedirect, setReferRedirect] = useState(false)
 
     const handleJoin = () => {
         if(props.currentMeet && props.user) {
@@ -25,39 +26,49 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
         attendingUserIds.push(props.user._id)
 
         // set data to send
-        let data: object = {
-            users: attendingUserIds,
-            activityName: props.currentMeet.activity.name,
-            description: props.currentMeet.description,
-            activityAddress: props.currentMeet.activity.locations.address,
-            city: props.currentMeet.activity.locations.city,
-            state: props.currentMeet.activity.locations.state,
-            zip: props.currentMeet.activity.locations.zip,
-            date: props.currentMeet.date,
-            starttime: props.currentMeet.start,
-            endtime: props.currentMeet.end,
+        let data = {
+            id: props.currentMeet ? props.currentMeet._id : null,
             creator: props.currentMeet.creator,
-            privateMeet: props.currentMeet.private
+            private: props.currentMeet.private,
+            date: new Date(props.currentMeet.date),
+            starttime: props.currentMeet.start.toTimeString(),
+            endtime: props.currentMeet.end.toTimeString(),
+            description: props.currentMeet.description,
+            users: attendingUserIds,
+            activity: props.currentMeet.activity
         }
 
         console.log('🌈🌈🌈', data)
       
          //post to database put route
-         let token = localStorage.getItem('userToken')
-         fetch(`${process.env.REACT_APP_SERVER_URL}/meet`, {
+        //  let token = localStorage.getItem('userToken')
+        fetch(`${process.env.REACT_APP_SERVER_URL}/meet/${data.id}`, {
             method: 'PUT',
             body: JSON.stringify(data),
             headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            // 'Authorization': `Bearer ${token}`
             }
         })
         .then( (response: Response) => {
             response.json().then(result => {
             if (response.ok) {
-                props.updateMeet(result)
-                console.log('Response ok 🥳🥳🥳🥳🥳🥳', result)
-                // setReferRedirect(true)
+                props.updateMeet({
+                    _id: result._id,
+                    title: result.activity.name,
+                    creator: result.creator,
+                    private: result.private,
+                    date: new Date(result.date),
+                    start: result.starttime,
+                    end: result.endtime,
+                    description: result.description,
+                    users: result.users,
+                    activity: result.activity,
+                    myPrivateMeet: false,
+                    myPublicMeet: false,
+                    attending: true
+                    })
+                setReferRedirect(true)
             } else {
                 // Error
                 console.log(response.status)
@@ -70,7 +81,11 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
             console.log('Error', err)
             // setMessage(`Error: ${err.toString()}`)
         })
-
+        if (referRedirect) {
+            return(
+                <Redirect to = "/home" />
+            )
+        }
         } 
         return (
             <p>Error! No meet selected</p>
