@@ -62,7 +62,7 @@ const ShowMeet: React.FC<ShowMeetProps> = props => {
                 <p>{props.currentMeet.start ? moment(props.currentMeet.start).format("h:mm a"): 'not available' } - {props.currentMeet.end ? moment(props.currentMeet.end).format("h:mm a"): 'not available'}</p>
                 <h6>Where:</h6>
                 <a href={mapLink} target="_blank" rel="noopener noreferrer"> {mapLinkText} </a>
-                <DisplayMap />
+                <DisplayMap currentMeet={props.currentMeet}/>
 
                 </Col>
             </Row>
