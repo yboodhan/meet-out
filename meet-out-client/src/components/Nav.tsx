@@ -35,15 +35,14 @@ const Nav: React.FC<NavProps> = props => {
         links = (
         <Navi navbar>
             <NavbarBrand className="logo" href="/">MO</NavbarBrand>
-
             <div className="NavItem">
-                <NavLink><Link to="/profile">{props.user.firstname}</Link></NavLink>
+                <NavLink><Link to="/profile">My Profile</Link></NavLink>
             </div>
             <div className="NavItem">
                 <NavLink><Link to="/home">Calendar</Link></NavLink>
             </div>
             <div className="NavItem">
-                <NavLink><Link to="/create">Create</Link></NavLink>
+                <NavLink><Link to="/create">Create Meet</Link></NavLink>
             </div>
             <div className="NavItem">
                 <NavLink><Link to="/" onClick={handleLogout}>Logout</Link></NavLink>

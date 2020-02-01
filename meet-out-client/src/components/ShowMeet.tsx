@@ -23,6 +23,7 @@ const ShowMeet: React.FC<ShowMeetProps> = props => {
     if (!props.currentMeet) {
         return <Redirect to='/' />
     }
+    console.log('🧘🏽‍♀️🛑'+ props.currentMeet)
 
     return (
         <Container className="web-body">
