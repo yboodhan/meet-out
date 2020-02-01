@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose'
 import * as bcrypt from 'bcryptjs'
 
-import IMeet from '../models/meet'
+import Meet from '../models/meet'
 
 //create interface for User extending mongoose.Document (mongoose.Document includes ._id)
 export default interface User extends mongoose.Document {
@@ -10,7 +10,7 @@ export default interface User extends mongoose.Document {
   email: string;
   password: string;
   photo: string;
-  meets: IMeet[];
+  meets: Meet[];
   _v: number;
   isValidPassword(user: User, password: string): boolean;
 }

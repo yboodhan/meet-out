@@ -1,11 +1,73 @@
 import React from 'react'
+import { Decoded } from '../App';
+import {MeetForCalendar} from './Content'
+import { Redirect } from 'react-router-dom'
+import { Col, Container, Row } from 'reactstrap';
+import DisplayMap from './DisplayMap'
 
-const ShowMeet = () => {
+// takes in the current meet value and spits out info
+// can be accessed when the meet is created and by link from calendar page (onclick)
+
+interface ShowMeetProps {
+    user: Decoded | null,
+    currentMeet: MeetForCalendar | null
+}
+
+const ShowMeet: React.FC<ShowMeetProps> = props => {
+
+    // If no user/meet, send to home page
+    if (!props.user) {
+       return <Redirect to='/' />
+    }
+
+    if (!props.currentMeet) {
+        return <Redirect to='/' />
+    }
+
     return (
-        <div>
-            
-        </div>
+        <Container className="web-body">
+            <h1>{props.currentMeet.title}</h1>
+            <Row>
+                <Col md={6}>
+
+                </Col>
+                <Col md={6}>
+
+                    <Row>
+                        <DisplayMap />
+                    </Row>
+                </Col>
+            </Row>
+
+
+        </Container>
     )
 }
 
 export default ShowMeet
+
+// title: string,
+// creator: string,
+// private: boolean,
+// date: Date,
+// start: Date,
+// starttime?: Date,
+// endtime?: Date,
+// end: Date,
+// description: string,
+// users: User[],
+// activity: {
+//     name: string,
+//     locations: {
+//         name: string;
+//         address: string;
+//         city: string;
+//         state: string;
+//         zip: number;
+//         lat: number;
+//         long: number;
+//     }
+// },
+// myPrivateMeet: boolean,
+// myPublicMeet: boolean,
+// attending: boolean

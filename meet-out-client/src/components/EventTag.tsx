@@ -38,7 +38,6 @@ const EventTag: React.FC<EventTagProps> = props => {
         toggle()
     }
 
-
     const handleMeet = () => {
         console.log('redirecting')
         //update the current meet
@@ -62,7 +61,7 @@ const EventTag: React.FC<EventTagProps> = props => {
 
     return (
         <Container className="event-tag">
-            <h4>{props.meet.activity.name}</h4>
+            <h4><Link to='/show' onClick={ () => props.updateMeet(props.meet)}>{props.meet.activity.name}</Link></h4>
             <p><Moment format="MM/DD/YYYY">
                 {props.meet.date.toDateString()}
             </Moment> <small>({startTime} - {endTime})</small></p>

@@ -3,12 +3,13 @@ import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { Button, Col, Container, Form, FormGroup, FormText, Input, Label, Row } from 'reactstrap';
-import { Decoded } from '../App';
+import { Decoded, Meet, User } from '../App';
 import {MeetForCalendar} from './Content'
 
 interface EditMeetProps {
     user: Decoded | null,
-    currentMeet: MeetForCalendar | null
+    currentMeet: MeetForCalendar | null,
+    updateMeet: (currentMeet: MeetForCalendar | null) => void
 }
 
 const EditMeet: React.FC<EditMeetProps> = props => {
@@ -32,7 +33,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
     useEffect(() => {
         if (props.user) {
             setCreator(props.user._id)
-            setUsers(props.user._id)
+            // setUsers(props.user._id)
         }
         setMessage('')
     }, [props.user, activityName, description, activityAddress, city, state, zip, date, starttime, endtime])
@@ -48,7 +49,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
             id: props.currentMeet ? props.currentMeet._id : null,
             creator: creator,
             private: privateMeet,
-            date: date,
+            date: new Date(date),
             starttime: starttime,
             endtime: endtime,
             description: description,
@@ -75,7 +76,36 @@ const EditMeet: React.FC<EditMeetProps> = props => {
         .then( (response: Response) => {
             response.json().then(result => {
             if (response.ok) {
-                console.log('Response ok', response)
+
+                console.log('Response ok', response, 'RESULT 🌷🌷🌷🌷🌷', result)
+                const amAttending = (result: any) => {
+                    for(let i = 0; i < result.users.length; i++) {
+                        if(result.users[i]._id === props.user?._id) {
+                            return true
+                        }
+                    }
+                    return false
+                }
+                props.updateMeet({
+                    _id: result._id,
+                    title: result.activity.name,
+                    creator: result.creator,
+                    private: result.private,
+                    date: new Date(result.date),
+                    start: result.starttime,
+                    end: result.endtime,
+                    description: result.description,
+                    users: result.users,
+                    activity: result.activity,
+                    myPrivateMeet: (props.user != null && result.creator == props.user._id && result.private) ? true : false,
+                    myPublicMeet: (props.user != null && result.creator == props.user._id && !result.private) ? true : false,
+                    attending: amAttending(result) ? true : false
+                    })
+
+//                 console.log('Response ok', response)
+//                 console.log('Result: ', result)
+//                 props.updateMeet(result)
+
                 setReferRedirect(true)
             } else {
                 // Error
@@ -93,7 +123,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
 
     if (referRedirect) {
         return(
-            <Redirect to = "/home" />
+            <Redirect to = "/" />
         )
     }
 
@@ -151,19 +181,19 @@ const EditMeet: React.FC<EditMeetProps> = props => {
                         <Label for="address"><h5>Updated Time Details:</h5></Label>
                         <FormGroup>
                             <Label for="address">Date:</Label>
-                            < Input id="date" name="date" type="date" placeholder="Date" defaultValue={props.currentMeet.date.toDateString()} onChange={(e: FormEvent<HTMLInputElement>) => setDate(e.currentTarget.value)} required />
+                            < Input id="date" name="date" type="date" placeholder="Date" onChange={(e: FormEvent<HTMLInputElement>) => setDate(e.currentTarget.value)} required />
                         </FormGroup>
                         <Row>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="starttime">Start:</Label>
-                                    < Input id="starttime" name="starttime" type="time" defaultValue={props.currentMeet.start.toTimeString()} placeholder="Start Time" onChange={(e: FormEvent<HTMLInputElement>) => setStartTime(e.currentTarget.value)} required />
+                                    < Input id="starttime" name="starttime" type="time"  placeholder="Start Time" onChange={(e: FormEvent<HTMLInputElement>) => setStartTime(e.currentTarget.value)} required />
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="address">End:</Label>
-                                    < Input id="endtime" name="endtime" type="time" defaultValue={props.currentMeet.end.toTimeString()} placeholder="End Time" onChange={(e: FormEvent<HTMLInputElement>) => setEndTime(e.currentTarget.value)} required />
+                                    < Input id="endtime" name="endtime" type="time"  placeholder="End Time" onChange={(e: FormEvent<HTMLInputElement>) => setEndTime(e.currentTarget.value)} required />
                                 </FormGroup> 
                             </Col>
                         </Row>
