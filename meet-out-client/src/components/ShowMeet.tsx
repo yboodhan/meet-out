@@ -36,6 +36,13 @@ const ShowMeet: React.FC<ShowMeetProps> = props => {
         return <div>{user.firstname as string}</div>
     })
 
+    let mapLinkText = 'location unavailable'
+    let mapLink = '#'
+    if(props.currentMeet.activity.locations.address !== null){
+      mapLinkText = `${props.currentMeet.activity.locations.address}, ${props.currentMeet.activity.locations.city}, ${props.currentMeet.activity.locations.state}, ${props.currentMeet.activity.locations.zip} `
+      mapLink = `https://maps.google.com/?q=${props.currentMeet.activity.locations.address + props.currentMeet.activity.locations.city + props.currentMeet.activity.locations.state + props.currentMeet.activity.locations.zip}`
+    }
+
     return (
         <Container className="web-body show-page">
             <h1>{props.currentMeet.title}</h1>
@@ -54,6 +61,7 @@ const ShowMeet: React.FC<ShowMeetProps> = props => {
                 <p>{props.currentMeet.date ? props.currentMeet.date.toDateString() : 'not available'}</p>
                 <p>{props.currentMeet.start ? moment(props.currentMeet.start).format("h:mm a"): 'not available' } - {props.currentMeet.end ? moment(props.currentMeet.end).format("h:mm a"): 'not available'}</p>
                 <h6>Where:</h6>
+                <a href={mapLink} target="_blank" rel="noopener noreferrer"> {mapLinkText} </a>
                 <DisplayMap />
 
                 </Col>

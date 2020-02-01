@@ -12,6 +12,7 @@ const DisplayMap = (props: any) => {
 
 
         <div style={{ height: '25vh', width: '25vw' }}>
+            <br />
             <GoogleMapReact
                 bootstrapURLKeys={{ key: mapKeys }}
                 defaultCenter={center}
