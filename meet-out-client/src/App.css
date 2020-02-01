@@ -42,14 +42,13 @@
   background-color: white;
   color: black;
   border: 1px solid rgba(128, 128, 128, 0.452);
-  margin: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   padding: 1em;
 }
 
 .event-tag:hover {
-  background-color: white;
-  color: black;
-  font-weight: bold;
+  border: 1px solid rgba(128, 128, 128, 0.767);
 }
 
 .profile {

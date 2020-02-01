@@ -62,14 +62,14 @@ const EventTag: React.FC<EventTagProps> = props => {
     
 
     return (
-        <Button className="event-tag">
+        <Container className="event-tag">
             <h4><Link to='/show' onClick={ () => props.updateMeet(props.meet)}>{props.meet.activity.name}</Link></h4>
             <p><Moment format="MM/DD/YYYY">
                 {props.meet.date.toDateString()}
             </Moment> <small>({startTime} - {endTime})</small></p>
             
             <div className="text-truncate">
-            <small>{props.meet.description}</small>
+            <small className="text-truncate">{props.meet.description}</small>
             </div>
 
             <br />
@@ -84,7 +84,7 @@ const EventTag: React.FC<EventTagProps> = props => {
                     <MeetModal user={props.user} currentMeet={props.meet} modal={modal} updateMeet={props.updateMeet} toggle={toggle} />
                 </Modal>
             </div>
-        </Button>
+        </Container>
     )
 }
 
