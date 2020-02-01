@@ -21,7 +21,7 @@ interface UserhomeProps {
 
 
 const Userhome: React.FC<UserhomeProps> = (props) => {
-
+console.log(props.user, '🍖🍖🍖🍖')
 if (!props.user) {
     return(
         <Redirect to = "/" />

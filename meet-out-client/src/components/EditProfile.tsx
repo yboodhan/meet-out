@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useEffect } from 'react'
+import React, { useState, FormEvent } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Decoded } from '../App'
 import { Button, Col, Container, Form, FormGroup, FormText, Input, Row } from 'reactstrap';
@@ -48,27 +48,27 @@ const EditProfile: React.FC<EditProfileProps> = props => {
         let token = localStorage.getItem('userToken')
 
         fetch(`${process.env.REACT_APP_SERVER_URL}/profile`, {
-          method: 'PUT',
-          body: JSON.stringify(data),
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          }
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
         })
         .then( (response: Response) => {
-          response.json()
-          .then( result => {
-            if (response.ok) {
-              props.updateUser( result.token )
-              setReferRedirect(true)
-            } else {
-              setMessage(`${response.status} ${response.statusText}: ${result.message}`)
-            }
-          })
+            response.json()
+            .then( result => {
+                if (response.ok) {
+                    props.updateUser( result.token )
+                    setReferRedirect(true)
+                } else {
+                    setMessage(`${response.status} ${response.statusText}: ${result.message}`)
+                }
+            })
         })
         .catch( (err: Error) => {
-          console.log(err)
-          setMessage(`${err.toString()}`)
+            console.log(err)
+            setMessage(`${err.toString()}`)
         })
     }
 

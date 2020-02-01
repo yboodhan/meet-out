@@ -29,7 +29,6 @@ app.use(bodyParser.json())
 
 
 app.use('/auth', require('./controllers/auth'))
-app.use('/home', require('./controllers/home'))
 app.use('/meet', require('./controllers/meet'))
 app.use('/profile', require('./controllers/profile'))
 // TODO: Add, expressJwt({ secret: 'ghjk' }) middleware
