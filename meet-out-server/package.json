@@ -4,7 +4,11 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon dist/app.js"
+    "start": "nodemon dist/app.js",
+    "postinstall": "tsc"
+  },
+  "engines": {
+    "node": "v12.13.1"
   },
   "keywords": [],
   "author": "",
