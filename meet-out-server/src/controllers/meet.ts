@@ -17,6 +17,7 @@ router.get('/:id', (req: Request, res: Response) => {
         db.Meet.find({ $or: [{private: false}, {users: {$in: user}}, {creator: user._id}] })
         .populate('users')
         .then((meets: Meet) => {
+            console.log(meets)
             res.send({meets, user})
         })
         .catch((err: Error) => {
