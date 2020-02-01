@@ -13,18 +13,17 @@ interface ModalBodyProps {
 
 const MeetDetailsModal: React.FC<ModalBodyProps> = props => {
 
-
+      moment(props.currentMeet.date?.toDateString()).format("MM/DD/YYYY")
     
-    if(props.currentMeet.date) {
-      moment(props.currentMeet.date.toDateString()).format("MM/DD/YYYY")
-    }
 
     let attendingUsers: JSX.Element | JSX.Element[] = <p>'No one is attending :('</p>
-      if(props.currentMeet.myPrivateMeet || props.currentMeet.myPublicMeet) {
-        attendingUsers = <p>You</p>
-      } else if (props.currentMeet?.users !== null) {
+      if (props.currentMeet?.users !== null) {
         attendingUsers = props.currentMeet.users?.map(u => {
+          if(u._id === props.user?._id) {
+            return <p>You</p>
+          } else {
           return <p>{u.firstname}</p>
+        }
         })
       }
 

@@ -4,18 +4,18 @@ import {MeetForCalendar} from './Content'
 import { Decoded } from '../App'
 import { Redirect } from 'react-router-dom'
 
-interface JoinMeetButtonProps {
+interface LeaveMeetButtonProps {
     user: Decoded | null,
     currentMeet: MeetForCalendar | null
     updateMeet: (currentMeet: MeetForCalendar | null) => void
 }
 
-const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
+const LeaveMeetButton: React.FC<LeaveMeetButtonProps> = props => {
     
     // let [message, setMessage] = useState('')    
     let [referRedirect, setReferRedirect] = useState(false)
 
-    const handleJoin = () => {
+    const handleLeave = () => {
         if(props.currentMeet && props.user) {
 
         //convert users array to only the user ids
@@ -23,7 +23,9 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
             return user._id
         })
         //push current user id onto user ids array
-        attendingUserIds.push(props.user._id)
+        attendingUserIds.filter(id => id != props.user?._id)
+
+        console.log('🐳🐳🐳', attendingUserIds)
 
         // set data to send
         let data = {
@@ -42,7 +44,7 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
       
          //post to database put route
         //  let token = localStorage.getItem('userToken')
-        fetch(`${process.env.REACT_APP_SERVER_URL}/meet/${data.id}`, {
+         fetch(`${process.env.REACT_APP_SERVER_URL}/meet/${data.id}`, {
             method: 'PUT',
             body: JSON.stringify(data),
             headers: {
@@ -53,6 +55,7 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
         .then( (response: Response) => {
             response.json().then(result => {
             if (response.ok) {
+                
                 props.updateMeet({
                     _id: result._id,
                     title: result.activity.name,
@@ -66,7 +69,7 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
                     activity: result.activity,
                     myPrivateMeet: false,
                     myPublicMeet: false,
-                    attending: true
+                    attending: false
                     })
                 setReferRedirect(true)
             } else {
@@ -81,11 +84,13 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
             console.log('Error', err)
             // setMessage(`Error: ${err.toString()}`)
         })
-        if (referRedirect) {
-            return(
-                <Redirect to = "/home" />
-            )
-        }
+
+    if (referRedirect) {
+        return(
+            <Redirect to = "/home" />
+        )
+    }
+
         } 
         return (
             <p>Error! No meet selected</p>
@@ -94,9 +99,9 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
     
     return (
         <div>
-            <Button onClick={handleJoin}>Join Meet</Button>
+            <Button onClick={handleLeave}>Leave Meet</Button>
         </div>
     )
 }
 
-export default JoinMeetButton
+export default LeaveMeetButton

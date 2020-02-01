@@ -35,8 +35,13 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     useEffect(() => {
         if (props.user) {
             setCreator(props.user._id)
+
+//             setUsers(props.user._id)
+
+
             let attendees = [props.user._id]
             setUsers(attendees)
+
         }
         setMessage('')
     }, [props.user, activityName, description, activityAddress, city, state, zip, date, starttime, endtime])
