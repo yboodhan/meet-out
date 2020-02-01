@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { Button, Col, Container, Form, FormGroup, FormText, Input, Label, Row } from 'reactstrap';
-import { Decoded } from '../App';
+import { Decoded, Meet, User } from '../App';
 import {MeetForCalendar} from './Content'
 
 interface EditMeetProps {
@@ -33,7 +33,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
     useEffect(() => {
         if (props.user) {
             setCreator(props.user._id)
-            setUsers(props.user._id)
+            // setUsers(props.user._id)
         }
         setMessage('')
     }, [props.user, activityName, description, activityAddress, city, state, zip, date, starttime, endtime])
@@ -77,6 +77,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
             response.json().then(result => {
             if (response.ok) {
                 console.log('Response ok', response)
+                console.log('Result: ', result)
                 props.updateMeet(result)
                 setReferRedirect(true)
             } else {
@@ -95,7 +96,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
 
     if (referRedirect) {
         return(
-            <Redirect to = "/show" />
+            <Redirect to = "/" />
         )
     }
 

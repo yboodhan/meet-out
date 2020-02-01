@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { Button, Col, Container, Form, FormGroup, FormText, Input, Label, Row } from 'reactstrap';
-import { Decoded } from '../App';
+import { Decoded, Meet, User } from '../App';
 import { MeetForCalendar } from './Content';
 
 interface NewMeetProps {
@@ -27,7 +27,7 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     let [date , setDate] = useState('')
     let [starttime, setStartTime] = useState('')
     let [endtime, setEndTime] = useState('')
-    let [users, setUsers] = useState([])
+    let [users, setUsers] = useState<string[]>([])
     let [creator, setCreator] = useState('')
     let [privateMeet, setPrivateMeet] = useState(false)
     let [referRedirect, setReferRedirect] = useState(false)
@@ -35,7 +35,8 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     useEffect(() => {
         if (props.user) {
             setCreator(props.user._id)
-            setUsers(props.user._id)
+            let attendees = [props.user._id]
+            setUsers(attendees)
         }
         setMessage('')
     }, [props.user, activityName, description, activityAddress, city, state, zip, date, starttime, endtime])

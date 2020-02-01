@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Route } from 'react-router-dom'
-import { Decoded } from '../App'
-import User from '../../../meet-out-server/src/models/user'
-import Meet from '../../../meet-out-server/src/models/meet'
+import { Decoded, User, Meet } from '../App'
+// import User from '../../../meet-out-server/src/models/user'
+// import Meet from '../../../meet-out-server/src/models/meet'
+
+
 
 
 //Components
@@ -13,6 +15,7 @@ import EditProfile from './EditProfile'
 import NewMeet from './NewMeet'
 import EditMeet from './EditMeet'
 import ShowMeet from './ShowMeet'
+import MeetModalFooter from './MeetModalFooter'
 
 // Props
 interface ContentProps {
@@ -21,7 +24,7 @@ interface ContentProps {
 }
 
 export interface MeetForCalendar {
-    _id: number,
+    _id: string,
     title: string,
     creator: string,
     private: boolean,
@@ -35,7 +38,6 @@ export interface MeetForCalendar {
     activity: {
         name: string,
         locations: {
-            name: string;
             address: string;
             city: string;
             state: string;
@@ -95,7 +97,7 @@ const Content: React.FC<ContentProps> = props => {
                                 const amAttending = (meet: Meet) => {
                                     if(props.user != null){
                                         for(let i = 0; i < meet.users.length; i++) {
-                                            if(meet.users[i] === props.user._id) {
+                                            if(meet.users[i]._id === props.user._id) {
                                                 return true
                                             }
                                         }
@@ -103,7 +105,7 @@ const Content: React.FC<ContentProps> = props => {
                                     }
                                 }
 
-                                let allMeets = results.meets.map<MeetForCalendar>(meet => {
+                                let allMeets = results.meets.map<MeetForCalendar>( meet => {
                                     let dateString = meet.date.toString().slice(0,10)
 
                                     return { 

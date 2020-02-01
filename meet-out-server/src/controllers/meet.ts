@@ -73,7 +73,6 @@ router.post('/', (req: Request, res: Response) => {
                 activity: {
                     name: req.body.activityName,
                     locations: {
-                        name: req.body.locationName,
                         address: address,
                         city: req.body.city,
                         state: req.body.state,

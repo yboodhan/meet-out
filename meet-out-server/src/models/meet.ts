@@ -12,7 +12,6 @@ export default interface Meet extends mongoose.Document {
   users: User[];
   activity: { name: string;
     locations: {
-      name: string;
       address: string;
       city: string;
       state: string;
@@ -27,7 +26,6 @@ export default interface Meet extends mongoose.Document {
 let activitySchema: mongoose.Schema = new mongoose.Schema({
   name: String,
   locations: {
-    name: String,
     address: String,
     city: String,
     state: {

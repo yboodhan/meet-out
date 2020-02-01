@@ -7,11 +7,45 @@ import jwtDecode from 'jwt-decode'
 // Import CSS stylsheet
 import './App.css'
 // Import user type from user model
-import User from '../../meet-out-server/src/models/user'
+// import User from '../../meet-out-server/src/models/user'
 // Import components
 import Content from './components/Content'
 import Footer from './components/Footer'
 import Nav from './components/Nav'
+
+export interface User {
+  _id: string,
+  firstname: string,
+  lastname: string,
+  email: string,
+  password: string,
+  photo: string,
+  meets: Meet[],
+  _v: number,
+  isValidPassword(user: User, password: string): boolean
+}
+
+export interface Meet {
+  _id: string,
+  creator: string,
+  private: boolean,
+  date: Date,
+  starttime: string,
+  endtime: string,
+  description: string,
+  users: User[],
+  activity: { name: string,
+    locations: {
+      address: string,
+      city: string,
+      state: string,
+      zip: number,
+      lat: number,
+      long: number
+    };
+  }
+}
+
 
 // Interface for decoded type
 export interface Decoded extends User {
