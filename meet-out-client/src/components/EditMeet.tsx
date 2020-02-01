@@ -142,7 +142,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
     return (
         <div>
         <Container className="text-left web-body">
-            <h2>Create a new event:</h2>
+            <h2>Edit your event:</h2>
             <br />
             <Form onSubmit={createNewMeet}>
                 <Row>
