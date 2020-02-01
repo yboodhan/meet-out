@@ -1,18 +1,16 @@
-import React, {useEffect, useState} from 'react'
-import { Button, Container, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
-import { Link , Redirect} from 'react-router-dom'
+import React, { useState } from 'react'
+import { Button, Container, Modal, ModalHeader } from 'reactstrap'
+import { Redirect} from 'react-router-dom'
 import {MeetForCalendar} from './Content'
 import Moment from 'react-moment'
 import { Decoded } from '../App'
 import moment from 'moment'
-import EditMeet from './EditMeet'
 import MeetModal from './MeetModal'
 
 
 
 // import { DefaultMeetForCalendar } from './Calendar'
 
-import { userInfo } from 'os'
 import Delete from './Delete'
 
 // pass the event into this and display the event info
@@ -80,11 +78,11 @@ const EventTag: React.FC<EventTagProps> = props => {
             {deleteButton}
 
             <div>
-            <Modal isOpen={modal} toggle={toggle} className={className}>
-            <ModalHeader toggle={toggle}><h1>{props.meet.title}</h1></ModalHeader>
-              <MeetModal user={props.user} currentMeet={props.meet} modal={modal} updateMeet={props.updateMeet} toggle={toggle} />
-            </Modal>
-          </div>
+                <Modal isOpen={modal} toggle={toggle} className={className}>
+                    <ModalHeader toggle={toggle}><h1>{props.meet.title}</h1></ModalHeader>
+                    <MeetModal user={props.user} currentMeet={props.meet} modal={modal} updateMeet={props.updateMeet} toggle={toggle} />
+                </Modal>
+            </div>
         </Container>
     )
 }

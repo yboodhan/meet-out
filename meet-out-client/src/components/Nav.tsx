@@ -35,12 +35,6 @@ const Nav: React.FC<NavProps> = props => {
         links = (
         <Navi navbar>
             <NavbarBrand className="logo" href="/">MO</NavbarBrand>
-            <Form inline>
-                <Col m={12}>
-                    <Input type="text" name="search" placeholder="Search" autoFocus/>
-                </Col>
-                <Button size="sm" type="submit" color="secondary"><FontAwesomeIcon icon={faSearch}/></Button>
-            </Form>
 
             <div className="NavItem">
                 <NavLink><Link to="/profile">{props.user.firstname}</Link></NavLink>

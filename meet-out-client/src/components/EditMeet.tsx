@@ -54,12 +54,12 @@ const EditMeet: React.FC<EditMeetProps> = props => {
             description: description,
             users: users,
             activity: { name: activityName,
-              locations: {
+                locations: {
                 address: activityAddress,
                 city: city,
                 state: state,
                 zip: zip,
-              }
+                }
             }
         }
 

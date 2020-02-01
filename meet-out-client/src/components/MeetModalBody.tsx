@@ -1,9 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { MeetForCalendar } from './Content';
 // import { DefaultMeetForCalendar } from './Calendar'
 import { Decoded } from '../App';
 import moment from 'moment'
-import { Link } from 'react-router-dom'
 
 interface ModalBodyProps {
   user: Decoded | null,
@@ -15,7 +14,6 @@ const MeetDetailsModal: React.FC<ModalBodyProps> = props => {
 
   if(props.user) {
 
-    let date = 'date unavailable'
     if(props.currentMeet.date) {
       moment(props.currentMeet.date.toDateString()).format("MM/DD/YYYY")
     }

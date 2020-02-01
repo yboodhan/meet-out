@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import {Button} from 'reactstrap'
-import moment from 'moment'
 import { Decoded } from '../App';
 import { MeetForCalendar } from './Content';
 // import { DefaultMeetForCalendar } from './Calendar'
@@ -10,8 +9,8 @@ interface ModalFooterBodyProps {
     user: Decoded | null,
     currentMeet: MeetForCalendar
     updateMeet: (currentMeet: MeetForCalendar | null) => void
-  }
-  
+}
+
 const MeetModalFooter: React.FC<ModalFooterBodyProps> = props => {
     
     let [referRedirect, setReferRedirect] = useState(false)

@@ -15,8 +15,6 @@ router.get('/:id', (req: Request, res: Response) => {
 })
 
 router.put('/', (req: Request, res: Response) => {
-    console.log((req.body as{id: string}).id )
-    // console.log('req.user', req)
     //this needs coverage to handle blank fields. User should be able to update just one field, if they so desire.
     db.User.updateOne({ _id: (req.body as{id: string}).id },
     req.body)
@@ -24,7 +22,7 @@ router.put('/', (req: Request, res: Response) => {
         db.User.findOne({_id: (req.body as{id: string}).id })
         .then((user: User) => {
             // TODO: Reissue token
-            let token: string = jwt.sign(user.toJSON(), process.env.JWT_SECRET, {
+            let token: string = jwt.sign(user.toJSON(), process.env.REACT_APP_JWT_SECRET, {
                 expiresIn: 60 * 60 * 1 //Expires in 1 hour
             })
             res.send({ token })

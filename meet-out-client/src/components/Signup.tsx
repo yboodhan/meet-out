@@ -92,7 +92,7 @@ const Signup: React.FC<SignupProps> = props => {
                 </Col>
             </Row>
             <FormGroup>
-                    <Input type="email" name="email" id="email" placeholder="Email" onChange={(e: FormEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)} required/>
+                    <Input type="email" name="email"  placeholder="Email" onChange={(e: FormEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)} required/>
             </FormGroup>
             <FormGroup>
                     <Input type="password" name="password" id="password" placeholder="Password" onChange={(e: FormEvent<HTMLInputElement>) => setPassword(e.currentTarget.value)} required/>
