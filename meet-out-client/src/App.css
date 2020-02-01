@@ -60,3 +60,13 @@
 .show-page {
   text-align: left;
 }
+
+#logo-image {
+  width: 5vw;
+  height: 5vh;
+}
+
+#logo-text {
+  width: 25vw;
+  height: 14vh;
+}

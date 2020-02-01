@@ -1,6 +1,8 @@
 import React, { FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { Decoded } from '../App'
+import logo from '../MOlogo.png'
+import logoText from '../MeetOut.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Button, Col, Form, Input, Navbar, NavbarBrand, Nav as Navi, NavLink } from 'reactstrap';
@@ -25,7 +27,7 @@ const Nav: React.FC<NavProps> = props => {
     // Define links
     let links = (
         <Navi navbar>
-            <NavbarBrand className="home-logo" href="/">MEET OUT</NavbarBrand>
+            <NavbarBrand className="home-logo" href="/"><img alt="logo-text" id="logo-text" src={logoText} /></NavbarBrand>
             <Login user={props.user} updateUser={props.updateUser} />
         </Navi>
     )
@@ -34,7 +36,7 @@ const Nav: React.FC<NavProps> = props => {
     if (props.user) {
         links = (
         <Navi navbar>
-            <NavbarBrand className="logo" href="/">MO</NavbarBrand>
+            <NavbarBrand className="logo" href="/"><img alt="logo"src={logo} id="logo-image" /></NavbarBrand>
             <div className="NavItem">
                 <NavLink><Link to="/profile">My Profile</Link></NavLink>
             </div>
