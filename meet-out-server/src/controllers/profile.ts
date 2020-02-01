@@ -24,7 +24,7 @@ router.put('/', (req: Request, res: Response) => {
         db.User.findOne({_id: (req.body as{id: string}).id })
         .then((user: User) => {
             // TODO: Reissue token
-            let token: string = jwt.sign(user.toJSON(), process.env.JWT_SECRET, {
+            let token: string = jwt.sign(user.toJSON(), process.env.REACT_APP_JWT_SECRET, {
                 expiresIn: 60 * 60 * 1 //Expires in 1 hour
             })
             res.send({ token })

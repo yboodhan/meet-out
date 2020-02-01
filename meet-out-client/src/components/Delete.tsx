@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import {MeetForCalendar} from './Content'
 import { Button, Container } from 'reactstrap'
-import { PromiseProvider } from 'mongoose'
+
 
 interface DeleteProps {
     meet: MeetForCalendar,
