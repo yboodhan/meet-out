@@ -12,8 +12,8 @@ interface ModalFooterBodyProps {
     user: Decoded | null,
     currentMeet: MeetForCalendar
     updateMeet: (currentMeet: MeetForCalendar | null) => void
-  }
-  
+}
+
 const MeetModalFooter: React.FC<ModalFooterBodyProps> = props => {
     
     let [referRedirect, setReferRedirect] = useState(false)

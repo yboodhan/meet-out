@@ -24,7 +24,6 @@ const Login: React.FC<LoginProps> = props => {
     // Submit the form
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
-        console.log(`${process.env.REACT_APP_SERVER_URL}/auth/login`)
         fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
           method: 'POST',
           body: JSON.stringify({
@@ -72,13 +71,13 @@ const Login: React.FC<LoginProps> = props => {
             <Row form>
                 <Col md={5}>
                 <FormGroup>
-                    <Input type="email" name="email" id="email" autoFocus onChange={(e: FormEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)} required/>
+                    <Input type="email" name="email" autoFocus onChange={(e: FormEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)} required/>
                     <FormText color="danger">{message}</FormText>
                 </FormGroup>
                 </Col>
                 <Col md={5}>
                 <FormGroup>
-                    <Input type="password" name="password" id="password" onChange={(e: FormEvent<HTMLInputElement>) => setPassword(e.currentTarget.value)} required/>
+                    <Input type="password" name="password" onChange={(e: FormEvent<HTMLInputElement>) => setPassword(e.currentTarget.value)} required/>
                 </FormGroup>
                 </Col>
                 <Col md={2}>

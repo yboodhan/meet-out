@@ -11,18 +11,12 @@ const GEO_URL = 'https://geocoding.geo.census.gov/geocoder/locations/address?str
 const router = Router()
 
 // Get route sends all Meets to the front-end
-// Add USER model to this so that the front-end can see the user's first name & last name
 router.get('/:id', (req: Request, res: Response) => {
-    console.log('Reached MEET ROUTE')
-
     db.User.findById(req.params.id)
     .then((user: User) => {
-        console.log(user)
         db.Meet.find({ $or: [{private: false}, {users: {$in: user}}, {creator: user._id}] })
         .populate('users')
         .then((meets: Meet) => {
-            console.log('All pertinent meets should be sent')
-            console.log('meets are:', meets)
             res.send({meets, user})
         })
         .catch((err: Error) => {
@@ -112,13 +106,12 @@ router.post('/', (req: Request, res: Response) => {
 })
 
 router.delete('/:id', (req: Request, res: Response) => {
-    console.log('Accessed server-side')
     db.Meet.deleteOne({_id: req.params.id})
     .then(() => {
         res.status(204).send()
     })
     .catch((err: Error) => {
-        console.log('err in del rte', err)
+        console.log('error in delete route', err)
         res.status(500).send({message: 'Error deleting event.'})
     })
 })
