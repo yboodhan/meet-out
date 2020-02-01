@@ -57,6 +57,7 @@ router.post('/signup', (req: Request, res: Response) => {
             res.status(500).send({ message: 'Error when creating user.'})
         })
     })
+    //added this
     .catch((err: any) => {
         console.log('Error occured on signup: ', err)
         res.status(503).send({ message: 'Database Error.' })

@@ -4,10 +4,11 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon dist/app.js",
+    "start": "npm i && node dist/app.js",
     "heroku-postbuild": "tsc"
   },
   "engines": {
+    "npm": "6.13.4",
     "node": "v12.13.1"
   },
   "keywords": [],
@@ -27,6 +28,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.10",
     "morgan": "^1.9.1",
-    "rowdy-logger": "^1.0.2"
+    "rowdy-logger": "^1.0.2",
+    "typescript": "^3.7.5"
   }
 }
