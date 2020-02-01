@@ -32,7 +32,7 @@ const MeetModal: React.FC<MeetModalProps> = props => {
                 </ModalBody>
                 
                 <ModalFooter>
-                    <MeetModalFooter currentMeet={props.currentMeet} user={props.user} updateMeet={props.updateMeet}/>
+                    <MeetModalFooter toggle={props.toggle} currentMeet={props.currentMeet} user={props.user} updateMeet={props.updateMeet}/>
                 </ModalFooter>
                 </Modal>
           </div>
