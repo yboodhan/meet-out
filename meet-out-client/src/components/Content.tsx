@@ -4,9 +4,6 @@ import { Decoded, User, Meet } from '../App'
 // import User from '../../../meet-out-server/src/models/user'
 // import Meet from '../../../meet-out-server/src/models/meet'
 
-
-
-
 //Components
 import Signup from './Signup'
 import Userhome from './Userhome'
