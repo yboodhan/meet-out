@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { Button, Col, Container, Form, FormGroup, FormText, Input, Label, Row } from 'reactstrap';
-import { Decoded } from '../App';
+import { Decoded, Meet, User } from '../App';
 import { MeetForCalendar } from './Content';
 
 interface NewMeetProps {
@@ -35,7 +35,12 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     useEffect(() => {
         if (props.user) {
             setCreator(props.user._id)
-            setUsers(props.user._id)
+
+//             setUsers(props.user._id)
+
+
+            let attendees = [props.user._id]
+            setUsers(attendees)
 
         }
         setMessage('')
