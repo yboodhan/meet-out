@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Container, Modal, ModalHeader } from 'reactstrap'
-import { Redirect} from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import {MeetForCalendar} from './Content'
 import Moment from 'react-moment'
 import { Decoded } from '../App'
@@ -52,15 +52,17 @@ const EventTag: React.FC<EventTagProps> = props => {
     }
 
     let deleteButton
+    let editButton
 
     if (props.user && props.user._id === props.meet.creator) {
         deleteButton = <Delete meet={props.meet} updateMeet={props.updateMeet}/>
+        editButton = <Button size="sm" onClick={handleMeet} color="primary">Edit</Button>
     }
 
     
 
     return (
-        <Container className="event-tag">
+        <Button className="event-tag">
             <h4><Link to='/show' onClick={ () => props.updateMeet(props.meet)}>{props.meet.activity.name}</Link></h4>
             <p><Moment format="MM/DD/YYYY">
                 {props.meet.date.toDateString()}
@@ -72,8 +74,8 @@ const EventTag: React.FC<EventTagProps> = props => {
 
             <br />
         
-            <Button size="sm" color="info" onClick={meet => showDetails(props.meet)}>More Info</Button>{' '}
-            <Button size="sm" onClick={handleMeet} color="info">Edit</Button>{' '}
+            <Button size="sm" color="primary" onClick={meet => showDetails(props.meet)}>More Info</Button>{' '}
+            {editButton}{' '}
             {deleteButton}
 
             <div>
@@ -82,7 +84,7 @@ const EventTag: React.FC<EventTagProps> = props => {
                     <MeetModal user={props.user} currentMeet={props.meet} modal={modal} updateMeet={props.updateMeet} toggle={toggle} />
                 </Modal>
             </div>
-        </Container>
+        </Button>
     )
 }
 

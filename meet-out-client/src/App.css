@@ -39,10 +39,17 @@
 
 .event-tag {
   text-align: left;
-  border: 1px solid rgba(198, 236, 240, 0.685);
-  margin-top: 1em;
-  margin-bottom: 1em;
-  padding: 0.5em;
+  background-color: white;
+  color: black;
+  border: 1px solid rgba(128, 128, 128, 0.452);
+  margin: 0.5em;
+  padding: 1em;
+}
+
+.event-tag:hover {
+  background-color: white;
+  color: black;
+  font-weight: bold;
 }
 
 .profile {
