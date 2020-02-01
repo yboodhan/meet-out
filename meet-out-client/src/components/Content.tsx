@@ -65,30 +65,19 @@ const Content: React.FC<ContentProps> = props => {
     let [message, setMessage] = useState('')
     let [currentMeet, setCurrentMeet] = useState<MeetForCalendar | null>(null)
 
-    // let token = localStorage.getItem('userToken')
-    // fetch(`${process.env.REACT_APP_SERVER_URL}/auth/profile`, {
-    //   headers: {
-    //     'Authorization': `Bearer ${token}`
-    //   }
-    // })
 
     useEffect(() => {
         // If there is a user, fetch meets from get route
             if(props.user != null){
                 let token = localStorage.getItem('userToken')
-                console.log(props.user._id)
-                console.log(`${process.env.REACT_APP_SERVER_URL}/meet/${props.user._id ? props.user._id : null}`)
                 fetch(`${process.env.REACT_APP_SERVER_URL}/meet/${props.user._id ? props.user._id : null}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 })
                 .then(response => {
-                    console.log('In the code', response)
                     response.json()
                     .then((results: getResults) => {
-                        console.log('🌈🌈', results, '👻👻', response)
-
                             //create allMeets, myPrivate, myPublic, attending & not attending meets categories
                             if(results) {
                                 const amAttending = (meet: Meet) => {
@@ -121,8 +110,8 @@ const Content: React.FC<ContentProps> = props => {
                                     description: meet.description,
                                     users: meet.users,
                                     activity: meet.activity,
-                                    myPrivateMeet: (props.user != null && meet.creator == props.user._id && meet.private) ? true : false,
-                                    myPublicMeet: (props.user != null && meet.creator == props.user._id && !meet.private) ? true : false,
+                                    myPrivateMeet: (props.user != null && meet.creator === props.user._id && meet.private) ? true : false,
+                                    myPublicMeet: (props.user != null && meet.creator === props.user._id && !meet.private) ? true : false,
                                     attending: amAttending(meet) ? true : false
                                     }
                                 })
@@ -152,8 +141,6 @@ const Content: React.FC<ContentProps> = props => {
                             setMyPublicMeets(myPublicMeets)
                             setAttendingPublicMeets(attendingPublicMeets)
                             setNotAttendingPublicMeets(notAttendingPublicMeets)
-                            console.log('🐳🐳🐳🐳  My Private Meets:', myPrivateMeets, '🌈🌈🌈 My Public Meets:', myPublicMeets, '🍣🍣🍣🍣 Public Meets I am Attending:', attendingPublicMeets, '🙅🏼‍♀️🙅🏼‍♀️🙅🏼‍♀️🙅🏼‍♀️ Public Meets I am NOT Attending:', notAttendingPublicMeets )
-
                         } else {
                         setMessage('No events scheduled')  
                         }
@@ -213,26 +200,3 @@ const Content: React.FC<ContentProps> = props => {
 }
 
 export default Content
-
-
-// const testMeets: MeetForCalendar[] = [{
-//     _id: 29,
-//     title: 'running',
-//     date: new Date('January 17, 2020 07:00:00'),
-//     start: new Date('January 17, 2020 7:00:00'),
-//     end: new Date('January 17, 2020 9:00:00'),
-//     description: 'describing my meet',
-//     users: ['5e31ca382619e7073833bc32'],
-//     activity: {
-//         name: 'running',
-//         locations: [{
-//           name: 'Burke Gilman Trail',
-//           address: '3901 Fremont Ave N',
-//           city: 'Seattle',
-//           state: 'WA',
-//           zip: 98103,
-//           lat: 47.6062,
-//           long: 122.3321
-//         }]
-//       }
-// }]
