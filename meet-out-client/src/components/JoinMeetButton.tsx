@@ -8,7 +8,7 @@ interface JoinMeetButtonProps {
     user: Decoded | null,
     currentMeet: MeetForCalendar | null
     updateMeet: (currentMeet: MeetForCalendar | null) => void,
-    toggle: () => void
+    toggle?: () => void
 }
 
 const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
@@ -73,7 +73,11 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
                     })
                 console.log('🤩🤩🤩🤩 after fetch');
        
-                props.toggle()
+                if(props.toggle) {
+                    props.toggle()
+                } else {
+                    window.location.reload()
+                }
                 return 
                 //     )
                 // }
@@ -104,9 +108,9 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
 
 
     return (
-        <div>
-            <Button onClick={handleJoin}>Join Meet</Button>
-        </div>
+
+            <Button color="success" size="sm" onClick={handleJoin}>Join Meet</Button>
+
     )
 }
 

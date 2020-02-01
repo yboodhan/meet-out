@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {Button} from 'reactstrap'
 import JoinMeetButton from './JoinMeetButton'
 import LeaveMeetButton from './LeaveMeetButton'
+import Delete from './Delete'
 import moment from 'moment'
 import { Decoded } from '../App';
 import { MeetForCalendar } from './Content';
@@ -17,33 +18,42 @@ interface ModalFooterBodyProps {
   
 const MeetModalFooter: React.FC<ModalFooterBodyProps> = props => {
     
-    let [referRedirect, setReferRedirect] = useState(false)
+    let [referRedirect, setReferRedirect] = useState('')
 
     const handleMeet = () => {
-        console.log('redirecting')
         //update the current meet
         props.updateMeet(props.currentMeet)
-        setReferRedirect(true)
+        setReferRedirect('edit')
     }
 
-    if (referRedirect) {
+    const toShowPage = () => {
+        props.updateMeet(props.currentMeet)
+        setReferRedirect('show')
+    }
+
+    if (referRedirect === 'edit') {
         return (
             <Redirect to='/edit' />
+        )
+    } else if (referRedirect === 'show') {
+    return (
+        <Redirect to='/show' />
         )
     }
 
     let joinButton = <JoinMeetButton toggle={props.toggle} user={props.user} currentMeet={props.currentMeet} updateMeet={props.updateMeet}/>
-    let editButton = <Button onClick={handleMeet} color="info">Edit</Button>
-    let cancelButton = <Button>CANCEL</Button>
+    let editButton = <Button onClick={handleMeet} size="sm" color="primary" className={'mr-1'}>Edit</Button>
+    let cancelButton = <Delete meet={props.currentMeet} updateMeet={props.updateMeet}/>
     let leaveButton = <LeaveMeetButton toggle={props.toggle} user={props.user} currentMeet={props.currentMeet} updateMeet={props.updateMeet}/>
+    let viewAllDetailsButton = <Button onClick={toShowPage} size="sm" color="primary" className={'m-1'}>View Full Details</Button>
 
     let showButtons: JSX.Element[]
     if(props.currentMeet.myPrivateMeet || props.currentMeet.myPublicMeet) {
-        showButtons = [editButton, cancelButton]
+        showButtons = [viewAllDetailsButton, editButton, cancelButton]
     } else if(!props.currentMeet.myPublicMeet && props.currentMeet.attending) {
-        showButtons = [leaveButton]
+        showButtons = [viewAllDetailsButton, leaveButton]
     } else {
-        showButtons = [joinButton]
+        showButtons = [viewAllDetailsButton, joinButton]
     }
 
 

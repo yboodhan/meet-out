@@ -1,20 +1,27 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Decoded } from '../App';
 import {MeetForCalendar} from './Content'
 import { Redirect } from 'react-router-dom'
-import { Col, Container, Row, Badge } from 'reactstrap';
+import { Button, Col, Container, Row, Badge } from 'reactstrap';
 import DisplayMap from './DisplayMap'
 import moment from 'moment'
+import JoinMeetButton from './JoinMeetButton'
+import LeaveMeetButton from './LeaveMeetButton'
+import Delete from './Delete'
 
 // takes in the current meet value and spits out info
 // can be accessed when the meet is created and by link from calendar page (onclick)
 
 interface ShowMeetProps {
     user: Decoded | null,
-    currentMeet: MeetForCalendar | null
+    currentMeet: MeetForCalendar | null,
+    updateMeet: (currentMeet: MeetForCalendar | null) => void
+
 }
 
 const ShowMeet: React.FC<ShowMeetProps> = props => {
+
+    let [referRedirect, setReferRedirect] = useState(false)
 
     // If no user/meet, send to home page
     if (!props.user) {
@@ -43,6 +50,34 @@ const ShowMeet: React.FC<ShowMeetProps> = props => {
       mapLink = `https://maps.google.com/?q=${props.currentMeet.activity.locations.address + props.currentMeet.activity.locations.city + props.currentMeet.activity.locations.state + props.currentMeet.activity.locations.zip}`
     }
 
+    const handleMeet = () => {
+        //update the current meet
+        props.updateMeet(props.currentMeet)
+        setReferRedirect(true)
+    }
+
+    if (referRedirect) {
+        return (
+            <Redirect to='/edit' />
+        )
+    }
+
+    let joinButton = <JoinMeetButton user={props.user} currentMeet={props.currentMeet} updateMeet={props.updateMeet}/>
+    let editButton = <Button onClick={handleMeet} size="sm" color="primary" className={'mr-1'}>Edit</Button>
+    let cancelButton = <Delete meet={props.currentMeet} updateMeet={props.updateMeet}/>
+    let leaveButton = <LeaveMeetButton user={props.user} currentMeet={props.currentMeet} updateMeet={props.updateMeet}/>
+
+    let showButtons: JSX.Element[]
+    if(props.currentMeet.myPrivateMeet || props.currentMeet.myPublicMeet) {
+        showButtons = [editButton, cancelButton]
+    } else if(!props.currentMeet.myPublicMeet && props.currentMeet.attending) {
+        showButtons = [leaveButton]
+    } else {
+        showButtons = [joinButton]
+    }
+
+
+
     return (
         <Container className="web-body show-page">
             <h1>{props.currentMeet.title}</h1>
@@ -63,11 +98,11 @@ const ShowMeet: React.FC<ShowMeetProps> = props => {
                 <h6>Where:</h6>
                 <a href={mapLink} target="_blank" rel="noopener noreferrer"> {mapLinkText} </a>
                 <DisplayMap currentMeet={props.currentMeet}/>
-
                 </Col>
             </Row>
-
-
+            <Row>
+                {showButtons}
+            </Row>
         </Container>
     )
 }

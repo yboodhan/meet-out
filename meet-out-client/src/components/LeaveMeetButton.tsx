@@ -8,7 +8,7 @@ interface LeaveMeetButtonProps {
     user: Decoded | null,
     currentMeet: MeetForCalendar | null
     updateMeet: (currentMeet: MeetForCalendar | null) => void
-    toggle: () => void
+    toggle?: () => void
 }
 
 const LeaveMeetButton: React.FC<LeaveMeetButtonProps> = props => {
@@ -72,8 +72,14 @@ const LeaveMeetButton: React.FC<LeaveMeetButtonProps> = props => {
                     myPublicMeet: false,
                     attending: false
                     })
-                props.toggle()
-                return
+
+
+                if(props.toggle) {
+                    props.toggle()
+                } else {
+                    window.location.reload()
+                }
+
             } else {
                 // Error
                 console.log(response.status)
@@ -94,9 +100,9 @@ const LeaveMeetButton: React.FC<LeaveMeetButtonProps> = props => {
     }
     
     return (
-        <div>
-            <Button onClick={handleLeave}>Leave Meet</Button>
-        </div>
+  
+            <Button color="danger" size="sm" onClick={handleLeave}>Leave Meet</Button>
+
     )
 }
 
