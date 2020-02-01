@@ -23,11 +23,19 @@ const ShowMeet: React.FC<ShowMeetProps> = props => {
     if (!props.currentMeet) {
         return <Redirect to='/' />
     }
-    console.log('🧘🏽‍♀️🛑'+ props.currentMeet)
+    
+    let creator: string = ''
+        if(props.currentMeet.myPrivateMeet || props.currentMeet.myPublicMeet) {
+            creator = 'You'
+        } else {
+            creator = props.currentMeet.users.find((user) => user._id  === (props.currentMeet ? props.currentMeet.creator : ''))?.firstname as string
+        }
 
     return (
-        <Container className="web-body">
+        <Container className="web-body show-page">
             <h1>{props.currentMeet.title}</h1>
+            <p>Hosted by: {creator}</p>
+            <hr />
             <Row>
                 <Col md={6}>
 
