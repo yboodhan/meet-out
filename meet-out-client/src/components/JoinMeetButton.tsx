@@ -7,7 +7,8 @@ import { Redirect } from 'react-router-dom'
 interface JoinMeetButtonProps {
     user: Decoded | null,
     currentMeet: MeetForCalendar | null
-    updateMeet: (currentMeet: MeetForCalendar | null) => void
+    updateMeet: (currentMeet: MeetForCalendar | null) => void,
+    toggle: () => void
 }
 
 const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
@@ -16,6 +17,7 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
     let [referRedirect, setReferRedirect] = useState(false)
 
     const handleJoin = () => {
+
         if(props.currentMeet && props.user) {
 
         //convert users array to only the user ids
@@ -53,6 +55,7 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
         .then( (response: Response) => {
             response.json().then(result => {
             if (response.ok) {
+                console.log('🤩🤩🤩🤩 just fetched')
                 props.updateMeet({
                     _id: result._id,
                     title: result.activity.name,
@@ -68,12 +71,20 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
                     myPublicMeet: false,
                     attending: true
                     })
-                setReferRedirect(true)
+                console.log('🤩🤩🤩🤩 after fetch');
+       
+                props.toggle()
+                return 
+                //     )
+                // }
+                console.log('🤩🤩🤩🤩 after redirect')
             } else {
                 // Error
                 console.log(response.status)
+                return <Redirect to = "/" />
                 // setMessage(`${response.status} ${response.statusText}: ${result.message}`)
             }
+
             })
             .catch( (err: Error) => console.log(err))
         })
@@ -81,17 +92,17 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
             console.log('Error', err)
             // setMessage(`Error: ${err.toString()}`)
         })
-        if (referRedirect) {
-            return(
-                <Redirect to = "/home" />
-            )
-        }
+        
+   
+
         } 
         return (
             <p>Error! No meet selected</p>
         )
     }
     
+
+
     return (
         <div>
             <Button onClick={handleJoin}>Join Meet</Button>

@@ -8,6 +8,7 @@ interface LeaveMeetButtonProps {
     user: Decoded | null,
     currentMeet: MeetForCalendar | null
     updateMeet: (currentMeet: MeetForCalendar | null) => void
+    toggle: () => void
 }
 
 const LeaveMeetButton: React.FC<LeaveMeetButtonProps> = props => {
@@ -22,8 +23,8 @@ const LeaveMeetButton: React.FC<LeaveMeetButtonProps> = props => {
         let attendingUserIds = props.currentMeet.users.map(user => {
             return user._id
         })
-        //push current user id onto user ids array
-        attendingUserIds.filter(id => id != props.user?._id)
+        //remove current user from the array
+        attendingUserIds = attendingUserIds.filter(id => id != props.user?._id)
 
         console.log('🐳🐳🐳', attendingUserIds)
 
@@ -71,7 +72,8 @@ const LeaveMeetButton: React.FC<LeaveMeetButtonProps> = props => {
                     myPublicMeet: false,
                     attending: false
                     })
-                setReferRedirect(true)
+                props.toggle()
+                return
             } else {
                 // Error
                 console.log(response.status)
@@ -84,12 +86,6 @@ const LeaveMeetButton: React.FC<LeaveMeetButtonProps> = props => {
             console.log('Error', err)
             // setMessage(`Error: ${err.toString()}`)
         })
-
-    if (referRedirect) {
-        return(
-            <Redirect to = "/home" />
-        )
-    }
 
         } 
         return (

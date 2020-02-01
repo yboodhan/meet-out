@@ -65,7 +65,7 @@ const Signup: React.FC<SignupProps> = props => {
     
     // If user, redirect
     if (props.user) {
-        return <Redirect to="/profile" />
+        return <Redirect to="/home" />
     }
 
     return (

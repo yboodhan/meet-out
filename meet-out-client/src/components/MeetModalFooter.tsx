@@ -12,8 +12,9 @@ interface ModalFooterBodyProps {
     user: Decoded | null,
     currentMeet: MeetForCalendar
     updateMeet: (currentMeet: MeetForCalendar | null) => void
-}
-
+    toggle: () => void
+  }
+  
 const MeetModalFooter: React.FC<ModalFooterBodyProps> = props => {
     
     let [referRedirect, setReferRedirect] = useState(false)
@@ -31,10 +32,10 @@ const MeetModalFooter: React.FC<ModalFooterBodyProps> = props => {
         )
     }
 
-    let joinButton = <JoinMeetButton user={props.user} currentMeet={props.currentMeet} updateMeet={props.updateMeet}/>
+    let joinButton = <JoinMeetButton toggle={props.toggle} user={props.user} currentMeet={props.currentMeet} updateMeet={props.updateMeet}/>
     let editButton = <Button onClick={handleMeet} color="info">Edit</Button>
     let cancelButton = <Button>CANCEL</Button>
-    let leaveButton = <LeaveMeetButton user={props.user} currentMeet={props.currentMeet} updateMeet={props.updateMeet}/>
+    let leaveButton = <LeaveMeetButton toggle={props.toggle} user={props.user} currentMeet={props.currentMeet} updateMeet={props.updateMeet}/>
 
     let showButtons: JSX.Element[]
     if(props.currentMeet.myPrivateMeet || props.currentMeet.myPublicMeet) {

@@ -37,6 +37,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
         return meet
     })
     
+    //toggle function for modal
     const toggle = () => setModal(!modal);
 
     const showDetails = (meet: MeetForCalendar) => {
@@ -44,9 +45,11 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
         toggle()
     }
 
-    // //function to go to add event form
-    //     const addMeetOnSelect = ({start, end}: { start: string | Date, end: string | Date }) => {
+    // // //function to go to add event form
+    //     // const addMeetOnSelect = ({start, end}: { start: string | Date, end: string | Date }) => {
+    //     const addMeetOnSelect = ({start, end}: { start: string | Date, end: string | Date }) => { 
     //         //link to add form, pass start and end    
+
     // }
 
     return (
@@ -59,6 +62,7 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
                 events={displayMeets}
                 views={['month', 'week', 'day', 'agenda']}
                 onSelectEvent={meet => showDetails(meet)} //show more details - function to be created
+                onSelectSlot={({start, end }) => console.log(start, end)} //add event when selecting a certain day/time - function to be created
                 // onSelectSlot={({ start, end }) => window.prompt('New Event Name')} //add event when selecting a certain day/time - function to be created
                 // drilldownView="agenda"
                 // components={components} -can create custom components to replace existing components
