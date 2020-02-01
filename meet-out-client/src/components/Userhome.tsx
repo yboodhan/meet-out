@@ -22,7 +22,7 @@ interface UserhomeProps {
 const Userhome: React.FC<UserhomeProps> = (props) => {
     if (!props.user) {
         return(
-            <Redirect to = "/" />
+            <Redirect to = "/Content" />
         )
     } 
 
