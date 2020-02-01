@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express'
 let expressJwt = require('express-jwt')
 let cors = require('cors')
 import mongoose from 'mongoose'
+mongoose.set('useFindAndModify', false);
 //importing json module from body-parser npm module
 const bodyParser = require('body-parser')
 //import routes from routes file
