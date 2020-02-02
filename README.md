@@ -63,23 +63,23 @@ Features we would like to implement moving forward include:
 ### Backend
 | Method | Path | Purpose |
 | ------ | --------------- | ----------------- |
-│ POST   │ /auth/login  │ logs in user |
-│ POST   │ /auth/signup │ signs up user |
-│ GET    │ /meet/:id    │ gets all public meets for all users, plus all private & public meets for current user; also populates all users attending the found meets |
-│ PUT    │ /meet/:id    │ edits a specified meet's details |
-│ POST   │ /meet        │ creates a new meet |
-│ DELETE │ /meet/:id    │ deletes a meet |
-│ GET    │ /profile/:id │ sends profile information for current user |
-│ PUT    │ /profile     │ edits profile information for current user |
-│ GET    │ *            │ catch all/error page for server - sends 404 |
+| POST    | /auth/login   | logs in user |
+| POST   | /auth/signup | signs up user |
+| GET    | /meet/:id    | gets all public meets for all users, plus all private & public meets for current user; also populates all users attending the found meets |
+| PUT    | /meet/:id    | edits a specified meet's details |
+| POST   | /meet        | creates a new meet |
+| DELETE | /meet/:id    | deletes a meet |
+| GET    | /profile/:id | sends profile information for current user |
+| PUT    | /profile     | edits profile information for current user |
+| GET    | *            | catch all/error page for server - sends 404 |
 
 ### Front-end
 | Path | Purpose |
 | --------------- | ----------------- |
-│ /     │ login & sign up page |
-│ /home │ home page for logged in user - shows calendar and list of upcoming meets |
-│ /profile   │ shows profile information for current user  |
-│ /profile/edit   │ renders form to edit profile information for current user |
-│ /create        │ renders form to create a new meet |
-│ /show   │ shows full page of details for a specified meet |
+| /     | login & sign up page |
+| /home | home page for logged in user - shows calendar and list of upcoming meets |
+| /profile   | shows profile information for current user  |
+| /profile/edit   | renders form to edit profile information for current user |
+| /create        | renders form to create a new meet |
+| /show   | shows full page of details for a specified meet |
 | /edit | renders form to edit meet details |
