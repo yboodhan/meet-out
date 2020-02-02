@@ -1,9 +1,8 @@
 import React from 'react'
 import { MeetForCalendar } from './Content';
-// import { DefaultMeetForCalendar } from './Calendar'
 import { Decoded } from '../App';
 import moment from 'moment'
-import {Badge, Container, Col, Row} from 'reactstrap'
+import {Badge, Container } from 'reactstrap'
 
 interface ModalBodyProps {
   user: Decoded | null,
@@ -15,7 +14,6 @@ const MeetDetailsModal: React.FC<ModalBodyProps> = props => {
 
       moment(props.currentMeet.date?.toDateString()).format("MM/DD/YYYY")
     
-
     // let attendingUsers: JSX.Element | JSX.Element[] = <p>'No one is attending :('</p>
     //   if (props.currentMeet?.users !== null) {
     //     attendingUsers = props.currentMeet.users?.map(u => {

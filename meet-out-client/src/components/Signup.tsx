@@ -37,7 +37,6 @@ const Signup: React.FC<SignupProps> = props => {
         }
   
         // Send user data to server
-        console.log(`${process.env.REACT_APP_SERVER_URL}/auth/signup`)
         fetch(`${process.env.REACT_APP_SERVER_URL}/auth/signup`, {
             method: 'POST',
             body: JSON.stringify(data),

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Route } from 'react-router-dom'
 import { Decoded, User, Meet } from '../App'
-// import User from '../../../meet-out-server/src/models/user'
-// import Meet from '../../../meet-out-server/src/models/meet'
 
 //Components
 import Signup from './Signup'
@@ -12,7 +10,6 @@ import EditProfile from './EditProfile'
 import NewMeet from './NewMeet'
 import EditMeet from './EditMeet'
 import ShowMeet from './ShowMeet'
-import MeetModalFooter from './MeetModalFooter'
 
 // Props
 interface ContentProps {
@@ -57,12 +54,13 @@ const Content: React.FC<ContentProps> = props => {
 
     // State variables
     let [allMeets , setAllMeets] = useState<MeetForCalendar[]>([])
+    let [message, setMessage] = useState('')
     let [newOrUpdatedMeet, setNewOrUpdatedMeet] = useState<MeetForCalendar | null>(null)
     let [myPrivateMeets, setMyPrivateMeets] = useState<MeetForCalendar[]>([])
     let [myPublicMeets, setMyPublicMeets] = useState<MeetForCalendar[]>([])
     let [attendingPublicMeets, setAttendingPublicMeets] = useState<MeetForCalendar[]>([])
     let [notAttendingPublicMeets, setNotAttendingPublicMeets] = useState<MeetForCalendar[]>([])
-    let [message, setMessage] = useState('')
+
     let [currentMeet, setCurrentMeet] = useState<MeetForCalendar | null>(null)
 
 
@@ -80,14 +78,7 @@ const Content: React.FC<ContentProps> = props => {
                     .then((results: getResults) => {
                             //create allMeets, myPrivate, myPublic, attending & not attending meets categories
                             if(results) {
-
-                                console.log('🍣🍣🍣', results)
                                 const amAttending = (meet: Meet) => {
-
-//                                     for(let i = 0; i < meet.users.length; i++) {
-//                                         if(meet.users[i]._id === props.user?._id) {
-//                                             return true
-
                                     if(props.user != null){
                                         for(let i = 0; i < meet.users.length; i++) {
                                             if(meet.users[i]._id === props.user._id) {
@@ -117,7 +108,6 @@ const Content: React.FC<ContentProps> = props => {
                                     attending: amAttending(meet) ? true : false
                                     }
                                 })
-                                console.log('here are all meets', allMeets)
                                 
                                 let myPrivateMeets = allMeets.filter(meet => 
                                     meet.myPrivateMeet
@@ -126,8 +116,7 @@ const Content: React.FC<ContentProps> = props => {
                                 let myPublicMeets = allMeets.filter(meet => 
                                     meet.myPublicMeet
                                 )
-                                
-                                
+
                                 let attendingPublicMeets = allMeets.filter(meet => 
                                     props.user != null && meet.creator !== props.user._id && !meet.private && meet.attending
                                 )
@@ -136,7 +125,6 @@ const Content: React.FC<ContentProps> = props => {
                                     props.user != null && meet.creator !== props.user._id && !meet.private && !meet.attending
                                 )
                         
-        
                             //set state for each meet category variable
                             setAllMeets(allMeets)
                             setMyPrivateMeets(myPrivateMeets)
@@ -158,8 +146,7 @@ const Content: React.FC<ContentProps> = props => {
     }, [props.user, newOrUpdatedMeet])
 
     const updateMeet = (currentMeet: MeetForCalendar | null) => {
-        //update the current meet being edited
-        console.log('updating meet to', currentMeet)
+        //update the current meet state
         setCurrentMeet(currentMeet)
         setNewOrUpdatedMeet(currentMeet)
     }

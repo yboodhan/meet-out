@@ -26,15 +26,11 @@ const EditProfile: React.FC<EditProfileProps> = props => {
     // }, [])
 
     const updatePhoto = (photoUrl: string) => {
-        console.log('setting new profile photo now', photoUrl)
         setPhoto(photoUrl)
-        console.log('photo url', photo)
     }
     
 
     const handleSubmit = (e: FormEvent) => {
-        console.log('submitting form data now')
-        console.log(photo)
         e.preventDefault()
 
         let data: object = {

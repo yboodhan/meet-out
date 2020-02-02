@@ -1,24 +1,18 @@
 import React from 'react'
 import {MeetForCalendar} from './Content'
-import { Button, Container } from 'reactstrap'
+import { Button } from 'reactstrap'
 
 
 interface DeleteProps {
     meet: MeetForCalendar,
-    // comingFrom: string,
-    updateMeet: (currentMeet: MeetForCalendar | null) => void,
-    // toggle: () => void
+    updateMeet: (currentMeet: MeetForCalendar | null) => void
 }
 
 const Delete: React.FC<DeleteProps> = props => {
 
     const deleteMeet = () => {
         props.updateMeet(props.meet)
-        console.log('set the current meet to this one')
-        console.log(`${process.env.REACT_APP_SERVER_URL}/meet/${props.meet._id}`)
-
         let token = localStorage.getItem('userToken')
-        console.log(token)
 
         fetch(`${process.env.REACT_APP_SERVER_URL}/meet/${props.meet._id}`, {
             method: 'DELETE',
@@ -27,10 +21,7 @@ const Delete: React.FC<DeleteProps> = props => {
             }
         })
         .then( (response: Response) => {
-            console.log(response)
             if (response.ok) {
-                console.log('Response ok')
-                console.log('deleted')
                 window.location.reload()
             } else {
                 // Error

@@ -38,6 +38,10 @@ a :hover {
   color: #2B3E8B; 
 }
 
+.nav-link {
+  color: #2B3E8B;
+}
+
 .dark-blue-text {
   color: #2B3E8B;
   font-size: 18px; }
