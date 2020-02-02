@@ -12,7 +12,7 @@ interface DisplayMapProps {
 
 const DisplayMap: React.FC<DisplayMapProps> = props => {
     // UNCOMMENT THIS WHEN PASSED LAT AND LONG FROM BACK END:
-    let center = {lat: 11, lng: 11 }
+    let center = {lat: props.currentMeet ? props.currentMeet.activity.locations.lat : 0, lng: props.currentMeet ? props.currentMeet.activity.locations.long : 0 }
     // let center = {lat: props.currentMeet ? props.currentMeet.activity.locations.lat : 0, lng: props.currentMeet ? props.currentMeet.activity.locations.long : 0 }
     console.log(center)
     let zoom = 12
