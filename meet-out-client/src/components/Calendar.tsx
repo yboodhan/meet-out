@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, ReactNodeArray, ReactNode} from 'react'
 import {
     Calendar,
     momentLocalizer,
@@ -8,7 +8,6 @@ import {
     // components,
   } from 'react-big-calendar'
 import moment from 'moment'
-import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 import {MeetForCalendar} from './Content'
 import { Container } from 'reactstrap';
@@ -54,13 +53,16 @@ const MyCalendar: React.FC<CalendarProps> = (props) => {
 
     return (
         <Container>
-        <h2>Calendar:</h2>
         <Container className="calendar">
+            <h2>All Meets</h2>
+            <hr/>
             <Calendar
                 selectable
                 localizer={localizer}
                 events={displayMeets}
                 views={['month', 'week', 'day', 'agenda']}
+                popup
+                
                 onSelectEvent={meet => showDetails(meet)} //show more details - function to be created
                 onSelectSlot={({start, end }) => console.log(start, end)} //add event when selecting a certain day/time - function to be created
                 // onSelectSlot={({ start, end }) => window.prompt('New Event Name')} //add event when selecting a certain day/time - function to be created

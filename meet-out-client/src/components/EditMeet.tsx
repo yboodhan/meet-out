@@ -209,7 +209,7 @@ const EditMeet: React.FC<EditMeetProps> = props => {
                 </Row>
                 <hr />
                 <FormText color="danger">{message}</FormText>
-                <Button type="submit" color="info" size="lg">Submit!</Button>{' '}
+                <Button type="submit" className="blue-btn" size="lg">Submit!</Button>{' '}
             </Form>
         </Container>
         </div>

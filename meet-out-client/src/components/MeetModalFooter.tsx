@@ -42,10 +42,10 @@ const MeetModalFooter: React.FC<ModalFooterBodyProps> = props => {
     }
 
     let joinButton = <JoinMeetButton toggle={props.toggle} user={props.user} currentMeet={props.currentMeet} updateMeet={props.updateMeet}/>
-    let editButton = <Button onClick={handleMeet} size="sm" color="primary" className={'mr-1'}>Edit</Button>
+    let editButton = <Button onClick={handleMeet} size="sm" className={'m-1 blue-btn'}>Edit</Button>
     let cancelButton = <Delete meet={props.currentMeet} updateMeet={props.updateMeet}/>
     let leaveButton = <LeaveMeetButton toggle={props.toggle} user={props.user} currentMeet={props.currentMeet} updateMeet={props.updateMeet}/>
-    let viewAllDetailsButton = <Button onClick={toShowPage} size="sm" color="primary" className={'m-1'}>View Full Details</Button>
+    let viewAllDetailsButton = <Button onClick={toShowPage} size="sm" className={'m-1 blue-btn'}>View Full Details</Button>
 
     let showButtons: JSX.Element[]
     if(props.currentMeet.myPrivateMeet || props.currentMeet.myPublicMeet) {

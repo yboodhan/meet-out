@@ -45,7 +45,7 @@ const Delete: React.FC<DeleteProps> = props => {
     }
 
     return (
-        <Button size="sm" color="danger" onClick={deleteMeet}>Delete</Button>
+        <Button size="sm" outline color="danger" onClick={deleteMeet}>Delete</Button>
     )
 }
 

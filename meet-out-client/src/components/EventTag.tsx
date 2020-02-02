@@ -56,14 +56,14 @@ const EventTag: React.FC<EventTagProps> = props => {
 
     if (props.user && props.user._id === props.meet.creator) {
         deleteButton = <Delete meet={props.meet} updateMeet={props.updateMeet}/>
-        editButton = <Button size="sm" onClick={handleMeet} color="primary">Edit</Button>
+        editButton = <Button size="sm" onClick={handleMeet} className="blue-outline-btn" color="primary">Edit</Button>
     }
 
     
 
     return (
-        <Button className="event-tag">
-            <h4><Link to='/show' onClick={ () => props.updateMeet(props.meet)}>{props.meet.activity.name}</Link></h4>
+        <Container className="event-tag">
+            <h4><Link to='/show' className="dark-blue-text" onClick={ () => props.updateMeet(props.meet)}>{props.meet.activity.name}</Link></h4>
             <p><Moment format="MM/DD/YYYY">
                 {props.meet.date.toDateString()}
             </Moment> <small>({startTime} - {endTime})</small></p>
@@ -74,7 +74,7 @@ const EventTag: React.FC<EventTagProps> = props => {
 
             <br />
         
-            <Button size="sm" color="primary" onClick={meet => showDetails(props.meet)}>More Info</Button>{' '}
+            <Button size="sm" className='blue-outline-btn' color="primary" onClick={meet => showDetails(props.meet)}>More Info</Button>{' '}
             {editButton}{' '}
             {deleteButton}
 
@@ -84,7 +84,7 @@ const EventTag: React.FC<EventTagProps> = props => {
                     <MeetModal user={props.user} currentMeet={props.meet} modal={modal} updateMeet={props.updateMeet} toggle={toggle} />
                 </Modal>
             </div>
-        </Button>
+        </Container>
     )
 }
 

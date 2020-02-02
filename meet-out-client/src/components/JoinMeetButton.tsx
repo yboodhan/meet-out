@@ -79,9 +79,6 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
                     window.location.reload()
                 }
                 return 
-                //     )
-                // }
-                console.log('🤩🤩🤩🤩 after redirect')
             } else {
                 // Error
                 console.log(response.status)

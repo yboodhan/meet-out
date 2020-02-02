@@ -101,7 +101,7 @@ const Signup: React.FC<SignupProps> = props => {
             </FormGroup>
             <FormText color="danger">{message}</FormText>
             <hr />
-            <Button type="submit" color="info" size="lg">Sign up!</Button>{' '}
+            <Button type="submit" className="blue-btn" size="lg">Sign up!</Button>{' '}
         </Form>
         </Col>
         </Row>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Decoded } from '../App';
 import {MeetForCalendar} from './Content'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { Button, Col, Container, Row, Badge } from 'reactstrap';
 import DisplayMap from './DisplayMap'
 import moment from 'moment'
@@ -63,7 +63,7 @@ const ShowMeet: React.FC<ShowMeetProps> = props => {
     }
 
     let joinButton = <JoinMeetButton user={props.user} currentMeet={props.currentMeet} updateMeet={props.updateMeet}/>
-    let editButton = <Button onClick={handleMeet} size="sm" color="primary" className={'mr-1'}>Edit</Button>
+    let editButton = <Button onClick={handleMeet} size="sm" className={'mr-1 blue-btn'}>Edit</Button>
     let cancelButton = <Delete meet={props.currentMeet} updateMeet={props.updateMeet}/>
     let leaveButton = <LeaveMeetButton user={props.user} currentMeet={props.currentMeet} updateMeet={props.updateMeet}/>
 
@@ -76,10 +76,11 @@ const ShowMeet: React.FC<ShowMeetProps> = props => {
         showButtons = [joinButton]
     }
 
-
+    console.log('🌷🌷🌷🌷 currentMeet at show page',props.currentMeet)
 
     return (
         <Container className="web-body show-page">
+            <Link to="/home" className="dark-blue-text">&larr; Home</Link>
             <h1>{props.currentMeet.title}</h1>
             <p>Hosted by: {creator}</p>
             <hr />
