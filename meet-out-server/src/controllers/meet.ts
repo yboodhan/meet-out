@@ -86,8 +86,8 @@ router.post('/', (req: Request, res: Response) => {
                         city: req.body.city,
                         state: req.body.state,
                         zip: req.body.zip,
-                        lat: x,
-                        long: y
+                        lat: y,
+                        long: x
                     }
                 }
             })
