@@ -4,8 +4,10 @@ import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 // Import jwt decode
 import jwtDecode from 'jwt-decode'
-// Import CSS stylsheet
-import './App.css'
+// Import CSS stylsheets
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+import './App.scss'
+import './App.css/App.css'
 // Import user type from user model
 // import User from '../../meet-out-server/src/models/user'
 // Import components

@@ -38,23 +38,23 @@ const Nav: React.FC<NavProps> = props => {
         <Navi navbar>
             <NavbarBrand className="logo" href="/"><img alt="logo"src={logo} id="logo-image" /></NavbarBrand>
             <div className="NavItem">
-                <NavLink><Link to="/profile">My Profile</Link></NavLink>
+                <NavLink><Link to="/profile" className='dark-blue-text'>My Profile</Link></NavLink>
             </div>
             <div className="NavItem">
-                <NavLink><Link to="/home">Calendar</Link></NavLink>
+                <NavLink><Link to="/home" className='dark-blue-text'>Calendar</Link></NavLink>
             </div>
             <div className="NavItem">
-                <NavLink><Link to="/create">Create Meet</Link></NavLink>
+                <NavLink><Link to="/create" className='dark-blue-text'>Create Meet</Link></NavLink>
             </div>
             <div className="NavItem">
-                <NavLink><Link to="/" onClick={handleLogout}>Logout</Link></NavLink>
+                <NavLink><Link to="/" onClick={handleLogout} className='dark-blue-text'>Logout</Link></NavLink>
             </div>
         </Navi>
     )}
 
 
     return (
-        <div>
+        <div className="page-nav">
         <Navbar color="light" light expand="md">
             {links}
         </Navbar>

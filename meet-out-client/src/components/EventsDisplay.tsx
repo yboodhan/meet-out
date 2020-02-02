@@ -9,7 +9,14 @@ interface EventsDisplayProps {
 
 const EventsDisplay: React.FC<EventsDisplayProps> = props => {
 
-    let meetsToDisplay = [<h4>No meets yet! Create one <Link to='/create'>here.</Link></h4>]
+    let meetsToDisplay = [
+        <div>
+        <h4>No meets yet!</h4> 
+        <hr/> 
+        <h4>Schedule a meet <Link to='/create'>here.</Link></h4> 
+        <br/> 
+        <h4>Or click on any event on the calendar to join someone else in their outdoor endeavors!</h4>
+        </div>]
 
     if (props.myMeets.length) {
         meetsToDisplay = props.myMeets
@@ -17,7 +24,8 @@ const EventsDisplay: React.FC<EventsDisplayProps> = props => {
 
     return (
         <Container>
-        <h2>My Events:</h2>
+        <h2>Upcoming Meets</h2>
+        <hr/>
             <Container className="scroll-panel">
                 {meetsToDisplay}
             </Container>

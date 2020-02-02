@@ -80,6 +80,8 @@ const Content: React.FC<ContentProps> = props => {
                     .then((results: getResults) => {
                             //create allMeets, myPrivate, myPublic, attending & not attending meets categories
                             if(results) {
+
+                                console.log('🍣🍣🍣', results)
                                 const amAttending = (meet: Meet) => {
 
 //                                     for(let i = 0; i < meet.users.length; i++) {
@@ -192,7 +194,7 @@ const Content: React.FC<ContentProps> = props => {
                 () => <EditMeet currentMeet={currentMeet} updateMeet={updateMeet} user={props.user} />
             }/>
             <Route path="/show" render={
-                () => <ShowMeet currentMeet={currentMeet} user={props.user} />
+                () => <ShowMeet updateMeet={updateMeet} currentMeet={currentMeet} user={props.user} />
             }/>
 
         </div>

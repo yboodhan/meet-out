@@ -81,7 +81,7 @@ const Login: React.FC<LoginProps> = props => {
                 </FormGroup>
                 </Col>
                 <Col md={2}>
-                    <Button type="submit" color="info">Log In</Button>
+                    <Button type="submit" className="blue-btn">Log In</Button>
                 </Col>
             </Row>
         </Form>
