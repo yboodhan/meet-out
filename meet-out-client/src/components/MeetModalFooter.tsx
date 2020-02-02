@@ -3,10 +3,8 @@ import {Button} from 'reactstrap'
 import JoinMeetButton from './JoinMeetButton'
 import LeaveMeetButton from './LeaveMeetButton'
 import Delete from './Delete'
-import moment from 'moment'
 import { Decoded } from '../App';
 import { MeetForCalendar } from './Content';
-// import { DefaultMeetForCalendar } from './Calendar'
 import { Redirect } from 'react-router-dom'
 
 interface ModalFooterBodyProps {
@@ -58,13 +56,7 @@ const MeetModalFooter: React.FC<ModalFooterBodyProps> = props => {
 
 
     return (
-        <div>
-            
-            {showButtons}
-                {/* <Button color="primary" onClick={toggle}>Do Something</Button>
-                <Button color="secondary" onClick={toggle}>Cancel</Button> */}
-
-        </div>
+        <div>{showButtons}</div>
     )
 }
 

@@ -57,29 +57,3 @@ const DisplayMap: React.FC<DisplayMapProps> = props => {
 }
 
 export default DisplayMap;
-
-// title: string,
-// creator: string,
-// private: boolean,
-// date: Date,
-// start: Date,
-// starttime?: Date,
-// endtime?: Date,
-// end: Date,
-// description: string,
-// users: User[],
-// activity: {
-//     name: string,
-//     locations: {
-//         name: string;
-//         address: string;
-//         city: string;
-//         state: string;
-//         zip: number;
-//         lat: number;
-//         long: number;
-//     }
-// },
-// myPrivateMeet: boolean,
-// myPublicMeet: boolean,
-// attending: boolean

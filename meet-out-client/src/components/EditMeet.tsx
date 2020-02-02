@@ -33,7 +33,6 @@ const EditMeet: React.FC<EditMeetProps> = props => {
     useEffect(() => {
         if (props.user) {
             setCreator(props.user._id)
-            // setUsers(props.user._id)
         }
         setMessage('')
     }, [props.user, activityName, description, activityAddress, city, state, zip, date, starttime, endtime])
@@ -64,8 +63,6 @@ const EditMeet: React.FC<EditMeetProps> = props => {
             }
         }
 
-        console.log('data is', data)
-
         fetch(`${process.env.REACT_APP_SERVER_URL}/meet/${data.id}`, {
             method: 'PUT',
             body: JSON.stringify(data),
@@ -77,7 +74,6 @@ const EditMeet: React.FC<EditMeetProps> = props => {
             response.json().then(result => {
             if (response.ok) {
 
-                console.log('Response ok', response, 'RESULT 🌷🌷🌷🌷🌷', result)
                 const amAttending = (result: any) => {
                     for(let i = 0; i < result.users.length; i++) {
                         if(result.users[i]._id === props.user?._id) {

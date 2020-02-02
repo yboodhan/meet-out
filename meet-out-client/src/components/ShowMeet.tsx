@@ -76,8 +76,6 @@ const ShowMeet: React.FC<ShowMeetProps> = props => {
         showButtons = [joinButton]
     }
 
-    console.log('🌷🌷🌷🌷 currentMeet at show page',props.currentMeet)
-
     return (
         <Container className="web-body show-page">
             <Link to="/home" className="dark-blue-text">&larr; Home</Link>

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Button } from 'reactstrap'
 import {MeetForCalendar} from './Content'
 import { Decoded } from '../App'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 interface LeaveMeetButtonProps {
     user: Decoded | null,
@@ -14,7 +14,7 @@ interface LeaveMeetButtonProps {
 const LeaveMeetButton: React.FC<LeaveMeetButtonProps> = props => {
     
     // let [message, setMessage] = useState('')    
-    let [referRedirect, setReferRedirect] = useState(false)
+    // let [referRedirect, setReferRedirect] = useState(false)
 
     const handleLeave = () => {
         if(props.currentMeet && props.user) {
@@ -25,8 +25,6 @@ const LeaveMeetButton: React.FC<LeaveMeetButtonProps> = props => {
         })
         //remove current user from the array
         attendingUserIds = attendingUserIds.filter(id => id != props.user?._id)
-
-        console.log('🐳🐳🐳', attendingUserIds)
 
         // set data to send
         let data = {
@@ -40,8 +38,6 @@ const LeaveMeetButton: React.FC<LeaveMeetButtonProps> = props => {
             users: attendingUserIds,
             activity: props.currentMeet.activity
         }
-
-        console.log('🌈🌈🌈', data)
       
          //post to database put route
         //  let token = localStorage.getItem('userToken')

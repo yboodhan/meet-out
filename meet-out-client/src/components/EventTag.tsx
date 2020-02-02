@@ -6,11 +6,6 @@ import Moment from 'react-moment'
 import { Decoded } from '../App'
 import moment from 'moment'
 import MeetModal from './MeetModal'
-
-
-
-// import { DefaultMeetForCalendar } from './Calendar'
-
 import Delete from './Delete'
 
 // pass the event into this and display the event info
@@ -39,7 +34,6 @@ const EventTag: React.FC<EventTagProps> = props => {
     }
 
     const handleMeet = () => {
-        console.log('redirecting')
         //update the current meet
         props.updateMeet(props.meet)
         setReferRedirect(true)

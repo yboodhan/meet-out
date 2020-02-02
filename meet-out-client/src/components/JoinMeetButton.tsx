@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom'
 
 interface JoinMeetButtonProps {
     user: Decoded | null,
-    currentMeet: MeetForCalendar | null
+    currentMeet: MeetForCalendar | null,
     updateMeet: (currentMeet: MeetForCalendar | null) => void,
     toggle?: () => void
 }
@@ -39,8 +39,6 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
             users: attendingUserIds,
             activity: props.currentMeet.activity
         }
-
-        console.log('🌈🌈🌈', data)
       
          //post to database put route
         //  let token = localStorage.getItem('userToken')
@@ -55,7 +53,6 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
         .then( (response: Response) => {
             response.json().then(result => {
             if (response.ok) {
-                console.log('🤩🤩🤩🤩 just fetched')
                 props.updateMeet({
                     _id: result._id,
                     title: result.activity.name,
@@ -71,7 +68,6 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
                     myPublicMeet: false,
                     attending: true
                     })
-                console.log('🤩🤩🤩🤩 after fetch');
        
                 if(props.toggle) {
                     props.toggle()
@@ -81,7 +77,6 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
                 return 
             } else {
                 // Error
-                console.log(response.status)
                 return <Redirect to = "/" />
                 // setMessage(`${response.status} ${response.statusText}: ${result.message}`)
             }
@@ -93,8 +88,6 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
             console.log('Error', err)
             // setMessage(`Error: ${err.toString()}`)
         })
-        
-   
 
         } 
         return (
@@ -102,12 +95,8 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
         )
     }
     
-
-
     return (
-
             <Button color="success" size="sm" onClick={handleJoin}>Join Meet</Button>
-
     )
 }
 

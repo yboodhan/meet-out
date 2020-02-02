@@ -35,10 +35,6 @@ const NewMeet: React.FC<NewMeetProps> = props => {
     useEffect(() => {
         if (props.user) {
             setCreator(props.user._id)
-
-//             setUsers(props.user._id)
-
-
             let attendees = [props.user._id]
             setUsers(attendees)
 
@@ -67,7 +63,6 @@ const NewMeet: React.FC<NewMeetProps> = props => {
             privateMeet
         }
 
-        console.log('data is', data)
         let token = localStorage.getItem('userToken')
         fetch(`${process.env.REACT_APP_SERVER_URL}/meet`, {
             method: 'POST',
@@ -81,7 +76,6 @@ const NewMeet: React.FC<NewMeetProps> = props => {
             response.json().then(result => {
             if (response.ok) {
                 props.updateMeet(result)
-                console.log('Response ok', result)
                 setReferRedirect(true)
             } else {
                 // Error
@@ -96,15 +90,6 @@ const NewMeet: React.FC<NewMeetProps> = props => {
         })
     
     }
-
-    // if (referRedirect === true) {
-    //     return(
-    //         <Redirect to ={{
-    //             pathname: "/home",
-    //             state: { referrer: 'new meet' }
-    //         }} />
-    //     )
-    // }
 
     if (referRedirect) {
         return(
