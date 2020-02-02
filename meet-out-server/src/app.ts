@@ -34,7 +34,7 @@ app.use('/profile', require('./controllers/profile'))
 // TODO: Add, expressJwt({ secret: 'ghjk' }) middleware
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Home Stub')
+    res.send('Meet-Out Server')
 })
 
 app.get('*',(req: Request, res: Response) => {
