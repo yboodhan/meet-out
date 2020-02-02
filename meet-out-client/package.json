@@ -44,7 +44,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postinstall": "tsc"
+    "postinstall": "tsc",
+    "sass": "node-sass src/App.scss -o src/App.css"
   },
   "eslintConfig": {
     "extends": "react-app"

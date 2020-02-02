@@ -5,7 +5,9 @@ import { Button, Container } from 'reactstrap'
 
 interface DeleteProps {
     meet: MeetForCalendar,
-    updateMeet: (currentMeet: MeetForCalendar | null) => void
+    // comingFrom: string,
+    updateMeet: (currentMeet: MeetForCalendar | null) => void,
+    // toggle: () => void
 }
 
 const Delete: React.FC<DeleteProps> = props => {
@@ -43,7 +45,7 @@ const Delete: React.FC<DeleteProps> = props => {
     }
 
     return (
-        <Button size="sm" color="danger" onClick={deleteMeet}>Delete</Button>
+        <Button size="sm" outline color="danger" onClick={deleteMeet}>Delete</Button>
     )
 }
 

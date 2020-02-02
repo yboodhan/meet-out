@@ -115,7 +115,7 @@ const EditProfile: React.FC<EditProfileProps> = props => {
                     </FormGroup>
                     <FormText color="danger">{message}</FormText>
                     <hr />
-                    <Button type="submit" color="info" size="lg">Update my profile!</Button>{' '}
+                    <Button type="submit" className='blue-btn' size="lg">Update my profile!</Button>{' '}
                 </Col>
             </Row>
             </Form>

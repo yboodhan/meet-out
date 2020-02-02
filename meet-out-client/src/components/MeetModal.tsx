@@ -26,7 +26,7 @@ const MeetModal: React.FC<MeetModalProps> = props => {
     return (
         <div>
                 <Modal isOpen={props.modal} toggle={props.toggle} className={className}>
-                <ModalHeader toggle={props.toggle}><h1>{props.currentMeet?.title}</h1></ModalHeader>
+                <ModalHeader toggle={props.toggle}><h2>{props.currentMeet?.title}</h2></ModalHeader>
                 <ModalBody>
                     <MeetModalBody currentMeet={props.currentMeet} user={props.user} />
                 </ModalBody>
