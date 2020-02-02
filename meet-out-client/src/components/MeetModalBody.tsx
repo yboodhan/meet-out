@@ -2,7 +2,7 @@ import React from 'react'
 import { MeetForCalendar } from './Content';
 import { Decoded } from '../App';
 import moment from 'moment'
-import {Badge, Container, Col, Row} from 'reactstrap'
+import {Badge, Container } from 'reactstrap'
 
 interface ModalBodyProps {
   user: Decoded | null,

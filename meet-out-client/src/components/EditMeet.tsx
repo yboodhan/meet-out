@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { Button, Col, Container, Form, FormGroup, FormText, Input, Label, Row } from 'reactstrap';
-import { Decoded, Meet, User } from '../App';
+import { Decoded } from '../App';
 import {MeetForCalendar} from './Content'
 
 interface EditMeetProps {

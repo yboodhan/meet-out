@@ -54,12 +54,13 @@ const Content: React.FC<ContentProps> = props => {
 
     // State variables
     let [allMeets , setAllMeets] = useState<MeetForCalendar[]>([])
+    let [message, setMessage] = useState('')
     let [newOrUpdatedMeet, setNewOrUpdatedMeet] = useState<MeetForCalendar | null>(null)
     let [myPrivateMeets, setMyPrivateMeets] = useState<MeetForCalendar[]>([])
     let [myPublicMeets, setMyPublicMeets] = useState<MeetForCalendar[]>([])
     let [attendingPublicMeets, setAttendingPublicMeets] = useState<MeetForCalendar[]>([])
     let [notAttendingPublicMeets, setNotAttendingPublicMeets] = useState<MeetForCalendar[]>([])
-    let [message, setMessage] = useState('')
+
     let [currentMeet, setCurrentMeet] = useState<MeetForCalendar | null>(null)
 
 

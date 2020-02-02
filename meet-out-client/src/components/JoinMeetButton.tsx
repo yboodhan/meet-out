@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Button } from 'reactstrap'
 import {MeetForCalendar} from './Content'
 import { Decoded } from '../App'
@@ -14,7 +14,7 @@ interface JoinMeetButtonProps {
 const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
     
     // let [message, setMessage] = useState('')    
-    let [referRedirect, setReferRedirect] = useState(false)
+    // let [referRedirect, setReferRedirect] = useState(false)
 
     const handleJoin = () => {
 

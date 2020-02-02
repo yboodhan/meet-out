@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import { Decoded } from '../App'
 import logo from '../MOlogo.png'
 import logoText from '../MeetOut.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { Button, Col, Form, Input, Navbar, NavbarBrand, Nav as Navi, NavLink } from 'reactstrap'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { Navbar, NavbarBrand, Nav as Navi, NavLink } from 'reactstrap'
+
 
 import Login from './Login'
 

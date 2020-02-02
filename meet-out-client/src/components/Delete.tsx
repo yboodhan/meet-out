@@ -1,6 +1,6 @@
 import React from 'react'
 import {MeetForCalendar} from './Content'
-import { Button, Container } from 'reactstrap'
+import { Button } from 'reactstrap'
 
 
 interface DeleteProps {
