@@ -60,7 +60,7 @@ Features we would like to implement moving forward include:
 
 ## Routes
 
-### Backend
+### Back-end
 | Method | Path | Purpose |
 | ------ | --------------- | ----------------- |
 | POST    | /auth/login   | logs in user |
