@@ -59,7 +59,7 @@ const EventTag: React.FC<EventTagProps> = props => {
         <Container className="event-tag">
             <h4><Link to='/show' className="dark-blue-text" onClick={ () => props.updateMeet(props.meet)}>{props.meet.activity.name}</Link></h4>
             <p><Moment format="MM/DD/YYYY">
-                {props.meet.date.toDateString()}
+                {props.meet.start.toDateString()}
             </Moment> <small>({startTime} - {endTime})</small></p>
             
             <div className="text-truncate">

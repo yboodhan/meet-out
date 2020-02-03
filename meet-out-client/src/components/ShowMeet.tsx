@@ -21,6 +21,8 @@ interface ShowMeetProps {
 
 const ShowMeet: React.FC<ShowMeetProps> = props => {
 
+    console.log(props.currentMeet, '🌈🌈🌈🌈')
+
     let [referRedirect, setReferRedirect] = useState(false)
 
     // If no user/meet, send to home page
@@ -92,7 +94,7 @@ const ShowMeet: React.FC<ShowMeetProps> = props => {
                 </Col>
                 <Col md={6}>
                 <h6>When:</h6>
-                <p>{props.currentMeet.date ? props.currentMeet.date.toDateString() : 'not available'}</p>
+                <p>{props.currentMeet.date ? props.currentMeet.start.toDateString() : 'not available'}</p>
                 <p>{props.currentMeet.start ? moment(props.currentMeet.start).format("h:mm a"): 'not available' } - {props.currentMeet.end ? moment(props.currentMeet.end).format("h:mm a"): 'not available'}</p>
                 <h6>Where:</h6>
                 <a href={mapLink} target="_blank" rel="noopener noreferrer"> {mapLinkText} </a>
