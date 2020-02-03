@@ -43,7 +43,7 @@ const MeetDetailsModal: React.FC<ModalBodyProps> = props => {
         <Container>
 
               <p>Hosted by: {creator}</p>
-              <h6>{props.currentMeet.date ? props.currentMeet.date.toDateString() : 'not available'}</h6>
+              <h6>{props.currentMeet.date ? props.currentMeet.start.toDateString() : 'not available'}</h6>
               <p>{props.currentMeet.start ? moment(props.currentMeet.start).format("h:mm a"): 'not available' } - {props.currentMeet.end ? moment(props.currentMeet.end).format("h:mm a"): 'not available'}</p>
             {/* find something to show date/time in pretty way? */}
               <a href={mapLink} target="_blank" rel="noopener noreferrer"> {mapLinkText} </a>
