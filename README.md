@@ -87,6 +87,6 @@ Features we would like to implement moving forward include:
 
 ### A Haiku for Typescript
 
-# Types fly high over code
-# Wait why is that not working
-# Stupid. Why "never".
+#### Types fly high over code
+#### Wait why is that not working
+#### Stupid. Why "never".
