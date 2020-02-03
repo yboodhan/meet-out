@@ -87,6 +87,11 @@ Features we would like to implement moving forward include:
 
 ### A Haiku for Typescript
 
-#### Types fly high over code
+#### Types fly high on code
 #### Wait why is that not working
 #### Stupid. Why "never".
+#### -Nick Quandt
+
+
+### Special Thanks:
+* Amanda Grant, designer: For turning our logo dreams into a reality, and taking the project's aesthetic to the next level.
