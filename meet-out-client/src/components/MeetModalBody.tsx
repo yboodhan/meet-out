@@ -38,12 +38,14 @@ const MeetDetailsModal: React.FC<ModalBodyProps> = props => {
       mapLinkText = `${props.currentMeet.activity.locations.address}, ${props.currentMeet.activity.locations.city}, ${props.currentMeet.activity.locations.state}, ${props.currentMeet.activity.locations.zip} `
       mapLink = `https://maps.google.com/?q=${props.currentMeet.activity.locations.address + props.currentMeet.activity.locations.city + props.currentMeet.activity.locations.state + props.currentMeet.activity.locations.zip}`
     }
+
+    console.log(typeof props.currentMeet.start, '🌈🌈🌈')
       return (
         
         <Container>
 
               <p>Hosted by: {creator}</p>
-              <h6>{props.currentMeet.date ? props.currentMeet.start.toDateString() : 'not available'}</h6>
+              <h6>{props.currentMeet.start ? props.currentMeet.start.toDateString() : 'not available'}</h6>
               <p>{props.currentMeet.start ? moment(props.currentMeet.start).format("h:mm a"): 'not available' } - {props.currentMeet.end ? moment(props.currentMeet.end).format("h:mm a"): 'not available'}</p>
             {/* find something to show date/time in pretty way? */}
               <a href={mapLink} target="_blank" rel="noopener noreferrer"> {mapLinkText} </a>

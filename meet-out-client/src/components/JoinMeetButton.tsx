@@ -53,14 +53,17 @@ const JoinMeetButton: React.FC<JoinMeetButtonProps> = props => {
         .then( (response: Response) => {
             response.json().then(result => {
             if (response.ok) {
+
+                let dateString = result.date.toString().slice(0,10)
+                
                 props.updateMeet({
                     _id: result._id,
                     title: result.activity.name,
                     creator: result.creator,
                     private: result.private,
                     date: new Date(result.date),
-                    start: result.starttime,
-                    end: result.endtime,
+                    start: new Date(dateString + ' ' + result.starttime),
+                    end: new Date(dateString + ' ' + result.endtime),
                     description: result.description,
                     users: result.users,
                     activity: result.activity,
