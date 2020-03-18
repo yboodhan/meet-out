@@ -83,3 +83,15 @@ Features we would like to implement moving forward include:
 | /create        | renders form to create a new meet |
 | /show   | shows full page of details for a specified meet |
 | /edit | renders form to edit meet details |
+
+
+### A Haiku for Typescript
+
+#### Types fly high on code
+#### Wait why is that not working
+#### Stupid. Why "never".
+#### -Nick Quandt
+
+
+### Special Thanks:
+* Amanda Grant, designer: For turning our logo dreams into a reality, and taking the project's aesthetic to the next level.
