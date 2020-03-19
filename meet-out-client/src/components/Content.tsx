@@ -151,7 +151,7 @@ const Content: React.FC<ContentProps> = props => {
         setNewOrUpdatedMeet(currentMeet)
     }
 
-
+ 
     return (
         <div className="content-container">
             <Route exact path="/" render={

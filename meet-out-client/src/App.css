@@ -5,7 +5,6 @@
 .content-container {
   width: 100vw;
   height: 100vh;
-  
 }
 
 .calendar {
@@ -98,7 +97,7 @@ a :hover {
   max-height: 200px;
   width: auto;
   margin: 2em; }
-
+ 
 .show-page {
   text-align: left; }
 
